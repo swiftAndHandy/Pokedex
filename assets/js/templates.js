@@ -1,4 +1,4 @@
-async function includeHTML() {
+async function includeHtml() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
         const element = includeElements[i];
@@ -10,4 +10,11 @@ async function includeHTML() {
             element.innerHTML = 'Page not found';
         }
     }
+}
+
+function generatePokedexHtml(index) {
+    const pokemonContainer = document.getElementById('pokemon-list');
+    return `
+    
+    `
 }

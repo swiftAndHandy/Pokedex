@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -10,14 +11,38 @@
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="./assets/js/templates.js"></script>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/script.js"></script>
 </head>
-<body onload="includeHTML()">
+
+<body onload="init()">
     <header w3-include-html="templates/header.html">
     </header>
 
-    <div class="blub">Dies ist ein Test mit W</div>
+    <!-- <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0"
+        aria-valuemax="100">
+        <div class="progress-bar" style="width: 25%" id="progress-bar">25%</div>
+    </div>
+    <br> -->
+
+    <main id="pokemon-list">
+
+        <div class="card text-bg-success">
+            <div class="card-body">
+                <h5 class="card-title">${pokemonName}</h5>
+                <div class="pokedex__card">
+                    <div class="pokemon__type-box">
+                        <span class="pokemon__type-info">grass</span>
+                        <span class="pokemon__type-info">poison</span>
+                    </div>
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/2.svg" class="pokedex__image" alt="${pokemonName}">
+                </div>
+            </div>
+        </div>
+
+    </main>
 
     <footer w3-include-html="templates/footer.html">
     </footer>
 </body>
+
 </html>

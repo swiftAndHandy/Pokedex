@@ -8,6 +8,7 @@ body {
     margin: 0;
     min-height: 100vh;
     flex: 1;
+    background-color: aqua;
 }
 
 header {
@@ -17,10 +18,36 @@ header {
 }
 
 footer {
-    background-color:dimgray;
+    background-color: dimgray;
     height: 144px;
 }
 
-.blub {
-    font-family: 'Raleway';
+.pokemon__type-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.pokemon__type-info {
+    background-color: greenyellow;
+    padding: 0 8px;
+    color: black;
+    border-radius: 24px;
+    text-align: center;
+}
+
+.pokedex__card {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 32px;
+}
+
+.pokedex__image {
+    width: 100px;
+    object-fit: cover;
+}
+
+.card {
+    width: fit-content;
 }
