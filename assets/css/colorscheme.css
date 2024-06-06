@@ -1,0 +1,71 @@
+.type--grass {
+    background-color: green !important;
+}
+
+.type--fire {
+    background-color: orange !important;
+}
+
+.type--water {
+    background-color: rgb(124, 175, 234) !important;
+}
+
+.type--bug {
+    background-color: brown !important;
+}
+
+.type--normal {
+    background-color: antiquewhite !important;
+}
+
+.type--poison {
+    background-color: greenyellow !important;
+}
+
+.type--electric {
+    background-color: rgb(237, 237, 30) !important;
+}
+
+.type--ground {
+    background-color: burlywood !important;
+}
+
+.type--fairy {
+    background-color: pink !important;
+}
+
+.type--fighting {
+    background-color: darkkhaki !important;
+}
+
+.type--psychic {
+    background-color: blueviolet !important;
+}
+
+.type--rock {
+    background-color: gray !important;
+}
+
+.type--ghost {
+    background-color: rgb(221, 180, 221) !important;
+}
+
+.type--ice {
+    background-color: azure !important;
+}
+
+.type--dragon {
+    background-color: cadetblue !important;
+}
+
+.type--dark {
+    background-color: rgba(0, 0, 0, 0.4) !important;
+}
+
+/* .font-color--dark {
+    
+} */
+
+h5 {
+    background-color: transparent !important;
+}

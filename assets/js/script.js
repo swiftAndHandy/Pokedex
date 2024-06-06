@@ -41,7 +41,9 @@ async function fetchPokemonDetails() {
     let newDetails = [];
     if (morePokemonAllowed()) {
         for (let i = 0; i < pokemonListResults.length; i++) {
-            await addPokemonInformation(newDetails, pokemonListResults, i);
+            if (morePokemonAllowed()) {
+                await addPokemonInformation(newDetails, pokemonListResults, i);
+            }
         }
         pokemonDetails.push(newDetails);
     }
@@ -77,8 +79,18 @@ async function renderAllPokemon() {
     pokemonContainer.innerHTML = '';
     for (let set = 0; set < catchedPokemon; set++) {
         for (let i = 0; i < pokemonDetails[set].length; i++) {
-            // pokemonContainer.insertAdjacentHTML('beforeend', generatePokedexHtml(set, i));
-            pokemonContainer.innerHTML += generatePokedexHtml(set, i);
+            pokemonContainer.insertAdjacentHTML('beforeend', generatePokedex(set, i));
         }
     }
+}
+
+function generatePokedex(set, index) {
+    const pokemon = pokemonDetails[set][index];
+    const pokemonName = capitalizeFirstLetter(pokemon['name']);
+    const colorScheme = getColorScheme(pokemon);
+    return generatePokedexHtml(pokemon, pokemonName, colorScheme);
+}
+
+function getColorScheme(pokemon) {
+    return pokemon.types[0].type.name;
 }

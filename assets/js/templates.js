@@ -12,14 +12,12 @@ async function includeHtml() {
     }
 }
 
-function generatePokedexHtml(set, index) {
-    const pokemon = pokemonDetails[set][index];
-    const pokemonName = capitalizeFirstLetter(pokemon['name']);
+function generatePokedexHtml(pokemon, pokemonName, colorScheme) {
     const typesHtml = generateTypeHtml(pokemon);
     return `
-    <div class="card text-bg-success">
+    <div class="card type--${colorScheme}">
         <div class="card-body pokemon__photo-box">
-            <h5 class="card-title">${pokemonName}</h5>
+            <h5 class="card-title font-color--${colorScheme}">${pokemonName}</h5>
             <div class="pokedex__card">
                 <div class="pokemon__type-box">
                     ${typesHtml}
