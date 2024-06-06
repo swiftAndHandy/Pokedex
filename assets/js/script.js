@@ -1,5 +1,6 @@
 let pokemonList;
 let pokemonDetails = [];
+let countPokemonLoaded = 0
 
 const API_BASE_URL = 'https://pokeapi.co/api/v2/'
 const LIMIT = 20;
@@ -37,35 +38,28 @@ async function fetchPokemonNames() {
 async function fetchPokemonDetails() {
     const pokemonListResults = pokemonList['results'];
     let newDetails = [];
-    for (let i = 0; i < pokemonListResults.length; i++) {
-        if (calculateTotalPokemonLoaded() < pokemonList['count']) {
-            let details = await fetch(pokemonListResults[i].url);
-            let detailsData = await details.json();
-            newDetails.push(detailsData);
+    if (countPokemonLoaded < pokemonList['count']) {
+        for (let i = 0; i < pokemonListResults.length; i++) {
+            if (countPokemonLoaded < pokemonList['count']) {
+                let details = await fetch(pokemonListResults[i].url);
+                let detailsData = await details.json();
+                newDetails.push(detailsData);
+                ++countPokemonLoaded;
+            }
         }
+        pokemonDetails.push(newDetails);
+        console.log(pokemonDetails);
     }
-    pokemonDetails.push(newDetails);
-    console.log(pokemonDetails);
 }
 
 function pokeAPI() {
     return API_BASE_URL + 'pokemon' + '?limit=' + LIMIT + '&offset=' + calculatedOffset();
 }
 
-function forAnIndexOf() {
-    const fullSetsOfPokemon = (pokemonDetails.length) * LIMIT;
-    // pokemonDetails[pokemonDetailsAmount] ? console.error('Details: ' + pokemonDetails[pokemonDetailsAmount].length) : false;
-    return fullSetsOfPokemon;
-}
-
 function calculatedOffset() {
-    return forAnIndexOf() + OFFSET;
+    return countPokemonLoaded + OFFSET;
 }
 
-function calculateTotalPokemonLoaded() {
-    let fullSets = pokemonDetails.length;
-    return fullSets;
-}
 
 // function progressBar() {
 //     const progressBar = document.getElementById('progress-bar');
