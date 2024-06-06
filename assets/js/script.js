@@ -1,9 +1,10 @@
 let pokemonList;
 let pokemonDetails = [];
 let countPokemonLoaded = 0
+pokemonLoadingLimit = 649; // api: dream-world
 
 const API_BASE_URL = 'https://pokeapi.co/api/v2/'
-const LIMIT = 20;
+const LIMIT = 100;
 const OFFSET = 0;
 let i = 0;
 
@@ -26,11 +27,11 @@ async function fetchPokemonInformation() {
     getLocalPokemonDetails();
     pokemonList = await fetchPokemonNames();
     await fetchPokemonDetails();
-    // renderAllPokemon();
+    renderAllPokemon();
 }
 
 async function fetchPokemonNames() {
-    let pokemonCollection = await fetch(pokeAPI());
+    let pokemonCollection = await fetch(pokeAPI('pokemon'));
     let pokemonNamesJson = await pokemonCollection.json();
     return pokemonNamesJson;
 }
@@ -38,41 +39,46 @@ async function fetchPokemonNames() {
 async function fetchPokemonDetails() {
     const pokemonListResults = pokemonList['results'];
     let newDetails = [];
-    if (countPokemonLoaded < pokemonList['count']) {
+    if (morePokemonAllowed()) {
         for (let i = 0; i < pokemonListResults.length; i++) {
-            if (countPokemonLoaded < pokemonList['count']) {
-                let details = await fetch(pokemonListResults[i].url);
-                let detailsData = await details.json();
-                newDetails.push(detailsData);
-                ++countPokemonLoaded;
-            }
+            await addPokemonInformation(newDetails, pokemonListResults, i);
         }
         pokemonDetails.push(newDetails);
-        console.log(pokemonDetails);
     }
 }
 
-function pokeAPI() {
-    return API_BASE_URL + 'pokemon' + '?limit=' + LIMIT + '&offset=' + calculatedOffset();
+function morePokemonAllowed() {
+    //original was pokemonList['count'] - but this causes bugs since the api is making id-jumps at ~1025
+    return countPokemonLoaded < pokemonLoadingLimit;
+}
+
+async function addPokemonInformation(newDetails, pokemonListResults, i) {
+    let details = await fetch(pokemonListResults[i].url);
+    let detailsData = await details.json();
+    newDetails.push(detailsData);
+    ++countPokemonLoaded;
+}
+
+function pokeAPI(path) {
+    return API_BASE_URL + path + '?limit=' + LIMIT + '&offset=' + calculatedOffset();
 }
 
 function calculatedOffset() {
     return countPokemonLoaded + OFFSET;
 }
 
-
-// function progressBar() {
-//     const progressBar = document.getElementById('progress-bar');
-//     let currentProgress = setInterval(() => {
-//         console.log(pokemonList['results'].length);
-//     }, 100)
-//     progressBar.style = "width:10%";
-//     progressBar.innerHTML = "10%";
-// }
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 async function renderAllPokemon() {
     const catchedPokemon = pokemonDetails.length;
-    for (let i = 0; i < catchedPokemon.length; i++) {
-        generatePokedexHtml(i);
+    const pokemonContainer = document.getElementById('pokemon-list');
+    pokemonContainer.innerHTML = '';
+    for (let set = 0; set < catchedPokemon; set++) {
+        for (let i = 0; i < pokemonDetails[set].length; i++) {
+            // pokemonContainer.insertAdjacentHTML('beforeend', generatePokedexHtml(set, i));
+            pokemonContainer.innerHTML += generatePokedexHtml(set, i);
+        }
     }
 }

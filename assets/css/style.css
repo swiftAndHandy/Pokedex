@@ -17,9 +17,21 @@ header {
     height: 112px;
 }
 
+main {
+    display: flex;
+    justify-content: center;
+}
+
 footer {
     background-color: dimgray;
     height: 144px;
+}
+
+.pokemon-list__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1920px;
 }
 
 .pokemon__type-box {
@@ -45,9 +57,33 @@ footer {
 
 .pokedex__image {
     width: 100px;
-    object-fit: cover;
+    height: 100px;
+    transition: all 0.2s ease-in-out;
+    z-index: 2;
 }
 
 .card {
     width: fit-content;
+    margin: 8px;
+    transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 10px black;
+}
+
+.card:hover img {
+    transform: scale(1.1);
+    rotate: -5deg;
+}
+
+.card-body {
+    width: 250px;
+}
+
+.pokemon__photo-box:hover {
+    background-image: url('../img/glow2.png');
+    background-position: center;
+    background-size: cover;
 }

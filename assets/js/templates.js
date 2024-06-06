@@ -12,9 +12,29 @@ async function includeHtml() {
     }
 }
 
-function generatePokedexHtml(index) {
-    const pokemonContainer = document.getElementById('pokemon-list');
+function generatePokedexHtml(set, index) {
+    const pokemon = pokemonDetails[set][index];
+    const pokemonName = capitalizeFirstLetter(pokemon['name']);
+    const typesHtml = generateTypeHtml(pokemon);
     return `
-    
-    `
+    <div class="card text-bg-success">
+        <div class="card-body pokemon__photo-box">
+            <h5 class="card-title">${pokemonName}</h5>
+            <div class="pokedex__card">
+                <div class="pokemon__type-box">
+                    ${typesHtml}
+                </div>
+                    <img src="${pokemon['sprites']['other']['dream_world']['front_default']}" class="pokedex__image" alt="//">
+            </div>
+        </div>
+    </div>
+    `;
+}
+
+function generateTypeHtml(pokemon) {
+    let response = "";
+    for (i = 0; i < pokemon.types.length; i++) {
+        response += `<span class="pokemon__type-info">${pokemon.types[i].type.name}</span>`;
+    }
+    return response;
 }
