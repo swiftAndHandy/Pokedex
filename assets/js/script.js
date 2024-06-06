@@ -1,8 +1,8 @@
 let pokemonList;
-let pokemonDetails;
+let pokemonDetails = [];
 
 const API_BASE_URL = 'https://pokeapi.co/api/v2/'
-const LIMIT = 30;
+const LIMIT = 20;
 const OFFSET = 0;
 let i = 0;
 
@@ -11,10 +11,21 @@ function init() {
     fetchPokemonInformation();
 }
 
+function setLocalPokemonDetails(value) {
+    localStorage.setItem('fetchedPokemon', JSON.stringify(value));
+}
+
+function getLocalPokemonDetails() {
+    if (JSON.parse(localStorage.getItem('fetchedPokemon'))) {
+        pokemonDetails = JSON.parse(localStorage.getItem('fetchedPokemon'));
+    }
+}
+
 async function fetchPokemonInformation() {
+    getLocalPokemonDetails();
     pokemonList = await fetchPokemonNames();
-    pokemonDetails = await fetchPokemonDetails();
-    renderAllPokemon();
+    await fetchPokemonDetails();
+    // renderAllPokemon();
 }
 
 async function fetchPokemonNames() {
@@ -25,18 +36,35 @@ async function fetchPokemonNames() {
 
 async function fetchPokemonDetails() {
     const pokemonListResults = pokemonList['results'];
-    let detailsJson = [];
+    let newDetails = [];
     for (let i = 0; i < pokemonListResults.length; i++) {
-        let details = await fetch(pokemonListResults[i].url);
-        let detailsData = await details.json();
-        detailsJson.push(detailsData);
+        if (calculateTotalPokemonLoaded() < pokemonList['count']) {
+            let details = await fetch(pokemonListResults[i].url);
+            let detailsData = await details.json();
+            newDetails.push(detailsData);
+        }
     }
-    console.log(detailsJson);
-    return detailsJson;
+    pokemonDetails.push(newDetails);
+    console.log(pokemonDetails);
 }
 
 function pokeAPI() {
-    return API_BASE_URL + 'pokemon' + '?limit=' + LIMIT + '&offset=' + OFFSET;
+    return API_BASE_URL + 'pokemon' + '?limit=' + LIMIT + '&offset=' + calculatedOffset();
+}
+
+function forAnIndexOf() {
+    const fullSetsOfPokemon = (pokemonDetails.length) * LIMIT;
+    // pokemonDetails[pokemonDetailsAmount] ? console.error('Details: ' + pokemonDetails[pokemonDetailsAmount].length) : false;
+    return fullSetsOfPokemon;
+}
+
+function calculatedOffset() {
+    return forAnIndexOf() + OFFSET;
+}
+
+function calculateTotalPokemonLoaded() {
+    let fullSets = pokemonDetails.length;
+    return fullSets;
 }
 
 // function progressBar() {
