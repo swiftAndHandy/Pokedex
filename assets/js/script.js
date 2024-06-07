@@ -4,9 +4,11 @@ let countPokemonLoaded = 0
 let pokemonLoadingLimit = 649; // Gen 5 Cap, don't change
 
 const API_BASE_URL = 'https://pokeapi.co/api/v2/'
-const SET_LIMIT = 200;
+const SET_LIMIT = 40;  // LIMIT 0 -> API overwrites with a standard of 20
 const OFFSET = 0;
 let AUTOLOAD = false;
+
+let legacySound = true;
 
 let i = 0;
 
@@ -34,10 +36,10 @@ async function fetchPokemonInformation() {
     evaluateAutoload();
 }
 
-function evaluateAutoload() {
+async function evaluateAutoload() {
     if (AUTOLOAD) {
         // setTimeout(() => {
-            fetchPokemonInformation();
+        await fetchPokemonInformation();
         // }, 100);
         console.log('Autoload triggered');
     } else {
@@ -107,11 +109,83 @@ async function renderAllPokemon() {
 
 function generatePokedex(set, index) {
     const pokemon = pokemonDetails[set][index];
-    const pokemonName = capitalizeFirstLetter(pokemon['name']);
+    const pokemonName = capitalizeFirstLetter(pokemon['species']['name']);
     const colorScheme = getColorScheme(pokemon);
-    return generatePokedexHtml(pokemon, pokemonName, colorScheme);
+    return generatePokedexHtml(pokemon, pokemonName, colorScheme, set, index);
 }
 
 function getColorScheme(pokemon) {
     return pokemon.types[0].type.name;
+}
+
+function getPokemonId(pokemon) {
+    return pokemon.game_indices[pokemon.game_indices.length - 1].game_index; // API provides bulletproof data only on the last entry
+}
+
+function playPokemonCry(set, index) { // add where needed: onclick="playPokemonCry(${set}, ${index})";
+    let pokemon = pokemonDetails[set][index];
+    let soundType = legacySound ? 'legacy' : 'latest';
+    let audioFile = new Audio(pokemon['cries'][soundType]);
+    audioFile.play();
+
+}
+
+function changeSoundType() {
+    legacySound = !legacySound;
+    document.getElementById('sound-label').innerHTML = legacySound ? "legacy cries active" : "latest cries active";
+}
+
+async function previousPokemon(set, index) {
+    const indexMax = SET_LIMIT - 1;
+    --index;
+    if (index < 0) {
+        index = indexMax;
+        set = await findCorrectSet(set, 'decrease');
+    }
+    console.log('Set: ' + set);
+    console.log('Index: ' + index);
+    openDetailCard(set, index);
+}
+
+async function nextPokemon(set, index) {
+    const indexMax = SET_LIMIT - 1;
+    ++index;
+    if (index > indexMax) {
+        index = 0;
+        set = await findCorrectSet(set, 'increase');
+    }
+    console.log('Set: ' + set);
+    console.log('Index: ' + index);
+    openDetailCard(set, index);
+}
+
+function findCorrectSet(set, method) {
+    if (method == 'decrease') {
+        set = decreaseSet(set);
+    } else if (method == 'increase') {
+        set = increaseSet(set);
+    }
+    return set;
+}
+
+function openDetailCard(set, index) {
+
+}
+
+function increaseSet(set) {
+    const maxSetIndex = pokemonDetails.length - 1;
+    ++set;
+    if (set > maxSetIndex) {
+        set = 0;
+    }
+    return set;
+}
+
+function decreaseSet(set) {
+    const maxSetIndex = pokemonDetails.length - 1;
+    --set;
+    if (set < 0) {
+        set = maxSetIndex;
+    }
+    return set;
 }

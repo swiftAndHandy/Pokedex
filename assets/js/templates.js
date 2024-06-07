@@ -12,12 +12,15 @@ async function includeHtml() {
     }
 }
 
-function generatePokedexHtml(pokemon, pokemonName, colorScheme) {
+function generatePokedexHtml(pokemon, pokemonName, colorScheme, set, index) {
     const typesHtml = generateTypeHtml(pokemon);
     return `
-    <div class="card type--${colorScheme}" id="pokedex-name-${pokemonName}">
+    <div class="card type--${colorScheme}" id="pokedex-name-${pokemonName}" onclick="openDetailCard(${set}, ${index})">
         <div class="card-body pokemon__photo-box">
-            <h5 class="card-title font-color--${colorScheme}">${pokemonName}</h5>
+            <div class="pokemon__info-box__header">
+                <h5 class="card-title font-color--${colorScheme}">${pokemonName}</h5>
+                <span># ${getPokemonId(pokemon)}</span>
+            </div>
             <div class="pokedex__card">
                 <div class="pokemon__type-box">
                     ${typesHtml}
