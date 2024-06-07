@@ -12,8 +12,8 @@ let legacySound = true;
 
 let i = 0;
 
-function init() {
-    includeHtml();
+async function init() {
+    await includeHtml();
     fetchPokemonInformation();
 }
 
@@ -28,12 +28,14 @@ function getLocalPokemonDetails() {
 }
 
 async function fetchPokemonInformation() {
+    startSpinner();
     console.log('Start new fetch');
     getLocalPokemonDetails();
     pokemonList = await fetchPokemonNames();
     await fetchPokemonDetails();
     await renderAllPokemon();
     evaluateAutoload();
+    stopSpinner();
 }
 
 async function evaluateAutoload() {
@@ -188,4 +190,14 @@ function decreaseSet(set) {
         set = maxSetIndex;
     }
     return set;
+}
+
+function startSpinner() {
+    document.getElementById('pokemon-list').classList.add('dim-screen');
+    document.getElementById('loading-spinner').classList.remove('d-none');
+}
+
+function stopSpinner() {
+    document.getElementById('pokemon-list').classList.remove('dim-screen');
+    document.getElementById('loading-spinner').classList.add('d-none');
 }
