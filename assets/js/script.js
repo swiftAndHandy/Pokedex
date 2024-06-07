@@ -1,11 +1,13 @@
 let pokemonList;
 let pokemonDetails = [];
 let countPokemonLoaded = 0
-pokemonLoadingLimit = 649; // api: dream-world
+let pokemonLoadingLimit = 649; // Gen 5 Cap, don't change
 
 const API_BASE_URL = 'https://pokeapi.co/api/v2/'
-const LIMIT = 100;
+const SET_LIMIT = 200;
 const OFFSET = 0;
+let AUTOLOAD = false;
+
 let i = 0;
 
 function init() {
@@ -24,10 +26,23 @@ function getLocalPokemonDetails() {
 }
 
 async function fetchPokemonInformation() {
+    console.log('Start new fetch');
     getLocalPokemonDetails();
     pokemonList = await fetchPokemonNames();
     await fetchPokemonDetails();
-    renderAllPokemon();
+    await renderAllPokemon();
+    evaluateAutoload();
+}
+
+function evaluateAutoload() {
+    if (AUTOLOAD) {
+        // setTimeout(() => {
+            fetchPokemonInformation();
+        // }, 100);
+        console.log('Autoload triggered');
+    } else {
+        console.log('Autoload no more triggered');
+    }
 }
 
 async function fetchPokemonNames() {
@@ -43,7 +58,7 @@ async function fetchPokemonDetails() {
         for (let i = 0; i < pokemonListResults.length; i++) {
             if (morePokemonAllowed()) {
                 await addPokemonInformation(newDetails, pokemonListResults, i);
-            }
+            } else { break; }
         }
         pokemonDetails.push(newDetails);
     }
@@ -59,10 +74,16 @@ async function addPokemonInformation(newDetails, pokemonListResults, i) {
     let detailsData = await details.json();
     newDetails.push(detailsData);
     ++countPokemonLoaded;
+    countPokemonLoaded >= pokemonLoadingLimit ? stopAutoload() : false;
+}
+
+function stopAutoload() {
+    AUTOLOAD = false;
+    console.log('Autoload stopped now, AUTOLOAD is ' + AUTOLOAD);
 }
 
 function pokeAPI(path) {
-    return API_BASE_URL + path + '?limit=' + LIMIT + '&offset=' + calculatedOffset();
+    return API_BASE_URL + path + '?limit=' + SET_LIMIT + '&offset=' + calculatedOffset();
 }
 
 function calculatedOffset() {
