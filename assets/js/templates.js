@@ -16,7 +16,7 @@ function generatePokedexHtml(pokemon, pokemonName, colorScheme, set, index) {
     const typesHtml = generateTypeHtml(pokemon);
     return `
     <div class="card type--${colorScheme}" id="pokedex-name-${pokemonName}" onclick="openDetailCard(${set}, ${index})">
-        <div class="card-body pokemon__photo-box">
+        <div class="card-body pokemon__photo-box" onclick="playPokemonCry(${set}, ${index})";>
             <div class="pokemon__info-box__header">
                 <h5 class="card-title font-color--${colorScheme}">${pokemonName}</h5>
                 <span># ${getPokemonId(pokemon)}</span>

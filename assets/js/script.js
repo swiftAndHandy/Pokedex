@@ -4,13 +4,11 @@ let countPokemonLoaded = 0
 let pokemonLoadingLimit = 649; // Gen 5 Cap, don't change
 
 const API_BASE_URL = 'https://pokeapi.co/api/v2/'
-const SET_LIMIT = 40;  // LIMIT 0 -> API overwrites with a standard of 20
+const SET_LIMIT = 20;  // LIMIT 0 -> API overwrites with a standard of 20
 const OFFSET = 0;
 let AUTOLOAD = false;
 
 let legacySound = true;
-
-let i = 0;
 
 async function init() {
     await includeHtml();
@@ -28,34 +26,33 @@ function getLocalPokemonDetails() {
 }
 
 async function fetchPokemonInformation() {
-    startSpinner();
     console.log('Start new fetch');
     getLocalPokemonDetails();
     pokemonList = await fetchPokemonNames();
     await fetchPokemonDetails();
     await renderAllPokemon();
     evaluateAutoload();
-    stopSpinner();
 }
 
 async function evaluateAutoload() {
     if (AUTOLOAD) {
-        // setTimeout(() => {
         await fetchPokemonInformation();
-        // }, 100);
         console.log('Autoload triggered');
     } else {
         console.log('Autoload no more triggered');
+        stopSpinner();
     }
 }
 
 async function fetchPokemonNames() {
+    startSpinner();
     let pokemonCollection = await fetch(pokeAPI('pokemon'));
     let pokemonNamesJson = await pokemonCollection.json();
     return pokemonNamesJson;
 }
 
 async function fetchPokemonDetails() {
+    startSpinner();
     const pokemonListResults = pokemonList['results'];
     let newDetails = [];
     if (morePokemonAllowed()) {
