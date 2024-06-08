@@ -14,11 +14,6 @@ html {
     justify-content: center;
 }
 
-.carousel-inner {
-    /* display: flex;
-    justify-content: center; */
-}
-
 .carousel-item {
     display: flex !important;
     justify-content: center !important;
@@ -51,11 +46,35 @@ header {
     max-width: 2000px;
 }
 
+.hide-overflow {
+    overflow: hidden;
+}
+
 .logo-section {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     gap: 16px;
+}
+
+.searchbar {
+    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"%3E%3Cpath d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/%3E%3C/svg%3E') no-repeat;
+    background-position: 10px center;
+    background-size: 16px 16px;
+    padding-left: 30px;
+}
+
+.searchbar::placeholder {
+    color: transparent;
+    /* Placeholder-Text unsichtbar machen */
+}
+
+
+@media (min-width: 600px) {
+    .search {
+        position: absolute;
+        left: calc(50% - 88px);
+    }
 }
 
 .logo-font {
@@ -76,6 +95,11 @@ header {
 
 .setting-icon:hover {
     transform: scale(1.2) rotate(45deg);
+    filter: brightness(1.5);
+}
+
+.setting-icon:active {
+    transform: scale(1.2) rotate(180deg);
     filter: brightness(1.2);
 }
 
@@ -88,6 +112,7 @@ header {
 }
 
 main {
+    background-image: url(../img/main-bg.webp);
     display: flex;
     justify-content: center;
     flex: 1;
@@ -102,7 +127,7 @@ footer {
     height: 80px;
 }
 
-.d-none{
+.d-none {
     display: none;
 }
 
@@ -120,7 +145,7 @@ footer {
 }
 
 .dim-screen {
-    filter:opacity(0.2)
+    filter: opacity(0.2)
 }
 
 .loading-spinner {
@@ -226,6 +251,20 @@ footer {
     }
 }
 
+@media (max-width: 375px) {
+    header {
+        padding: 16px;
+    }
+
+    .logo-section img {
+        height: 50px;
+    }
+
+    .menu img {
+        height: 50px;
+    }
+}
+
 .pokemon__photo-box:hover {
     background-image: url('../img/glow2.png');
     background-position: center;
@@ -240,4 +279,24 @@ footer {
     to {
         rotate: 360deg;
     }
+}
+
+.wpx-100 {
+    width: 100px !important;
+}
+
+.wpx-150 {
+    width: 150px !important;
+}
+
+.wpx-175 {
+    width: 175px !important;
+}
+
+.wpx-200 {
+    width: 200px !important;
+}
+
+.pl-2 {
+    padding-left: 24px !important;
 }

@@ -13,13 +13,18 @@
     <link rel="stylesheet" href="./assets/css/colorscheme.css">
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="./assets/js/templates.js"></script>
+    <script src="./assets/js/settings.js"></script>
+    <script src="./assets/js/detailview.js"></script>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </head>
 
-<body onload="init()">
+<body onload="init()" class="">
     <header w3-include-html="templates/header.html">
     </header>
+
+    <section w3-include-html="templates/settings.html" class="settings d-none" id="settings-view">
+    </section>
 
     <section w3-include-html="templates/details.html" class="slider d-none" id="detail-view">
     </section>
