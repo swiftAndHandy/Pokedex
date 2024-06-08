@@ -2,6 +2,28 @@ html {
     scroll-behavior: smooth;
 }
 
+.carousel {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+}
+
+.carousel-slide {
+    display: flex;
+    justify-content: center;
+}
+
+.carousel-inner {
+    /* display: flex;
+    justify-content: center; */
+}
+
+.carousel-item {
+    display: flex !important;
+    justify-content: center !important;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -13,18 +35,56 @@ body {
 
 header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 16px;
+    padding: 32px;
     background-color: dimgray;
     min-width: 100vw;
     height: 112px;
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 2000px;
 }
 
 .logo-section {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    gap: 16px;
+}
+
+.logo-font {
+    color: yellow;
+    margin-block: 0;
+}
+
+@media (max-width: 803px) {
+    .logo-font {
+        display: none;
+    }
+}
+
+.setting-icon {
+    height: 50px;
+    transition: all 0.3s ease-in-out;
+}
+
+.setting-icon:hover {
+    transform: scale(1.2) rotate(45deg);
+    filter: brightness(1.2);
+}
+
+.slider {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 main {
@@ -43,7 +103,7 @@ footer {
 }
 
 .d-none{
-    /* display: none; */
+    display: none;
 }
 
 .progress {

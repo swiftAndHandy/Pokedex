@@ -1,16 +1,18 @@
 let pokemonList;
 let pokemonDetails = [];
-let countPokemonLoaded = 0
+let countPokemonLoaded = 0;
 let pokemonLoadingLimit = 649; // Gen 5 Cap, don't change
 
 const API_BASE_URL = 'https://pokeapi.co/api/v2/'
-const SET_LIMIT = 100;  // LIMIT 0 -> API overwrites with a standard of 20
+const SET_LIMIT = 40;  // LIMIT 0 -> API overwrites with a standard of 20
 const OFFSET = 0;
 let AUTOLOAD = false;
+let CURRENT_SLIDER = 1; // I'll use this later for detail view/carousel. 0 -> 2 left, center, right. next ++, previous --
 
 let legacySound = true;
 
 async function init() {
+    loadLocalSettings();
     await includeHtml();
     await fetchPokemonInformation();
 }
