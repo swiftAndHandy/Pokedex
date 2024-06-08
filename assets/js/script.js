@@ -4,48 +4,42 @@ let countPokemonLoaded = 0
 let pokemonLoadingLimit = 649; // Gen 5 Cap, don't change
 
 const API_BASE_URL = 'https://pokeapi.co/api/v2/'
-const SET_LIMIT = 20;  // LIMIT 0 -> API overwrites with a standard of 20
+const SET_LIMIT = 30;  // LIMIT 0 -> API overwrites with a standard of 20
 const OFFSET = 0;
-let AUTOLOAD = false;
+let AUTOLOAD = true;
 
 let legacySound = true;
 
 async function init() {
     await includeHtml();
-    fetchPokemonInformation();
+    await fetchPokemonInformation();
 }
 
-function setLocalPokemonDetails(value) {
+function saveLocalSettings(value) {
     localStorage.setItem('fetchedPokemon', JSON.stringify(value));
 }
 
-function getLocalPokemonDetails() {
+function loadLocalSettings() {
     if (JSON.parse(localStorage.getItem('fetchedPokemon'))) {
         pokemonDetails = JSON.parse(localStorage.getItem('fetchedPokemon'));
     }
 }
 
 async function fetchPokemonInformation() {
-    console.log('Start new fetch');
-    getLocalPokemonDetails();
+    startSpinner();
+    loadLocalSettings();
     pokemonList = await fetchPokemonNames();
     await fetchPokemonDetails();
     await renderAllPokemon();
+    stopSpinner();
     evaluateAutoload();
 }
 
 async function evaluateAutoload() {
-    if (AUTOLOAD) {
-        await fetchPokemonInformation();
-        console.log('Autoload triggered');
-    } else {
-        console.log('Autoload no more triggered');
-        stopSpinner();
-    }
+    AUTOLOAD ? await fetchPokemonInformation() : false;
 }
 
 async function fetchPokemonNames() {
-    startSpinner();
     let pokemonCollection = await fetch(pokeAPI('pokemon'));
     let pokemonNamesJson = await pokemonCollection.json();
     return pokemonNamesJson;
@@ -59,7 +53,7 @@ async function fetchPokemonDetails() {
         for (let i = 0; i < pokemonListResults.length; i++) {
             if (morePokemonAllowed()) {
                 await addPokemonInformation(newDetails, pokemonListResults, i);
-            } else { break; }
+            } else { stopSpinner('bar'); break; }
         }
         pokemonDetails.push(newDetails);
     }
@@ -75,12 +69,12 @@ async function addPokemonInformation(newDetails, pokemonListResults, i) {
     let detailsData = await details.json();
     newDetails.push(detailsData);
     ++countPokemonLoaded;
+    AUTOLOAD && morePokemonAllowed() ? updateProgressBar() : false;
     countPokemonLoaded >= pokemonLoadingLimit ? stopAutoload() : false;
 }
 
 function stopAutoload() {
     AUTOLOAD = false;
-    console.log('Autoload stopped now, AUTOLOAD is ' + AUTOLOAD);
 }
 
 function pokeAPI(path) {
@@ -122,6 +116,7 @@ function getPokemonId(pokemon) {
 }
 
 function playPokemonCry(set, index) { // add where needed: onclick="playPokemonCry(${set}, ${index})";
+
     let pokemon = pokemonDetails[set][index];
     let soundType = legacySound ? 'legacy' : 'latest';
     let audioFile = new Audio(pokemon['cries'][soundType]);
@@ -189,12 +184,28 @@ function decreaseSet(set) {
     return set;
 }
 
-function startSpinner() {
-    document.getElementById('pokemon-list').classList.add('dim-screen');
-    document.getElementById('loading-spinner').classList.remove('d-none');
+function startSpinner(style = 'ball') {
+    if (!AUTOLOAD || countPokemonLoaded >= pokemonLoadingLimit) {
+        document.getElementById('pokemon-list').classList.add('dim-screen');
+        document.getElementById('loading-spinner').classList.remove('d-none');
+    } else if (AUTOLOAD && style == 'bar') {
+        document.getElementById('loading-bar').classList.remove('d-none');
+    }
 }
 
-function stopSpinner() {
-    document.getElementById('pokemon-list').classList.remove('dim-screen');
-    document.getElementById('loading-spinner').classList.add('d-none');
+function stopSpinner(style = 'ball') {
+    if (style == 'ball') {
+        document.getElementById('pokemon-list').classList.remove('dim-screen');
+        document.getElementById('loading-spinner').classList.add('d-none');
+    } else if (style == 'bar') {
+        document.getElementById('progress-div').classList.add('d-none');
+    }
+}
+
+function updateProgressBar() {
+    const loadingBar = document.getElementById('loading-bar')
+    let progress = countPokemonLoaded * 100 / pokemonLoadingLimit;
+    loadingBar.style.width = progress + "%";
+    loadingBar.innerHTML = `catched ${countPokemonLoaded}/${pokemonLoadingLimit} Pokemon`;
+
 }

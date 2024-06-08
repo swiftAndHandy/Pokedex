@@ -20,6 +20,7 @@ header {
 main {
     display: flex;
     justify-content: center;
+    flex: 1;
 }
 
 footer {
@@ -29,6 +30,19 @@ footer {
 
 .d-none{
     /* display: none; */
+}
+
+.progress {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+
+.progress-bar {
+    color: black !important;
+    padding: 0 16px;
 }
 
 .dim-screen {
