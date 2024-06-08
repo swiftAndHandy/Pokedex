@@ -12,9 +12,19 @@ body {
 }
 
 header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
     background-color: dimgray;
     min-width: 100vw;
     height: 112px;
+}
+
+.logo-section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 main {
@@ -26,6 +36,10 @@ main {
 footer {
     background-color: dimgray;
     height: 144px;
+}
+
+.logo {
+    height: 80px;
 }
 
 .d-none{

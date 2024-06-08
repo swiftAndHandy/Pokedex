@@ -4,9 +4,9 @@ let countPokemonLoaded = 0
 let pokemonLoadingLimit = 649; // Gen 5 Cap, don't change
 
 const API_BASE_URL = 'https://pokeapi.co/api/v2/'
-const SET_LIMIT = 30;  // LIMIT 0 -> API overwrites with a standard of 20
+const SET_LIMIT = 100;  // LIMIT 0 -> API overwrites with a standard of 20
 const OFFSET = 0;
-let AUTOLOAD = true;
+let AUTOLOAD = false;
 
 let legacySound = true;
 
@@ -35,8 +35,11 @@ async function fetchPokemonInformation() {
     evaluateAutoload();
 }
 
-async function evaluateAutoload() {
-    AUTOLOAD ? await fetchPokemonInformation() : false;
+function evaluateAutoload() {
+    if (AUTOLOAD) {
+        startSpinner('bar'); 
+        fetchPokemonInformation();
+    }
 }
 
 async function fetchPokemonNames() {
@@ -189,7 +192,7 @@ function startSpinner(style = 'ball') {
         document.getElementById('pokemon-list').classList.add('dim-screen');
         document.getElementById('loading-spinner').classList.remove('d-none');
     } else if (AUTOLOAD && style == 'bar') {
-        document.getElementById('loading-bar').classList.remove('d-none');
+        document.getElementById('progress-div').classList.remove('d-none');
     }
 }
 
