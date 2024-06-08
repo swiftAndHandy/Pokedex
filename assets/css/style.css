@@ -90,17 +90,15 @@ header {
 
 .setting-icon {
     height: 50px;
-    transition: all 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
 }
 
 .setting-icon:hover {
     transform: scale(1.2) rotate(45deg);
-    filter: brightness(1.5);
 }
 
 .setting-icon:active {
-    transform: scale(1.2) rotate(180deg);
-    filter: brightness(1.2);
+    filter: invert();
 }
 
 .slider {
@@ -116,6 +114,7 @@ main {
     display: flex;
     justify-content: center;
     flex: 1;
+    align-items: flex-start;
 }
 
 footer {

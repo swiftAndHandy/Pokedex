@@ -1,12 +1,13 @@
 let pokemonList;
 let pokemonDetails = [];
+let allNames = [];
 let countPokemonLoaded = 0;
 let pokemonLoadingLimit = 649; // Gen 5 Cap, don't change
 
 const API_BASE_URL = 'https://pokeapi.co/api/v2/'
-const SET_LIMIT = 40;  // LIMIT 0 -> API overwrites with a standard of 20
+const SET_LIMIT = 10;  // LIMIT 0 -> API overwrites with a standard of 20
 const OFFSET = 0;
-let AUTOLOAD = false;
+let AUTOLOAD = true;
 let CURRENT_SLIDER = 1; // I'll use this later for detail view/carousel. 0 -> 2 left, center, right. next ++, previous --
 
 let legacySound = true;
@@ -39,7 +40,7 @@ async function fetchPokemonInformation() {
 
 function evaluateAutoload() {
     if (AUTOLOAD) {
-        startSpinner('bar'); 
+        startSpinner('bar');
         fetchPokemonInformation();
     }
 }
@@ -73,9 +74,9 @@ async function addPokemonInformation(newDetails, pokemonListResults, i) {
     let details = await fetch(pokemonListResults[i].url);
     let detailsData = await details.json();
     newDetails.push(detailsData);
-    ++countPokemonLoaded;
+    allNames.push(pokemonListResults[i]['name']);
     AUTOLOAD && morePokemonAllowed() ? updateProgressBar() : false;
-    countPokemonLoaded >= pokemonLoadingLimit ? stopAutoload() : false;
+    allNames.length >= pokemonLoadingLimit ? stopAutoload() : false;
 }
 
 function stopAutoload() {
@@ -87,7 +88,7 @@ function pokeAPI(path) {
 }
 
 function calculatedOffset() {
-    return countPokemonLoaded + OFFSET;
+    return allNames.length + OFFSET;
 }
 
 function capitalizeFirstLetter(string) {
@@ -121,7 +122,7 @@ function getPokemonId(pokemon) {
 }
 
 function startSpinner(style = 'ball') {
-    if (!AUTOLOAD || countPokemonLoaded >= pokemonLoadingLimit) {
+    if (!AUTOLOAD || allNames.length >= pokemonLoadingLimit) {
         document.getElementById('pokemon-list').classList.add('dim-screen');
         document.getElementById('loading-spinner').classList.remove('d-none');
     } else if (AUTOLOAD && style == 'bar') {
@@ -140,9 +141,16 @@ function stopSpinner(style = 'ball') {
 
 function updateProgressBar() {
     const loadingBar = document.getElementById('loading-bar')
-    let progress = countPokemonLoaded * 100 / pokemonLoadingLimit;
+    let progress = allNames.length * 100 / pokemonLoadingLimit;
     loadingBar.style.width = progress + "%";
-    loadingBar.innerHTML = `catched ${countPokemonLoaded}/${pokemonLoadingLimit} Pokemon`;
+    loadingBar.innerHTML = `catched ${allNames.length}/${pokemonLoadingLimit} Pokemon`;
 
 }
 
+function searchForPokemon(keyword) {
+    let currentSearch;
+}
+
+function hidePokemon() {
+
+}
