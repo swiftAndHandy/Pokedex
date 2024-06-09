@@ -12,8 +12,8 @@ async function previousPokemon(set, index) {
         index = indexMax;
         set = await findCorrectSet(set, 'decrease');
     }
-    console.log('Set: ' + set);
-    console.log('Index: ' + index);
+    CURRENT_SLIDER--;
+    verifyCurrentSlider();
     openDetailCard(set, index);
 }
 
@@ -24,8 +24,8 @@ async function nextPokemon(set, index) {
         index = 0;
         set = await findCorrectSet(set, 'increase');
     }
-    console.log('Set: ' + set);
-    console.log('Index: ' + index);
+    CURRENT_SLIDER++;
+    verifyCurrentSlider();
     openDetailCard(set, index);
 }
 
@@ -59,4 +59,13 @@ function decreaseSet(set) {
 async function openDetailCard(set, index) {
     const viewContainer = document.getElementById('detail-view');
     viewContainer.classList.remove('d-none');
+    // await renderDetailCard();
+}
+
+function verifyCurrentSlider() {
+    if (CURRENT_SLIDER < 0) {
+        CURRENT_SLIDER = 2;
+    } else if (CURRENT_SLIDER > 2) {
+        CURRENT_SLIDER = 0;
+    }
 }

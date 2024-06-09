@@ -14,12 +14,22 @@
     background-size: cover;
 }
 
+.type-info--grass {
+    background-color: green;
+    color: white;
+}
+
 .type--fire {
     /* background-color: orange !important; */
     background-image: url(../img/fire-bg.webp);
     background-position: bottom;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.type-info--fire {
+    background-color: red;
+    color: white;
 }
 
 .type--water {
@@ -30,12 +40,22 @@
     background-size: cover;
 }
 
+.type-info--water {
+    background-color: blue;
+    color: white;
+}
+
 .type--bug {
     /* background-color: brown !important; */
     background-image: url(../img/bug-bg.webp);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.type-info--bug {
+    background-color: brown;
+    color: white;
 }
 
 .type--normal {
@@ -54,12 +74,22 @@
     background-size: cover;
 }
 
+.type-info--poison {
+    background-color: rgb(179, 19, 179);
+    color: white;
+}
+
 .type--electric {
     /* background-color: rgb(237, 237, 30) !important; */
     background-image: url(../img/electric-bg.webp);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.type-info--electric {
+    background-color: yellow;
+    color: black;
 }
 
 .type--ground {
@@ -70,11 +100,21 @@
     /* background-size: cover; */
 }
 
+.type-info--ground {
+    background-color: burlywood;
+    color: black;
+}
+
 .type--fairy {
     /* background-color: pink !important; */
     background-image: url(../img/fairy-bg.webp);
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.type-info--fairy {
+    background-color: palevioletred;
+    color: white;
 }
 
 .type--fighting {
@@ -85,11 +125,21 @@
     background-size: cover;
 }
 
+.type-info--fighting {
+    background-color: tomato;
+    color: white;
+}
+
 .type--psychic {
     /* background-color: blueviolet !important; */
     background-image: url(../img/psychic-bg.webp);
     background-position: bottom;
     background-repeat: no-repeat;
+}
+
+.type-info--psychic {
+    background-color: purple;
+    color: white;
 }
 
 .type--rock {
@@ -100,11 +150,21 @@
     background-size: cover;
 }
 
+.type-info--rock {
+    background-color: grey;
+    color: white;
+}
+
 .type--ghost {
     /* background-color: rgb(221, 180, 221) !important; */
     background-image: url(../img/ghost-bg.webp);
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.type-info--ghost {
+    background-color: violet;
+    color: black;
 }
 
 .type--ice {
@@ -115,6 +175,11 @@
     background-size: cover;
 }
 
+.type-info--ice {
+    background-color: azure;
+    color: black;
+}
+
 .type--dragon {
     /* background-color: cadetblue !important; */
     background-image: url(../img/dragon-bg.webp);
@@ -123,12 +188,22 @@
     background-size: cover;
 }
 
+.type-info--dragon {
+    background-color: cadetblue;
+    color: white;
+}
+
 .type--dark {
     /* background-color: rgba(0, 0, 0, 0.4) !important; */
     background-image: url(../img/dark-bg.webp);
     background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.type-info--dark {
+    background-color: rgba(40, 40, 40, 0.8);
+    color: white;
 }
 
 .pokemon-list__container {
@@ -143,8 +218,9 @@
     background-size: cover;
 }
 
-.font-color--steel {
-    color: white !important;
+.type-info--steel {
+    background-color: gainsboro;
+    color: black;
 }
 
 .type--flying {
@@ -152,6 +228,11 @@
     background-position: center;
     background-repeat: no-repeat;
     /* background-size: cover; */
+}
+
+.type-info--flying {
+    background-color:honeydew;
+    color: black;
 }
 
 /* .font-color--dark {
