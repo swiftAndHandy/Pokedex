@@ -5,6 +5,18 @@ function playPokemonCry(set, index) { // add where needed: onclick="playPokemonC
     audioFile.play();
 }
 
+function closeDetailView() {
+    const viewContainer = document.getElementById('detail-view');
+    viewContainer.classList.add('d-none');
+    // await renderDetailCard();
+}
+
+async function openDetailCard(set, index) {
+    const viewContainer = document.getElementById('detail-view');
+    viewContainer.classList.remove('d-none');
+    // await renderDetailCard();
+}
+
 async function previousPokemon(set, index) {
     const indexMax = SET_LIMIT - 1;
     --index;
@@ -54,12 +66,6 @@ function decreaseSet(set) {
         set = maxSetIndex;
     }
     return set;
-}
-
-async function openDetailCard(set, index) {
-    const viewContainer = document.getElementById('detail-view');
-    viewContainer.classList.remove('d-none');
-    // await renderDetailCard();
 }
 
 function verifyCurrentSlider() {

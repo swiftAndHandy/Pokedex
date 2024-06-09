@@ -1,47 +1,46 @@
 <div id="poke-card" class="carousel carousel-dark slide carousel-fade">
-    <div class="carousel-inner">
+  <div class="carousel-inner" onclick="stopBubbeling(event);">
 
-      <div class="carousel-item">
-        <div class="card d-block">
-            <div class="card-body details-card">
-                <h5 class="card-title" id="card-title-0">A</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
+    <div class="carousel-item">
+      <div class="card d-block">
+        <div class="card-body details-card">
+          <h5 class="card-title" id="card-title-0">A</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+            card's content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
       </div>
-      <div class="carousel-item active">
-        <div class="card d-block">
-            <div class="card-body details-card">
-                <h5 class="card-title" id="card-title-1">B</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="card d-block">
-            <div class="card-body details-card">
-                <h5 class="card-title" id="card-title-2">C</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-      </div>
-
-
-      
-
     </div>
-    <button class="carousel-control-prev carousel-button" type="button" data-bs-target="#poke-card" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next carousel-button" type="button" data-bs-target="#poke-card" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+    <div class="carousel-item active">
+      <div class="card d-block">
+        <div class="card-body details-card">
+          <h5 class="card-title" id="card-title-1">B</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+            card's content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="card d-block">
+        <div class="card-body details-card">
+          <h5 class="card-title" id="card-title-2">C</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+            card's content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+
   </div>
+  <button class="carousel-control-prev carousel-button" type="button" data-bs-target="#poke-card" data-bs-slide="prev" onclick="stopBubbeling(event)">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+
+  <button class="carousel-control-next carousel-button" type="button" data-bs-target="#poke-card" data-bs-slide="next" onclick="stopBubbeling(event)">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</div>

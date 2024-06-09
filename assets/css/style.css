@@ -135,7 +135,7 @@ header {
 }
 
 .carousel-button:hover {
-    
+    filter: invert();
 }
 
 
@@ -163,6 +163,7 @@ header {
     .carousel-control-prev {
         top: calc(50% + 100px) !important;
         width: 50% !important;
+        height:50px;
         right: calc(50%);
         margin-top:16px;
         align-items: flex-start !important;
@@ -172,6 +173,7 @@ header {
     .carousel-control-next {
         top: calc(50% + 100px) !important;
         width: 50% !important;
+        height: 50px;
         left: calc(50%);
         margin-top:16px;
         align-items: flex-start !important;
@@ -208,7 +210,7 @@ main {
 }
 
 footer {
-    background-color: dimgray;
+    background-image: url(../img/header-footer.webp);
     height: 56px;
     z-index: 10;
     border-radius: 16px 16px 0 0;
