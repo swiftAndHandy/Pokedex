@@ -35,7 +35,11 @@ header {
     padding: 32px;
     background-color: dimgray;
     min-width: 100vw;
-    height: 112px;
+    height: 96px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
 }
 
 .header-wrapper {
@@ -115,6 +119,7 @@ main {
     justify-content: center;
     flex: 1;
     align-items: flex-start;
+    margin-top: 96px;
 }
 
 footer {
@@ -209,6 +214,7 @@ footer {
     width: fit-content;
     margin: 8px;
     transition: all 0.2s ease-in-out;
+    font-family: "Inter", sans-serif;
 }
 
 .card:hover {

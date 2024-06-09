@@ -1,8 +1,7 @@
 let pokemonList;
 let pokemonDetails = [];
-let allNames = [];
 let countPokemonLoaded = 0;
-let pokemonLoadingLimit = 649; // Gen 5 Cap, don't change
+let pokemonLoadingLimit = 649; // 649 is Gen 5 Cap, don't change
 
 const API_BASE_URL = 'https://pokeapi.co/api/v2/'
 const SET_LIMIT = 10;  // LIMIT 0 -> API overwrites with a standard of 20
@@ -55,11 +54,12 @@ async function fetchPokemonDetails() {
     startSpinner();
     const pokemonListResults = pokemonList['results'];
     let newDetails = [];
+
     if (morePokemonAllowed()) {
         for (let i = 0; i < pokemonListResults.length; i++) {
             if (morePokemonAllowed()) {
                 await addPokemonInformation(newDetails, pokemonListResults, i);
-            } else { stopSpinner('bar'); break; }
+            } else { break; }
         }
         pokemonDetails.push(newDetails);
     }
@@ -67,20 +67,22 @@ async function fetchPokemonDetails() {
 
 function morePokemonAllowed() {
     //original was pokemonList['count'] - but this causes bugs since the api is making id-jumps at ~1025
-    return allNames.length < pokemonLoadingLimit;
+    return countPokemonLoaded < pokemonLoadingLimit;
 }
 
 async function addPokemonInformation(newDetails, pokemonListResults, i) {
     let details = await fetch(pokemonListResults[i].url);
     let detailsData = await details.json();
+
     newDetails.push(detailsData);
-    allNames.push(pokemonListResults[i]['name']);
-    AUTOLOAD && morePokemonAllowed() ? updateProgressBar() : false;
-    allNames.length >= pokemonLoadingLimit ? stopAutoload() : false;
+    ++countPokemonLoaded;
+    AUTOLOAD && morePokemonAllowed() ? updateProgressBar() : stopAutoload();
+    // countPokemonLoaded >= pokemonLoadingLimit ? stopAutoload() : false;
 }
 
 function stopAutoload() {
     AUTOLOAD = false;
+    stopSpinner('bar');
 }
 
 function pokeAPI(path) {
@@ -88,7 +90,7 @@ function pokeAPI(path) {
 }
 
 function calculatedOffset() {
-    return allNames.length + OFFSET;
+    return countPokemonLoaded + OFFSET;
 }
 
 function capitalizeFirstLetter(string) {
@@ -98,9 +100,10 @@ function capitalizeFirstLetter(string) {
 async function renderAllPokemon() {
     const latestSet = pokemonDetails.length - 1;
     const pokemonContainer = document.getElementById('pokemon-list');
-        for (let i = 0; i < currentSetLength(latestSet); i++) {
-            pokemonContainer.insertAdjacentHTML('beforeend', generatePokedex(latestSet, i));
-        }
+
+    for (let i = 0; i < currentSetLength(latestSet); i++) {
+        pokemonContainer.insertAdjacentHTML('beforeend', generatePokedex(latestSet, i));
+    }
 }
 
 function currentSetLength(index) {
@@ -111,6 +114,7 @@ function generatePokedex(set, index) {
     const pokemon = pokemonDetails[set][index];
     const pokemonName = capitalizeFirstLetter(pokemon['species']['name']);
     const colorScheme = getColorScheme(pokemon);
+
     return generatePokedexHtml(pokemon, pokemonName, colorScheme, set, index);
 }
 
@@ -118,12 +122,15 @@ function getColorScheme(pokemon) {
     return pokemon.types[0].type.name;
 }
 
-function getPokemonId(pokemon) {
-    return pokemon.game_indices[pokemon.game_indices.length - 1].game_index; // API provides bulletproof data only on the last entry
+function getPokemonId(set, index) {
+    // return pokemon.game_indices[pokemon.game_indices.length - 1].game_index; // API provides bulletproof data only on the last entry
+    set = set * SET_LIMIT;
+    ++index;
+    return result = set + index;
 }
 
 function startSpinner(style = 'ball') {
-    if (!AUTOLOAD || allNames.length >= pokemonLoadingLimit) {
+    if (!AUTOLOAD || countPokemonLoaded >= pokemonLoadingLimit) {
         document.getElementById('pokemon-list').classList.add('dim-screen');
         document.getElementById('loading-spinner').classList.remove('d-none');
     } else if (AUTOLOAD && style == 'bar') {
@@ -142,16 +149,31 @@ function stopSpinner(style = 'ball') {
 
 function updateProgressBar() {
     const loadingBar = document.getElementById('loading-bar')
-    let progress = allNames.length * 100 / pokemonLoadingLimit;
+    let progress = countPokemonLoaded * 100 / pokemonLoadingLimit;
+
     loadingBar.style.width = progress + "%";
-    loadingBar.innerHTML = `catched ${allNames.length}/${pokemonLoadingLimit} Pokemon`;
-
+    loadingBar.innerHTML = `catched ${countPokemonLoaded}/${pokemonLoadingLimit} Pokemon`;
 }
 
-function searchForPokemon(keyword) {
-    let currentSearch = document.getElementById('search');
+function searchForPokemon() {
+    let keyword = document.getElementById('search').value.toLowerCase();
+    let allPokedexCards = document.querySelectorAll('.overview-card');
+
+    allPokedexCards.forEach(card => {
+        let pokemonName = card.id.replace('pokedex-name-', '');
+        console.log(pokemonName, keyword);
+        if (pokemonName.toLocaleLowerCase().includes(keyword)) {
+            document.getElementById(card.id).classList.remove('d-none');
+        } else {
+            document.getElementById(card.id).classList.add('d-none');
+        }
+    });
 }
 
-function hidePokemon() {
 
+
+function findPokemonImage(pokemon) {
+    let id = pokemon['id'];
+    return id <= 649 ? pokemon['sprites']['other']['dream_world']['front_default'] : pokemon['sprites']['front_default'];
 }
+
