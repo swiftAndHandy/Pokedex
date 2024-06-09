@@ -14,6 +14,7 @@ const dreamworldSprites = 649; // dreamworldSprites exist only for the first 649
 let AUTOLOAD = false;
 let CURRENT_SLIDER = 1; // I'll use this later for detail view/carousel. 0 -> 2 left, center, right. next ++, previous --
 let SOUND_STYLE = 'legacy';
+let settingsOpen = false;
 
 async function init() {
     loadLocalSettings();
@@ -85,6 +86,11 @@ async function addPokemonInformation(newDetails, pokemonListResults, i) {
 }
 
 function stopAutoload() {
+    if (AUTOLOAD) {
+        document.getElementById('autoload-toggle').disabled = true;
+        document.getElementById('autoload-toggle').checked = false;
+        document.getElementById('autoload-toggle-label').innerHTML = "Autoload complete";
+    }
     AUTOLOAD = false;
     stopSpinner('bar');
 }

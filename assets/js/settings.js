@@ -4,11 +4,9 @@ function changeSoundType() {
     soundDescription = legacySound ? "legacy cries active" : "latest cries active";
 }
 
-function toggleSettings(openSettings) {
-    openSettings ? showSettings() : hideSettings();
-    document.getElementById('settings-toggle').onclick = function () {
-        toggleSettings(!openSettings);
-    };
+async function toggleSettings() {
+    settingsOpen = !settingsOpen;
+    settingsOpen ? showSettings() : hideSettings();
 }
 
 function toggleAutoload() {

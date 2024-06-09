@@ -7,7 +7,7 @@
         <input class="form-control rounded-pill pl-2 text-center wpx-175 searchbar" maxlength="12" type="text" id="search" placeholder="Search…" onkeyup="searchForPokemon();">
     </section>
     <section id="menu">
-        <img src="./assets/icons/settings.svg" alt="Settings" class="setting-icon" id="settings-toggle" onclick="toggleSettings(1)">
+        <img src="./assets/icons/settings.svg" alt="Settings" class="setting-icon" id="settings-toggle" onclick="toggleSettings(1); stopBubbeling(event)">
     </section>
     <!-- <div class="form-check form-switch">
         <input class="form-check-input" type="checkbox" role="switch" id="sound-type" onchange="changeSoundType()" checked>
