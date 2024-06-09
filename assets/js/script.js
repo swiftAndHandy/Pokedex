@@ -67,7 +67,7 @@ async function fetchPokemonDetails() {
 
 function morePokemonAllowed() {
     //original was pokemonList['count'] - but this causes bugs since the api is making id-jumps at ~1025
-    return countPokemonLoaded < pokemonLoadingLimit;
+    return allNames.length < pokemonLoadingLimit;
 }
 
 async function addPokemonInformation(newDetails, pokemonListResults, i) {
@@ -96,14 +96,15 @@ function capitalizeFirstLetter(string) {
 }
 
 async function renderAllPokemon() {
-    const catchedPokemon = pokemonDetails.length;
+    const latestSet = pokemonDetails.length - 1;
     const pokemonContainer = document.getElementById('pokemon-list');
-    pokemonContainer.innerHTML = '';
-    for (let set = 0; set < catchedPokemon; set++) {
-        for (let i = 0; i < pokemonDetails[set].length; i++) {
-            pokemonContainer.insertAdjacentHTML('beforeend', generatePokedex(set, i));
+        for (let i = 0; i < currentSetLength(latestSet); i++) {
+            pokemonContainer.insertAdjacentHTML('beforeend', generatePokedex(latestSet, i));
         }
-    }
+}
+
+function currentSetLength(index) {
+    return pokemonDetails[index].length;
 }
 
 function generatePokedex(set, index) {
@@ -148,7 +149,7 @@ function updateProgressBar() {
 }
 
 function searchForPokemon(keyword) {
-    let currentSearch;
+    let currentSearch = document.getElementById('search');
 }
 
 function hidePokemon() {
