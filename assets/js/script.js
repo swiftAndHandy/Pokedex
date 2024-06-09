@@ -2,7 +2,7 @@
 let pokemonList;
 let pokemonDetails = [];
 let countPokemonLoaded = 0;
-const pokemonLoadingLimit = 300; // 649 is Gen 5 Cap. You can change it, but spritestyle will change also.
+const pokemonLoadingLimit = 649; // 649 is Gen 5 Cap. You can change it, but spritestyle will change also.
 
 //API Settings
 const API_BASE_URL = 'https://pokeapi.co/api/v2/'
@@ -11,9 +11,9 @@ const OFFSET = 0;
 const dreamworldSprites = 649; // dreamworldSprites exist only for the first 649 Pokemon
 
 //Usersettings
-let AUTOLOAD = true;
+let AUTOLOAD = false;
 let CURRENT_SLIDER = 1; // I'll use this later for detail view/carousel. 0 -> 2 left, center, right. next ++, previous --
-let legacySound = true;
+let SOUND_STYLE = 'legacy';
 
 async function init() {
     loadLocalSettings();

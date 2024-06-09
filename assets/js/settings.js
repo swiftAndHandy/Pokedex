@@ -1,6 +1,7 @@
 function changeSoundType() {
+    const soundDescription = document.getElementById('sound-label').innerHTML;
     legacySound = !legacySound;
-    document.getElementById('sound-label').innerHTML = legacySound ? "legacy cries active" : "latest cries active";
+    soundDescription = legacySound ? "legacy cries active" : "latest cries active";
 }
 
 function toggleSettings(openSettings) {
@@ -8,6 +9,28 @@ function toggleSettings(openSettings) {
     document.getElementById('settings-toggle').onclick = function () {
         toggleSettings(!openSettings);
     };
+}
+
+function toggleAutoload() {
+    const toggleDescription = document.getElementById('autoload-toggle-label');
+    AUTOLOAD = !AUTOLOAD;
+    if (AUTOLOAD) {
+        toggleDescription.innerHTML = 'Autoload: active';
+        fetchPokemonInformation();
+    } else {
+        toggleDescription.innerHTML = 'Autoload: off';
+    }
+}
+
+function toggleSoundType() {
+    const toggleDescription = document.getElementById('sound-style-toggle-label');
+    SOUND_STYLE = SOUND_STYLE === 'legacy' ?  'latest' : 'legacy';
+    toggleDescription.innerHTML = SOUND_STYLE === 'legacy' ? 'Sound Style: Legacy' : 'Sound Style: Modern'; 
+}
+
+function getToggleState() {
+    const toggle = document.getElementById('autoload-toggle');
+    AUTOLOAD ? toggle.checked = true : toggle.checked = false;
 }
 
 function showSettings() {

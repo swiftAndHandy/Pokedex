@@ -1,10 +1,8 @@
 function playPokemonCry(set, index) { // add where needed: onclick="playPokemonCry(${set}, ${index})";
-
     let pokemon = pokemonDetails[set][index];
-    let soundType = legacySound ? 'legacy' : 'latest';
+    let soundType = SOUND_STYLE ? 'legacy' : 'latest';
     let audioFile = new Audio(pokemon['cries'][soundType]);
     audioFile.play();
-
 }
 
 async function previousPokemon(set, index) {

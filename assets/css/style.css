@@ -124,20 +124,22 @@ main {
 }
 
 .more-pokemon {
+    position: sticky;
+    bottom: 0;
     display: flex;
     justify-content: center;
 }
 
 .more-pokemon button {
-    margin-top: 32px;
-    background-color: rgba(125, 125, 126, 0.5);
+    background-color: rgba(125, 125, 126, 0.2);
     transition: all 0.5s;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
 }
 
 .more-pokemon button:hover {
+    color: white;
     transform: scale(1.1);
-    background-color: rgba(125, 125, 126, 0.7);
+    background-color: rgba(100, 100, 100, 0.95);
 }
 
 footer {
@@ -184,16 +186,15 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* filter: opacity(1); */
-    z-index: 9;
+    z-index: 10;
 }
 
 .settings {
-    width: 80%;
+    /* width: 80%; */
     position: relative;
     top: 32px;
     padding: 16px;
-    height: 80%;
+    /* height: 80%; */
     background-color: wheat;
     border-radius: 16px;
 }
@@ -221,6 +222,7 @@ footer {
     flex-wrap: wrap;
     justify-content: center;
     max-width: 1920px;
+    margin: 16px 0;
 }
 
 .pokemon__type-box {
