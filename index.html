@@ -19,15 +19,12 @@
     <script src="./assets/js/script.js"></script>
 </head>
 
-<body onload="init()" class="">
-    <header w3-include-html="templates/header.html">
-    </header>
+<body onload="init()" id="body">
+    <header w3-include-html="templates/header.html"></header>
 
-    <section w3-include-html="templates/settings.html" class="settings d-none" id="settings-view">
-    </section>
+    <section w3-include-html="templates/settings.html" class="settings-view d-none" id="settings-view" onclick="toggleSettings(0)"></section>
 
-    <section w3-include-html="templates/details.html" class="slider d-none" id="detail-view">
-    </section>
+    <section w3-include-html="templates/details.html" class="slider d-none" id="detail-view"></section>
 
     <!-- <section class="loading-spinner d-none"> -->
     <section id="loading-spinner" class="loading-spinner d-none">
@@ -39,6 +36,9 @@
     <main class="">
         <div id="pokemon-list" class="pokemon-list__container">
         </div>
+        <section class="more-pokemon">
+            <button class="btn" id="load-more" onclick="fetchPokemonInformation();">Catch more Pokémon!</button>
+        </section>
     </main>
 
     <div class="progress d-none" role="progressbar" aria-label="" aria-valuenow="25" aria-valuemin="0"
@@ -46,8 +46,7 @@
         <div id="loading-bar" class="progress-bar overflow-visible" style="width: 0%"></div>
     </div>
 
-    <footer w3-include-html="templates/footer.html">
-    </footer>
+    <footer w3-include-html="templates/footer.html"></footer>
 </body>
 
 </html>

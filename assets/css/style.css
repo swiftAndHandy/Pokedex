@@ -116,15 +116,34 @@ header {
 main {
     background-image: url(../img/main-bg.webp);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     flex: 1;
-    align-items: flex-start;
+    align-items: center;
     margin-top: 96px;
+}
+
+.more-pokemon {
+    display: flex;
+    justify-content: center;
+}
+
+.more-pokemon button {
+    margin-top: 32px;
+    background-color: rgba(125, 125, 126, 0.5);
+    transition: all 0.5s;
+    margin-bottom: 32px;
+}
+
+.more-pokemon button:hover {
+    transform: scale(1.1);
+    background-color: rgba(125, 125, 126, 0.7);
 }
 
 footer {
     background-color: dimgray;
-    height: 144px;
+    height: 56px;
+    z-index: 10;
 }
 
 .logo {
@@ -140,7 +159,7 @@ footer {
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 99;
+    z-index: 2;
 }
 
 .progress-bar {
@@ -152,9 +171,36 @@ footer {
     filter: opacity(0.2)
 }
 
+.hidden-by-settings {
+    filter: opacity(0.2)
+}
+
+.settings-view {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* filter: opacity(1); */
+    z-index: 9;
+}
+
+.settings {
+    width: 80%;
+    position: relative;
+    top: 32px;
+    padding: 16px;
+    height: 80%;
+    background-color: wheat;
+    border-radius: 16px;
+}
+
 .loading-spinner {
     position: fixed;
-    z-index: 99;
+    z-index: 2;
     top: 0;
     bottom: 0;
     left: 0;
@@ -195,6 +241,10 @@ footer {
     display: flex;
     width: 100%;
     justify-content: space-between;
+}
+
+.scroll-behavior--blocked {
+    overflow: hidden;
 }
 
 .pokedex__card {

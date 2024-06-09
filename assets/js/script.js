@@ -1,18 +1,23 @@
+//Required for fetching process
 let pokemonList;
 let pokemonDetails = [];
 let countPokemonLoaded = 0;
-let pokemonLoadingLimit = 649; // 649 is Gen 5 Cap, don't change
+const pokemonLoadingLimit = 300; // 649 is Gen 5 Cap. You can change it, but spritestyle will change also.
 
+//API Settings
 const API_BASE_URL = 'https://pokeapi.co/api/v2/'
 const SET_LIMIT = 10;  // LIMIT 0 -> API overwrites with a standard of 20
 const OFFSET = 0;
+const dreamworldSprites = 649; // dreamworldSprites exist only for the first 649 Pokemon
+
+//Usersettings
 let AUTOLOAD = true;
 let CURRENT_SLIDER = 1; // I'll use this later for detail view/carousel. 0 -> 2 left, center, right. next ++, previous --
-
 let legacySound = true;
 
 async function init() {
     loadLocalSettings();
+    hideLoadMore();
     await includeHtml();
     await fetchPokemonInformation();
 }
@@ -77,12 +82,12 @@ async function addPokemonInformation(newDetails, pokemonListResults, i) {
     newDetails.push(detailsData);
     ++countPokemonLoaded;
     AUTOLOAD && morePokemonAllowed() ? updateProgressBar() : stopAutoload();
-    // countPokemonLoaded >= pokemonLoadingLimit ? stopAutoload() : false;
 }
 
 function stopAutoload() {
     AUTOLOAD = false;
     stopSpinner('bar');
+    hideLoadMore();
 }
 
 function pokeAPI(path) {
@@ -103,6 +108,7 @@ async function renderAllPokemon() {
 
     for (let i = 0; i < currentSetLength(latestSet); i++) {
         pokemonContainer.insertAdjacentHTML('beforeend', generatePokedex(latestSet, i));
+        isASearchRequired();
     }
 }
 
@@ -122,12 +128,12 @@ function getColorScheme(pokemon) {
     return pokemon.types[0].type.name;
 }
 
-function getPokemonId(set, index) {
-    // return pokemon.game_indices[pokemon.game_indices.length - 1].game_index; // API provides bulletproof data only on the last entry
-    set = set * SET_LIMIT;
-    ++index;
-    return result = set + index;
-}
+//// function is currently disabled, since i realized how to fetch ID by API
+// function getPokemonId(set, index) {
+//     set = set * SET_LIMIT;
+//     ++index;
+//     return result = set + index;
+// }
 
 function startSpinner(style = 'ball') {
     if (!AUTOLOAD || countPokemonLoaded >= pokemonLoadingLimit) {
@@ -147,6 +153,12 @@ function stopSpinner(style = 'ball') {
     }
 }
 
+function hideLoadMore() {
+    if (pokemonLoadingLimit === countPokemonLoaded || AUTOLOAD) {
+        document.getElementById('load-more').classList.add('d-none');
+    }
+}
+
 function updateProgressBar() {
     const loadingBar = document.getElementById('loading-bar')
     let progress = countPokemonLoaded * 100 / pokemonLoadingLimit;
@@ -155,25 +167,33 @@ function updateProgressBar() {
     loadingBar.innerHTML = `catched ${countPokemonLoaded}/${pokemonLoadingLimit} Pokemon`;
 }
 
+function isASearchRequired() {
+    if (document.getElementById('search').value) {
+        searchForPokemon();
+    }
+}
+
+//Base-Search Function without a limit of pokemon showed
 function searchForPokemon() {
     let keyword = document.getElementById('search').value.toLowerCase();
     let allPokedexCards = document.querySelectorAll('.overview-card');
 
     allPokedexCards.forEach(card => {
         let pokemonName = card.id.replace('pokedex-name-', '');
-        console.log(pokemonName, keyword);
         if (pokemonName.toLocaleLowerCase().includes(keyword)) {
-            document.getElementById(card.id).classList.remove('d-none');
+            card.classList.remove('d-none');
         } else {
-            document.getElementById(card.id).classList.add('d-none');
+            card.classList.add('d-none');
         }
     });
 }
 
 
-
 function findPokemonImage(pokemon) {
     let id = pokemon['id'];
-    return id <= 649 ? pokemon['sprites']['other']['dream_world']['front_default'] : pokemon['sprites']['front_default'];
+    return id <= dreamworldSprites ? pokemon['sprites']['other']['dream_world']['front_default'] : pokemon['sprites']['front_default'];
 }
 
+function stopBubbeling(event) {
+    event.stopPropagation();
+}
