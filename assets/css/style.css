@@ -26,6 +26,7 @@ body {
     min-height: 100vh;
     flex: 1;
     background-color: aqua;
+    background-image: url(../img/main-bg.webp);
 }
 
 header {
@@ -33,13 +34,15 @@ header {
     justify-content: center;
     align-items: center;
     padding: 32px;
-    background-color: dimgray;
+    background-image: url(../img/header-footer.webp);
+    background-size: cover;
     min-width: 100vw;
     height: 96px;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 10;
+    border-radius: 0 0 16px 16px;
 }
 
 .header-wrapper {
@@ -111,10 +114,72 @@ header {
     bottom: 0;
     left: 0;
     right: 0;
+    z-index: 20;
+    background-color: rgba(100, 100, 100, 0.9);
+}
+
+.carousel-control-prev {
+    left: unset !important;
+    right: calc(50% + 150px);
+    justify-content: flex-end !important;
+}
+
+.carousel-control-next {
+    left: calc(50% + 150px);
+    justify-content: flex-start !important;
+}
+
+.carousel-button { /* todo: change in relation to details-card height! */ 
+    top: calc(50% - 100px) !important; 
+    bottom: calc(50% - 100px) !important;
+}
+
+.carousel-button:hover {
+    
+}
+
+
+@media (min-width: 436px) {
+    .carousel-control-prev {
+        right: calc(50% + 174px);
+    }
+    
+    .carousel-control-next {
+        left: calc(50% + 174px);
+    }
+}
+
+@media (min-width: 700px) {
+    .carousel-control-prev {
+        right: calc(50% + 224px);
+    }
+    
+    .carousel-control-next {
+        left: calc(50% + 224px);
+    }
+}
+
+@media (max-width: 435px) {
+    .carousel-control-prev {
+        top: calc(50% + 100px) !important;
+        width: 50% !important;
+        right: calc(50%);
+        margin-top:16px;
+        align-items: flex-start !important;
+        justify-content: center !important;
+    }
+    
+    .carousel-control-next {
+        top: calc(50% + 100px) !important;
+        width: 50% !important;
+        left: calc(50%);
+        margin-top:16px;
+        align-items: flex-start !important;
+        justify-content: center !important;
+    }
 }
 
 main {
-    background-image: url(../img/main-bg.webp);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -146,6 +211,7 @@ footer {
     background-color: dimgray;
     height: 56px;
     z-index: 10;
+    border-radius: 16px 16px 0 0;
 }
 
 .logo {
@@ -282,6 +348,54 @@ footer {
 
 .card-body {
     width: 250px;
+}
+
+
+@media (min-width: 700px) {
+    .details-card {
+        width: 400px;
+    }
+}
+
+@media (min-width: 900px) {
+    .carousel-control-prev {
+        right: calc(50% + 324px);
+    }
+    
+    .carousel-control-next {
+        left: calc(50% + 324px);
+    }
+
+    .details-card {
+        width: 600px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .carousel-control-prev {
+        right: calc(50% + 424px);
+    }
+    
+    .carousel-control-next {
+        left: calc(50% + 424px);
+    }
+
+    .details-card {
+        width: 800px;
+    }
+}
+
+
+@media (max-width: 699px) {
+    .details-card {
+        width: 300px;
+    }
+
+    .pokedex__image {
+        width: 75px;
+        height: 75px;
+        transition: all 0.2s ease-in-out;
+    }
 }
 
 @media (max-width: 535px) {

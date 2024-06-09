@@ -187,7 +187,6 @@ function searchForPokemon() {
     });
 }
 
-
 function findPokemonImage(pokemon) {
     let id = pokemon['id'];
     return id <= dreamworldSprites ? pokemon['sprites']['other']['dream_world']['front_default'] : pokemon['sprites']['front_default'];

@@ -38,10 +38,6 @@ function findCorrectSet(set, method) {
     return set;
 }
 
-function openDetailCard(set, index) {
-
-}
-
 function increaseSet(set) {
     const maxSetIndex = pokemonDetails.length - 1;
     ++set;
@@ -58,4 +54,9 @@ function decreaseSet(set) {
         set = maxSetIndex;
     }
     return set;
+}
+
+async function openDetailCard(set, index) {
+    const viewContainer = document.getElementById('detail-view');
+    viewContainer.classList.remove('d-none');
 }
