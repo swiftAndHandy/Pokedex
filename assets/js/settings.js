@@ -13,12 +13,17 @@ function toggleSettings(openSettings) {
 
 function toggleAutoload() {
     const toggleDescription = document.getElementById('autoload-toggle-label');
+    const loadingButton = document.getElementById('load-more');
     AUTOLOAD = !AUTOLOAD;
     if (AUTOLOAD) {
         toggleDescription.innerHTML = 'Autoload: active';
+        loadingButton.classList.add('d-none');
         fetchPokemonInformation();
     } else {
         toggleDescription.innerHTML = 'Autoload: off';
+        if (morePokemonAllowed) {
+            loadingButton.classList.remove('d-none');
+        }
     }
 }
 

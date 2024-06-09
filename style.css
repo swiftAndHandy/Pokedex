@@ -1,0 +1,294 @@
+@font-face {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/Raleway/static/Raleway-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../fonts/Raleway/static/Raleway-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/Raleway/static/Raleway-Bold.ttf") format("truetype");
+}
+
+html {
+  height: 100%;
+  margin: 0px;
+  font-family: "Raleway", sans-serif;
+  scroll-behavior: smooth;
+}
+
+
+
+body {
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.content {
+  max-width: 1920px;
+  margin: auto;
+}
+
+h2 {
+  margin: 0px;
+  font-size: 48px;
+  font-weight: 600;
+}
+
+.featured-recipe-container {
+  display: flex;
+  padding-top: 140px;
+  align-items: center;
+  height: 50vh;
+}
+
+.featured-recipe-text {
+  display: flex;
+  flex-direction: column;
+  padding-left: 50px;
+  font-size: 24px;
+}
+
+.btn {
+  width: 480px;
+  height: 100px;
+  font-size: 28px;
+  background-color: rgb(0, 128, 0);
+  border: none;
+  border-radius: 5px;
+  margin-top: 60px;
+  color: white;
+  font-family: "Raleway", sans-serif;
+}
+
+.image-container {
+  width: 100%;
+  padding-left: 80px;
+  object-fit: cover;
+}
+
+.image-container img {
+  border-radius: 4%;
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.start-site {
+  flex: 1 0 auto;
+  overflow: auto;
+}
+
+@media (max-width: 1000px) {
+  .news-images-container {
+    flex-direction: column;
+    justify-content: center;
+    padding: 10% !important;
+    gap: 100px;
+  }
+}
+
+@media (max-width: 720px) {
+  .featured-recipe-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .featured-recipe-text {
+    font-size: 21px;
+    padding-top: 40px;
+    padding-left: 10px;
+  }
+
+  .image-container {
+    height: 100%;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .featured-recipe-text:last-child {
+    align-items: center;
+  }
+
+  .btn {
+    width: 50%;
+  }
+
+  .image-container img {
+    border-radius: 10%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .news-section h2 {
+    text-align: center;
+  }
+
+  .images {
+    width: 100% !important;
+  }
+
+  .images span {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .survey {
+    padding: 0 !important;
+    flex-direction: column-reverse !important;
+  }
+
+  .survey img {
+    width: 80%;
+  }
+
+  .survey span {
+    width: 80% !important;
+  }
+}
+
+@keyframes bigger {
+  0% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+
+  100% {
+    transform: scale(1.1);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+      rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+      rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
+}
+
+.btn:hover {
+  cursor: pointer;
+  background: rgb(43, 133, 43);
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  animation-name: bigger;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
+/* HIER FÄNGT DER CSS FÜR DIE NEWS SECTION AN */
+
+.news-section {
+  background-color: rgb(239, 239, 239);
+  margin-top: 140px;
+  margin-bottom: 140px;
+  padding-top: 40px;
+  padding-bottom: 140px;
+}
+
+.news-section h2 {
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 24px;
+}
+
+.news-images-container {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 120px;
+  padding-right: 120px;
+  gap: 24px;
+}
+
+.images {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  font-size: 28px;
+  color: black;
+  font-weight: 700;
+  width: 20%;
+  border-radius: 10px;
+}
+
+/* HIER BEGINT DIE SURVEY SECTION */
+.survey-section {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 140px;
+}
+
+.survey-section h2 {
+  text-align: center;
+  margin-bottom: 120px;
+}
+
+.survey {
+  display: flex;
+  flex-direction: row;
+  font-size: 24px;
+  padding-left: 140px;
+  padding-right: 140px;
+  gap: 80px;
+  align-items: center;
+}
+
+.left {
+  width: 50%;
+}
+
+.right {
+  width: 40%;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+/* VEA */
+
+.newslink {
+  text-decoration: none;
+  padding: 8px;
+  color: #000;
+  text-align: center;
+  font-size: 24px;
+}
+
+.newslink:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  animation-name: bigger;
+  border-radius: 16px;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
+.latest {
+  display: flex;
+  flex-direction: column;
+}
+
+.latest img {
+  /* min-width: 500px; */
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+header {
+  width: 100% !important;
+}
+
+footer {
+  width: 100% !important;
+}

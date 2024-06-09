@@ -87,7 +87,6 @@ async function addPokemonInformation(newDetails, pokemonListResults, i) {
 function stopAutoload() {
     AUTOLOAD = false;
     stopSpinner('bar');
-    hideLoadMore();
 }
 
 function pokeAPI(path) {

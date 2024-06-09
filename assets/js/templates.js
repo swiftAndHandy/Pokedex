@@ -13,7 +13,7 @@ async function includeHtml() {
 }
 
 function generatePokedexHtml(pokemon, pokemonName, colorScheme, set, index) {
-    const typesHtml = generateTypeHtml(pokemon);
+    const typesHtml = generateTypeHtml(pokemon, colorScheme);
     return `
     <div class="card type--${colorScheme} overview-card" id="pokedex-name-${pokemonName}" onclick="openDetailCard(${set}, ${index})">
         <div class="card-body pokemon__photo-box";>
@@ -32,10 +32,10 @@ function generatePokedexHtml(pokemon, pokemonName, colorScheme, set, index) {
     `;
 }
 
-function generateTypeHtml(pokemon) {
+function generateTypeHtml(pokemon, colorScheme) {
     let response = "";
     for (i = 0; i < pokemon.types.length; i++) {
-        response += `<span class="pokemon__type-info">${pokemon.types[i].type.name}</span>`;
+        response += `<span class="pokemon__type-info type-${colorScheme}">${pokemon.types[i].type.name}</span>`;
     }
     return response;
 }
