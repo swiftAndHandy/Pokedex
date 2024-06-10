@@ -116,3 +116,10 @@ function verifyCurrentSlider() {
         CURRENT_SLIDER = 0;
     }
 }
+
+function simulateClick(tab) {
+    for (let i = 0; i <= 2; i++) {
+        let simulateClickOn = document.getElementById(`card-${i}-tab-${tab}-btn`);
+        simulateClickOn.click();
+    }
+}
