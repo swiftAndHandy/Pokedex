@@ -131,8 +131,8 @@ header {
 
 .carousel-button {
     /* todo: change in relation to details-card height! */
-    top: calc(50% - 100px) !important;
-    bottom: calc(50% - 100px) !important;
+    top: calc(50% - 300px) !important;
+    bottom: calc(50% - 300px) !important;
 }
 
 .carousel-button:hover {
@@ -190,7 +190,7 @@ header {
 
 @media (max-width: 435px) {
     .carousel-control-prev {
-        top: calc(50% + 120px) !important;
+        top: calc(50% + 242px) !important;
         width: 50% !important;
         height: 50px;
         right: calc(50%);
@@ -199,7 +199,7 @@ header {
     }
 
     .carousel-control-next {
-        top: calc(50% + 120px) !important;
+        top: calc(50% + 242px) !important;
         width: 50% !important;
         height: 50px;
         left: calc(50%);
@@ -323,6 +323,7 @@ footer {
 .pokemon__type-box {
     display: flex;
     flex-direction: column;
+    width: 100%;
     gap: 8px;
 }
 
@@ -334,7 +335,7 @@ footer {
     text-align: center;
 }
 
-.pokemon__info-box__header {
+.name-and-id {
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -357,23 +358,29 @@ footer {
     transition: all 0.2s ease-in-out;
 }
 
-.card {
+.preview {
     width: fit-content;
     margin: 8px;
     transition: all 0.2s ease-in-out;
     font-family: "Inter", sans-serif;
 }
 
-.card:hover {
+.preview:hover {
     transform: scale(1.02);
     box-shadow: 0 0 10px black;
     cursor: pointer;
 }
 
-.card:hover img {
+.preview:hover img {
     transform: scale(1.1);
     rotate: -5deg;
 }
+
+.details-card:hover {
+    transform: scale(1) !important;
+    rotate: 0deg !important;
+}
+
 
 .card-body {
     width: 250px;
@@ -382,6 +389,16 @@ footer {
 .card-title--detailpage {
     color: white;
 }
+
+.types-and-image {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-top: 16px;
+    gap: 8px;
+    max-width: 75%;
+    align-items: center;
+}
+
 
 .d-block {
     border: 0;
@@ -514,7 +531,15 @@ footer {
     border-radius: 16px;
 }
 
+.details-image {
+    object-fit: contain;
+    max-height: 180px;
+    max-width: 180px;
+}
+
 .details-top-wrapper {
+    display: flex;
+    flex-direction: column;
     padding: 16px;
 }
 
@@ -545,7 +570,14 @@ footer {
     color: black;
 }
 
-.nav-tabs .nav-item .nav-link:hover{
-    background-color:rgba(255, 255, 255, 0.5);
+.nav-tabs .nav-item .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.5);
     color: black;
+}
+
+.flex-cc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
 }

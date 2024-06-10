@@ -31,7 +31,9 @@ function renderDetailCardHeader(card, pokemon) {
     const pokemonName = capitalizeFirstLetter(pokemon['species']['name']);
     document.getElementById(`${card}bg-target`).classList.add(`bg-design--${getColorScheme(pokemon)}`);
     document.getElementById(`${card}title`).innerHTML = pokemonName;
+    document.getElementById(`${card}poke-id`).innerHTML = `# ${pokemon['id']}`;
     document.getElementById(`${card}types`).innerHTML = typesHtml;
+    document.getElementById(`${card}pokemon-image`).src = findPokemonImage(pokemon);
 }
 
 function updateNavigationButtons(set, index) {

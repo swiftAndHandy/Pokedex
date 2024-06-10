@@ -53,10 +53,14 @@
       <div class="card d-block">
         <div class="card-body details-card" id="card-1-bg-target">
           <div class="details-top-wrapper">
-            <h3 class="card-title" id="card-1-title">B</h3>
-            <div class="types-and-image">
-              <div id="card-1-types" class="pokemon__type-box">
-
+            <div class="name-and-id">
+              <h3 class="card-title" id="card-1-title">B</h3>
+              <h4 id="card-1-poke-id"></h4>
+            </div>
+            <div class="flex-cc">
+              <div class="types-and-image">
+                <div id="card-1-types" class="pokemon__type-box"></div>
+                <img src="" class="details-image" alt="" id="card-1-pokemon-image">
               </div>
             </div>
           </div>
@@ -100,7 +104,7 @@
 
     <!-- Card 2 -->
     <div class="carousel-item">
-      <div class="card d-block">
+      <div class="card details-card d-block">
         <div class="card-body details-card" id="card-2-bg-target">
           <div class="details-top-wrapper">
             <h4 class="card-title" id="card-2-title">C</h4>
@@ -148,14 +152,14 @@
 
     <!-- End of Cards -->
   </div>
-  <button class="carousel-control-prev carousel-button" id="prev-button" type="button" data-bs-target="#poke-card" data-bs-slide="prev"
-    onclick="previousPokemon();stopBubbeling(event);">
+  <button class="carousel-control-prev carousel-button" id="prev-button" type="button" data-bs-target="#poke-card"
+    data-bs-slide="prev" onclick="previousPokemon();stopBubbeling(event);">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
 
-  <button class="carousel-control-next carousel-button" id="next-button" type="button" data-bs-target="#poke-card" data-bs-slide="next"
-    onclick="nextPokemon();stopBubbeling(event);">
+  <button class="carousel-control-next carousel-button" id="next-button" type="button" data-bs-target="#poke-card"
+    data-bs-slide="next" onclick="nextPokemon();stopBubbeling(event);">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
