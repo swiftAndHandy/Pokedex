@@ -71,12 +71,6 @@ header {
     padding-left: 30px;
 }
 
-.searchbar::placeholder {
-    color: transparent;
-    /* Placeholder-Text unsichtbar machen */
-}
-
-
 @media (min-width: 600px) {
     .search {
         position: absolute;
@@ -205,6 +199,16 @@ header {
         left: calc(50%);
         align-items: center !important;
         justify-content: center !important;
+    }
+
+    .carousel-prev-clicked {
+        animation: 0.5s navButton;
+        transform-origin: center;
+    }
+    
+    .carousel-next-clicked {
+        animation: 0.5s navButton;
+        transform-origin: center;
     }
 }
 
@@ -570,8 +574,13 @@ footer {
     color: black;
 }
 
+.nav-tabs .nav-item .nav-link {
+    background-color: rgba(240, 240, 240, 0.6);
+    color: black;
+}
+
 .nav-tabs .nav-item .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(200, 200, 200, 0.8);
     color: black;
 }
 

@@ -128,15 +128,15 @@
           <ul class="nav nav-tabs details-tab-list" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
               <button class="nav-link active" id="card-2-tab-0-btn" data-bs-toggle="tab" data-bs-target="#card-2-tab-0" type="button"
-                role="tab" aria-controls="home" aria-selected="true" onclick="simulateClick(0)">Home</button>
+                role="tab" aria-controls="home" aria-selected="true" onclick="simulateClick(0);stopBubbeling(event);">Home</button>
             </li>
             <li class="nav-item" role="presentation">
               <button class="nav-link" id="card-2-tab-1-btn" data-bs-toggle="tab" data-bs-target="#card-2-tab-1" type="button"
-                role="tab" aria-controls="profile" aria-selected="false" onclick="simulateClick(1)">Profile</button>
+                role="tab" aria-controls="profile" aria-selected="false" onclick="simulateClick(1);stopBubbeling(event);">Profile</button>
             </li>
             <li class="nav-item" role="presentation">
               <button class="nav-link" id="card-2-tab-2-btn" data-bs-toggle="tab" data-bs-target="#card-2-tab-2" type="button"
-                role="tab" aria-controls="contact" aria-selected="false" onclick="simulateClick(2)">Contact</button>
+                role="tab" aria-controls="contact" aria-selected="false" onclick="simulateClick(2);stopBubbeling(event);">Contact</button>
             </li>
           </ul>
           <div class="tab-content" id="myTabContent">

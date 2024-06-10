@@ -6,12 +6,16 @@ function playPokemonCry(set, index) { // add where needed: onclick="playPokemonC
 }
 
 function closeDetailView() {
+    const pageView = document.getElementById('body');
+    pageView.classList.add('scroll-behavior--blocked');
     const viewContainer = document.getElementById('detail-view');
     viewContainer.classList.add('d-none');
     resetCardDesign(LAST_SLIDER, lastPokemon, true);
 }
 
 function openDetailCard(set, index) {
+    const pageView = document.getElementById('body');
+    pageView.classList.remove('scroll-behavior--blocked');
     const pokemon = pokemonDetails[set][index];
     updateNavigationButtons(set, index);
     const viewContainer = document.getElementById('detail-view');
@@ -49,7 +53,6 @@ function resetCardDesign(target, pokemon, forceReset = false) {
     if (forceReset || pokemon && CURRENT_SLIDER != LAST_SLIDER) {
         setTimeout(() => {
             const pokemonName = capitalizeFirstLetter(pokemon['species']['name']);
-            console.log(`Hier sollte auf Karte ${target} ${pokemonName} gelöscht werden.`);
             document.getElementById(`card-${target}-bg-target`).classList.remove(`bg-design--${getColorScheme(pokemon)}`);    
         }, delay);
         
