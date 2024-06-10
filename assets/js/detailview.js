@@ -24,7 +24,7 @@ function renderDetailCard(pokemon, set, index, target = CURRENT_SLIDER) {
     resetCardDesign(LAST_SLIDER, lastPokemon);
     lastPokemon = pokemon;
     document.getElementById(`card-${target}-bg-target`).classList.add(`bg-design--${getColorScheme(pokemon)}`);
-    document.getElementById(`card-title-${target}`).innerHTML = pokemonName;
+    document.getElementById(`card-${target}-title`).innerHTML = pokemonName;
     console.log(`${pokemonName} sollte angezeigt werden auf ${target}/${CURRENT_SLIDER}`);
 }
 

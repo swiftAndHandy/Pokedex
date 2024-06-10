@@ -379,6 +379,11 @@ footer {
     width: 250px;
 }
 
+.d-block {
+    border: 0;
+    border-radius: 16px;
+}
+
 
 @media (min-width: 700px) {
     .details-card {
@@ -502,7 +507,7 @@ footer {
 
 .details-card {
     padding: 0 !important;
-
+    border-radius: 16px;
 }
 
 .details-top-wrapper {
