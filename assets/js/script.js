@@ -4,6 +4,11 @@ let pokemonDetails = [];
 let countPokemonLoaded = 0;
 const pokemonLoadingLimit = 649; // 649 is Gen 5 Cap. You can change it, but spritestyle will change also.
 
+//Required for Detail-View
+let CURRENT_SLIDER = 1; // I'll use this later for detail view/carousel. 0 -> 2 left, center, right. next ++, previous --
+let LAST_SLIDER = CURRENT_SLIDER // Required to remove bg-style
+let lastPokemon;
+
 //API Settings
 const API_BASE_URL = 'https://pokeapi.co/api/v2/'
 const SET_LIMIT = 10;  // LIMIT 0 -> API overwrites with a standard of 20
@@ -12,7 +17,6 @@ const dreamworldSprites = 649; // dreamworldSprites exist only for the first 649
 
 //Usersettings
 let AUTOLOAD = false;
-let CURRENT_SLIDER = 1; // I'll use this later for detail view/carousel. 0 -> 2 left, center, right. next ++, previous --
 let SOUND_STYLE = 'legacy';
 let settingsOpen = false;
 
@@ -200,4 +204,14 @@ function findPokemonImage(pokemon) {
 
 function stopBubbeling(event) {
     event.stopPropagation();
+}
+
+function animateNavigation(side) {
+    let target = side == 'prev' ? document.getElementById('prev-button') : document.getElementById('next-button');
+    target.classList.add(`carousel-${side}-clicked`);
+    target.disabled = true;
+    setTimeout(() => {
+        target.classList.remove(`carousel-${side}-clicked`);
+        target.disabled = false;
+    }, 600);
 }

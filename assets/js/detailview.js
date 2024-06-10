@@ -20,38 +20,55 @@ function openDetailCard(set, index) {
 }
 
 function renderDetailCard(pokemon, set, index, target = CURRENT_SLIDER) {
-    console.log(pokemon, set, index, target);
+    const pokemonName = capitalizeFirstLetter(pokemon['species']['name']);
+    resetCardDesign(LAST_SLIDER, lastPokemon);
+    lastPokemon = pokemon;
     document.getElementById(`card-${target}-bg-target`).classList.add(`bg-design--${getColorScheme(pokemon)}`);
+    document.getElementById(`card-title-${target}`).innerHTML = pokemonName;
+    console.log(`${pokemonName} sollte angezeigt werden auf ${target}/${CURRENT_SLIDER}`);
 }
 
 function updateNavigationButtons(set, index) {
     const prevButton = document.getElementById('prev-button');
     const nextButton = document.getElementById('next-button');
-    prevButton.setAttribute('onclick', `previousPokemon(${set}, ${index});stopBubbeling(event);`);
-    nextButton.setAttribute('onclick', `nextPokemon(${set}, ${index});stopBubbeling(event);`);
+    prevButton.setAttribute('onclick', `previousPokemon(${set}, ${index});animateNavigation('prev');stopBubbeling(event);`);
+    nextButton.setAttribute('onclick', `nextPokemon(${set}, ${index});animateNavigation('next');stopBubbeling(event);`);
 
 }
 
-async function previousPokemon(set, index) {
+function resetCardDesign(target, pokemon) {
+    if (pokemon) {
+        setTimeout(() => {
+            const pokemonName = capitalizeFirstLetter(pokemon['species']['name']);
+            console.log(`Hier sollte auf Karte ${target} ${pokemonName} gelöscht werden.`);
+            document.getElementById(`card-${target}-bg-target`).classList.remove(`bg-design--${getColorScheme(pokemon)}`);    
+        }, 600);
+        
+    }
+}
+
+function previousPokemon(set, index) {
     const indexMax = SET_LIMIT - 1;
+    LAST_SLIDER = CURRENT_SLIDER;
+    --CURRENT_SLIDER;
     --index;
     if (index < 0) {
         index = indexMax;
-        set = await findCorrectSet(set, 'decrease');
+        set = findCorrectSet(set, 'decrease');
     }
-    CURRENT_SLIDER--;
     verifyCurrentSlider();
     openDetailCard(set, index);
 }
 
-async function nextPokemon(set, index) {
+function nextPokemon(set, index) {
     const indexMax = SET_LIMIT - 1;
+    LAST_SLIDER = CURRENT_SLIDER;
+    ++CURRENT_SLIDER;
     ++index;
     if (index > indexMax) {
         index = 0;
-        set = await findCorrectSet(set, 'increase');
+        set = findCorrectSet(set, 'increase');
     }
-    CURRENT_SLIDER++;
     verifyCurrentSlider();
     openDetailCard(set, index);
 }

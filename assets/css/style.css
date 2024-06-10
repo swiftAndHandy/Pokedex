@@ -129,8 +129,9 @@ header {
     justify-content: flex-start !important;
 }
 
-.carousel-button { /* todo: change in relation to details-card height! */ 
-    top: calc(50% - 100px) !important; 
+.carousel-button {
+    /* todo: change in relation to details-card height! */
+    top: calc(50% - 100px) !important;
     bottom: calc(50% - 100px) !important;
 }
 
@@ -138,12 +139,40 @@ header {
     filter: invert();
 }
 
+.carousel-prev-clicked {
+    animation: 0.5s navButton;
+    transform-origin: right;
+}
+
+.carousel-next-clicked {
+    animation: 0.5s navButton;
+    transform-origin: left;
+}
+
+@keyframes navButton {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(25deg);
+    }
+
+    75% {
+        transform: rotate(-25deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
 
 @media (min-width: 436px) {
     .carousel-control-prev {
         right: calc(50% + 174px);
     }
-    
+
     .carousel-control-next {
         left: calc(50% + 174px);
     }
@@ -153,7 +182,7 @@ header {
     .carousel-control-prev {
         right: calc(50% + 224px);
     }
-    
+
     .carousel-control-next {
         left: calc(50% + 224px);
     }
@@ -163,12 +192,12 @@ header {
     .carousel-control-prev {
         top: calc(50% + 120px) !important;
         width: 50% !important;
-        height:50px;
+        height: 50px;
         right: calc(50%);
         align-items: center !important;
         justify-content: center !important;
     }
-    
+
     .carousel-control-next {
         top: calc(50% + 120px) !important;
         width: 50% !important;
@@ -361,7 +390,7 @@ footer {
     .carousel-control-prev {
         right: calc(50% + 324px);
     }
-    
+
     .carousel-control-next {
         left: calc(50% + 324px);
     }
@@ -375,7 +404,7 @@ footer {
     .carousel-control-prev {
         right: calc(50% + 424px);
     }
-    
+
     .carousel-control-next {
         left: calc(50% + 424px);
     }
@@ -473,7 +502,7 @@ footer {
 
 .details-card {
     padding: 0 !important;
-    
+
 }
 
 .details-top-wrapper {
@@ -493,4 +522,3 @@ footer {
 .details-tab-list {
     margin-top: 16px;
 }
-
