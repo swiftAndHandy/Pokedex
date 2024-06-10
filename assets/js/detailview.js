@@ -11,10 +11,25 @@ function closeDetailView() {
     // await renderDetailCard();
 }
 
-async function openDetailCard(set, index) {
+function openDetailCard(set, index) {
+    const pokemon = pokemonDetails[set][index];
+    updateNavigationButtons(set, index);
     const viewContainer = document.getElementById('detail-view');
     viewContainer.classList.remove('d-none');
-    // await renderDetailCard();
+    renderDetailCard(pokemon, set, index);
+}
+
+function renderDetailCard(pokemon, set, index, target = CURRENT_SLIDER) {
+    console.log(pokemon, set, index, target);
+    document.getElementById(`card-${target}-bg-target`).classList.add(`bg-design--${getColorScheme(pokemon)}`);
+}
+
+function updateNavigationButtons(set, index) {
+    const prevButton = document.getElementById('prev-button');
+    const nextButton = document.getElementById('next-button');
+    prevButton.setAttribute('onclick', `previousPokemon(${set}, ${index});stopBubbeling(event);`);
+    nextButton.setAttribute('onclick', `nextPokemon(${set}, ${index});stopBubbeling(event);`);
+
 }
 
 async function previousPokemon(set, index) {
