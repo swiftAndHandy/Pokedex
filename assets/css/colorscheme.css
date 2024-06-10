@@ -11,6 +11,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    color: black;
 }
 
 .type-info--grass {
@@ -31,7 +32,6 @@
 }
 
 .type--water {
-    background-color: rgb(124, 175, 234) !important;
     background-image: url(../img/water-bg.webp);
     background-repeat: no-repeat;
     background-size: cover;
@@ -213,7 +213,7 @@
 }
 
 .type-info--flying {
-    background-color:honeydew;
+    background-color: honeydew;
     color: black;
 }
 
@@ -239,7 +239,6 @@ h5 {
 }
 
 .bg-design--water {
-    background-color: rgb(124, 175, 234) !important;
     background-image: url(../img/water-bg.webp);
     background-repeat: no-repeat;
     background-size: cover;

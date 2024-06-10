@@ -8,7 +8,7 @@ function playPokemonCry(set, index) { // add where needed: onclick="playPokemonC
 function closeDetailView() {
     const viewContainer = document.getElementById('detail-view');
     viewContainer.classList.add('d-none');
-    // await renderDetailCard();
+    resetCardDesign(LAST_SLIDER, lastPokemon, true);
 }
 
 function openDetailCard(set, index) {
@@ -20,12 +20,18 @@ function openDetailCard(set, index) {
 }
 
 function renderDetailCard(pokemon, set, index, target = CURRENT_SLIDER) {
-    const pokemonName = capitalizeFirstLetter(pokemon['species']['name']);
-    resetCardDesign(LAST_SLIDER, lastPokemon);
+    card = `card-${target}-`;
+    resetCardDesign(LAST_SLIDER, lastPokemon); // reset, before update the last pokemon
     lastPokemon = pokemon;
-    document.getElementById(`card-${target}-bg-target`).classList.add(`bg-design--${getColorScheme(pokemon)}`);
-    document.getElementById(`card-${target}-title`).innerHTML = pokemonName;
-    console.log(`${pokemonName} sollte angezeigt werden auf ${target}/${CURRENT_SLIDER}`);
+    renderDetailCardHeader(card, pokemon);
+}
+
+function renderDetailCardHeader(card, pokemon) {
+    const typesHtml = generateTypeHtml(pokemon);
+    const pokemonName = capitalizeFirstLetter(pokemon['species']['name']);
+    document.getElementById(`${card}bg-target`).classList.add(`bg-design--${getColorScheme(pokemon)}`);
+    document.getElementById(`${card}title`).innerHTML = pokemonName;
+    document.getElementById(`${card}types`).innerHTML = typesHtml;
 }
 
 function updateNavigationButtons(set, index) {
@@ -36,13 +42,14 @@ function updateNavigationButtons(set, index) {
 
 }
 
-function resetCardDesign(target, pokemon) {
-    if (pokemon) {
+function resetCardDesign(target, pokemon, forceReset = false) {
+    let delay = forceReset ? 0 : 600;
+    if (forceReset || pokemon && CURRENT_SLIDER != LAST_SLIDER) {
         setTimeout(() => {
             const pokemonName = capitalizeFirstLetter(pokemon['species']['name']);
             console.log(`Hier sollte auf Karte ${target} ${pokemonName} gelöscht werden.`);
             document.getElementById(`card-${target}-bg-target`).classList.remove(`bg-design--${getColorScheme(pokemon)}`);    
-        }, 600);
+        }, delay);
         
     }
 }

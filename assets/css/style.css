@@ -25,7 +25,7 @@ body {
     margin: 0;
     min-height: 100vh;
     flex: 1;
-    background-color: aqua;
+    color: white;
     background-image: url(../img/main-bg.webp);
 }
 
@@ -379,6 +379,10 @@ footer {
     width: 250px;
 }
 
+.card-title--detailpage {
+    color: white;
+}
+
 .d-block {
     border: 0;
     border-radius: 16px;
@@ -514,16 +518,34 @@ footer {
     padding: 16px;
 }
 
-/* .details-tab-list {
-    
-} */
-
 .details-bottom-wrapper {
     background-color: silver;
     width: 100%;
-    border-radius: 8px;
+    border-radius: 0 0 16px 16px;
 }
 
 .details-tab-list {
-    margin-top: 16px;
+    margin: 16px 0 1px;
+    border: 0;
+}
+
+.nav-tabs .nav-item .nav-link {
+    /* background-color: bisque; */
+    color: #000;
+    border-bottom: 0;
+}
+
+.nav-tabs .nav-item .nav-link.active {
+    background-color: white;
+    color: black;
+}
+
+.nav-tabs .nav-item .nav-link.active:hover {
+    background-color: white;
+    color: black;
+}
+
+.nav-tabs .nav-item .nav-link:hover{
+    background-color:rgba(255, 255, 255, 0.5);
+    color: black;
 }
