@@ -5,8 +5,6 @@ let countPokemonLoaded = 0;
 const pokemonLoadingLimit = 649; // 649 is Gen 5 Cap. You can change it, but spritestyle will change also.
 
 //Required for Detail-View
-let CURRENT_SLIDER = 1; // I'll use this later for detail view/carousel. 0 -> 2 left, center, right. next ++, previous --
-let LAST_SLIDER = CURRENT_SLIDER // Required to remove bg-style
 let lastPokemon;
 
 //API Settings
@@ -17,7 +15,7 @@ const dreamworldSprites = 649; // dreamworldSprites exist only for the first 649
 
 //Usersettings
 let AUTOLOAD = false;
-let SOUND_STYLE = 'legacy';
+let SOUND_STYLE = 'latest';
 let settingsOpen = false;
 
 

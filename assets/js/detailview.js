@@ -1,7 +1,6 @@
 function playPokemonCry(set, index) { // add where needed: onclick="playPokemonCry(${set}, ${index})";
     let pokemon = pokemonDetails[set][index];
-    let soundType = SOUND_STYLE ? 'legacy' : 'latest';
-    let audioFile = new Audio(pokemon['cries'][soundType]);
+    let audioFile = new Audio(pokemon['cries'][SOUND_STYLE]);
     audioFile.play();
 }
 
@@ -10,7 +9,7 @@ function closeDetailView() {
     pageView.classList.remove('scroll-behavior--blocked');
     const viewContainer = document.getElementById('detail-view');
     viewContainer.classList.add('d-none');
-    // resetCardDesign(LAST_SLIDER, lastPokemon, true);
+    resetCardDesign(lastPokemon);
 }
 
 function openDetailCard(set, index) {
@@ -23,14 +22,14 @@ function openDetailCard(set, index) {
     renderDetailCard(pokemon, set, index);
 }
 
-function renderDetailCard(pokemon, set, index, target = CURRENT_SLIDER) {
-    card = `card-${target}-`;
+function renderDetailCard(pokemon, set, index) {
+    card = `card-1-`;
     resetCardDesign(lastPokemon); // reset, before update the last pokemon
     lastPokemon = pokemon;
-    renderDetailCardHeader(card, pokemon);
+    renderDetailCardHeader(card, pokemon, set, index);
 }
 
-function renderDetailCardHeader(card, pokemon) {
+function renderDetailCardHeader(card, pokemon, set, index) {
     const typesHtml = generateTypeHtml(pokemon);
     const pokemonName = capitalizeFirstLetter(pokemon['species']['name']);
     document.getElementById(`${card}bg-target`).classList.add(`bg-design--${getColorScheme(pokemon)}`);
@@ -38,6 +37,7 @@ function renderDetailCardHeader(card, pokemon) {
     document.getElementById(`${card}poke-id`).innerHTML = `# ${pokemon['id']}`;
     document.getElementById(`${card}types`).innerHTML = typesHtml;
     document.getElementById(`${card}pokemon-image`).src = findPokemonImage(pokemon);
+    document.getElementById(`${card}audio-player`).setAttribute('onclick', `playPokemonCry(${set}, ${index});stopBubbeling(event);`);
 }
 
 function updateNavigationButtons(set, index) {
@@ -57,27 +57,21 @@ function resetCardDesign(pokemon, target = '1') {
 
 function previousPokemon(set, index) {
     const indexMax = SET_LIMIT - 1;
-    LAST_SLIDER = CURRENT_SLIDER;
-    // --CURRENT_SLIDER;
     --index;
     if (index < 0) {
         index = indexMax;
         set = findCorrectSet(set, 'decrease');
     }
-    verifyCurrentSlider();
     openDetailCard(set, index);
 }
 
 function nextPokemon(set, index) {
     const indexMax = SET_LIMIT - 1;
-    LAST_SLIDER = CURRENT_SLIDER;
-    // ++CURRENT_SLIDER;
     ++index;
     if (index > indexMax) {
         index = 0;
         set = findCorrectSet(set, 'increase');
     }
-    verifyCurrentSlider();
     openDetailCard(set, index);
 }
 
@@ -106,14 +100,6 @@ function decreaseSet(set) {
         set = maxSetIndex;
     }
     return set;
-}
-
-function verifyCurrentSlider() {
-    if (CURRENT_SLIDER < 0) {
-        CURRENT_SLIDER = 2;
-    } else if (CURRENT_SLIDER > 2) {
-        CURRENT_SLIDER = 0;
-    }
 }
 
 function flexTab(id) {

@@ -251,6 +251,34 @@ footer {
     color: black;
 }
 
+.nav-hover {
+    filter:brightness(0.8);
+    transition: all 0.2s ease-in-out;
+}
+
+.nav-hover:hover {
+    filter: brightness(1);
+}
+
+.sound-box {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+}
+
+.sound-box button {
+    background-color: transparent;
+    border: 0;
+}
+
+.play-cry {
+    height: 50px;
+}
+
+.play-cry:hover {
+    filter: brightness(1.5);
+}
+
 .loading-spinner {
     position: fixed;
     z-index: 2;
@@ -418,6 +446,11 @@ footer {
         width: 300px;
     }
 
+    .sound-box {
+        right: 0px;
+        top: 15%;
+    }
+
     .pokedex__image {
         width: 75px;
         height: 75px;
@@ -499,6 +532,7 @@ footer {
 }
 
 .details-top-wrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
     padding: 16px;
@@ -525,14 +559,12 @@ footer {
 
 .nav-buttons-bottom-left {
     width: 50%;
-    background-color: aliceblue;
     border: 0;
     border-radius: 0 0 0 8px;
 }
 
 .nav-buttons-bottom-right {
     width: 50%;
-    background-color: aliceblue;
     border: 0;
     border-radius: 0 0 8px 0;
 }
@@ -622,6 +654,7 @@ footer {
     .nav-buttons-bottom-box {
         display: flex;
         height: 50px;
+        margin-top: 2px;
     }
 
     .details-bottom-wrapper {

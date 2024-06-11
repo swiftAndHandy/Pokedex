@@ -55,7 +55,7 @@
                 <h3>Sound-related settings</h3>
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" role="switch" id="sound-style-toggle"
-                        onclick="toggleSoundType()">
+                        onclick="toggleSoundType()" checked>
                     <label class="form-check-label" for="autoload-toggle" id="sound-style-toggle-label">Sound Style:
                         Legacy</label>
                 </div>
@@ -66,7 +66,7 @@
     <section id="detail-view" class="slider d-none" onclick="closeDetailView()">
         <div class="card-wrapper" onclick="stopBubbeling(event)">
             <div class="card-wrapper__inner">
-                <button class="nav-buttons-left nav-borders rotated mirrored" id="prev-button-0">Previous</button>
+                <button class="nav-buttons-left nav-borders rotated mirrored nav-hover" id="prev-button-0"><span>Previous</span></button>
                 <!-- Card 1 -->
                 <div class="card-body details-card" id="card-1-bg-target" onclick="stopBubbeling(event)">
                     <div class="details-top-wrapper">
@@ -80,12 +80,15 @@
                                 <img src="" class="details-image" alt="" id="card-1-pokemon-image">
                             </div>
                         </div>
+                        <div class="sound-box">
+                            <button id="card-1-audio-player"><img src="./assets/icons/pokesound.svg" class="play-cry" alt="Play Cry"></button>
+                        </div>
                     </div>
                     <ul class="nav nav-tabs details-tab-list" id="card-1-tabs" role="tablist">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="card-1-tab-0-btn" data-bs-toggle="tab"
-                                data-bs-target="#card-1-tab-0" type="button" role="tab" aria-controls="home"
-                                aria-selected="true" onclick="flexTab(0);stopBubbeling(event);">Home</button>
+                                data-bs-target="#card-1-tab-0" type="button" role="tab" aria-controls="stats"
+                                aria-selected="true" onclick="flexTab(0);stopBubbeling(event);">Stats</button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="card-1-tab-1-btn" data-bs-toggle="tab"
@@ -120,11 +123,11 @@
                         </div>
                     </div>
                 </div>
-                <button class="nav-buttons-right nav-borders rotated" id="next-button-0">Next</button>
+                <button class="nav-buttons-right nav-borders rotated nav-hover" id="next-button-0">Next</button>
             </div>
             <div id="nav-buttons-bottom" class="nav-buttons-bottom-box" onclick="stopBubbeling(event)">
-                <button class="nav-buttons-bottom-left" id="prev-button-1">Previous</button>
-                <button class="nav-buttons-bottom-right" id="next-button-1">Next</button>
+                <button class="nav-buttons-bottom-left nav-hover" id="prev-button-1">Previous</button>
+                <button class="nav-buttons-bottom-right nav-hover" id="next-button-1">Next</button>
             </div>
         </div>
     </section>
