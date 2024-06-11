@@ -28,12 +28,42 @@ function openDetailCard(set, index, method = '') {
 
 
 function renderDetailCard(pokemon, set, index) {
-    card = `card-1-`;
+    const card = `card-1-`;
     resetCardDesign(lastPokemon); // reset, before update the last pokemon
     lastPokemon = pokemon;
     renderDetailCardHeader(card, pokemon, set, index);
+    renderDetailCardTabs(pokemon);
 }
 
+function renderDetailCardTabs(pokemon) {
+    renderStats(pokemon);
+}
+
+function renderStats(pokemon) {
+    const stats = ['hp', 'attack', 'defense', 'special-attack', 'special-defense', 'speed'];
+    const statNames = ['HP', 'Atack', 'Defense', 'Special Attack', 'Special Defense', 'Speed'];
+    const highestStatValue = findHighestStat(pokemon, stats);
+    for (let i = 0; i < stats.length; i++) {
+        const target = document.getElementById(stats[i]);
+        let targetPercentage = statvaluePercentage(pokemon, i, highestStatValue);
+        target.style.width = `${targetPercentage}%`;
+        target.innerHTML = `${statNames[i]}: ${pokemon['stats'][i]['base_stat']} points`;
+    }
+}
+
+function findHighestStat(pokemon, stats) {
+    let highestValue = null;
+    for (let i = 0; i < stats.length; i++) {
+        currentStatsvalue = pokemon['stats'][i]['base_stat'];
+        highestValue = currentStatsvalue > highestValue ? currentStatsvalue : highestValue;
+    }
+    return highestValue;
+}
+
+function statvaluePercentage(pokemon, index, highestValue) {
+    const stat = pokemon['stats'][index]['base_stat'];
+    return Number((stat * 100) / highestValue).toFixed();
+}
 
 function skipIfNotSearched(set, index, method) {
     if (method) {
@@ -61,6 +91,7 @@ function increaseTillNextMatch(set, index) {
     const currentIndexMax = calculateLastSetsMaxIndex();
     const lastSet = pokemonDetails.length - 1;
     let currentName = null;
+
     while (!currentName || !pokemonIsSearched(currentName, keyword)) {
         ++index;
         if (index > indexMax || set == lastSet && index > currentIndexMax) {

@@ -283,6 +283,7 @@ h5 {
     background-image: url(../img/fairy-bg.webp);
     background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .bg-design--fighting {

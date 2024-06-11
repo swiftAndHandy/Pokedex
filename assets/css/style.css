@@ -252,7 +252,7 @@ footer {
 }
 
 .nav-hover {
-    filter:brightness(0.8);
+    filter: brightness(0.8);
     transition: all 0.2s ease-in-out;
 }
 
@@ -350,6 +350,54 @@ footer {
 .scroll-behavior--blocked {
     overflow: hidden;
 }
+
+.stats-table {
+    table-layout: fixed;
+    border-collapse: separate;
+    width: 100%;
+}
+
+.stats-table__rows td {
+    position: relative;
+    border: 0;
+    height: 32px;
+    padding-left: 8px;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.stats-table__rows img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: fill;
+    height: 100%;
+}
+
+.hp-bar {
+    background-image: url('../img/hp-bar.webp');
+}
+
+.attack-bar {
+    background-image: url('../img/attack-bar.webp');
+}
+
+.defense-bar {
+    background-image: url('../img/defense-bar.webp');
+}
+
+.special-attack-bar {
+    background-image: url('../img/special-attack-bar.webp');
+}
+
+.special-defense-bar {
+    background-image: url('../img/special-defense-bar.webp');
+}
+
+.speed-bar {
+    background-image: url('../img/speed-bar.webp');
+}
+
 
 .pokedex__card {
     display: flex;

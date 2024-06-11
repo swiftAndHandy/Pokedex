@@ -48,23 +48,23 @@
                         onclick="toggleAutoload()">
                     <label class="form-check-label" for="autoload-toggle" id="autoload-toggle-label">Autoload:
                         off</label>
-                        <br><span>(I recommend to turn it on)</span>
+                    <br><span>(I recommend to turn it on)</span>
                 </div>
             </section>
             <hr>
             <section id="setting-type__sound">
                 <h3>Sound-related settings</h3>
                 <div class="form-check form-switch sound-settings">
-                        <input class="form-check-input" type="checkbox" role="switch" id="sound-style-toggle"
-                            onclick="toggleSoundType()" checked>
-                        <label class="form-check-label" for="sound-style-toggle" id="sound-style-toggle-label">Sound
-                            Style:
-                            Legacy</label>
+                    <input class="form-check-input" type="checkbox" role="switch" id="sound-style-toggle"
+                        onclick="toggleSoundType()" checked>
+                    <label class="form-check-label" for="sound-style-toggle" id="sound-style-toggle-label">Sound
+                        Style:
+                        Legacy</label>
                 </div>
                 <div class="sound-settings">
-                    <input type="range" id="loudness-slider" min="0" max="100" value="50" step="10" onchange="updateVolume()">
-                    <label class="form-check-label" for="loudness-slider"
-                        id="loudness-slider-label">Volume: 50%</label>
+                    <input type="range" id="loudness-slider" min="0" max="100" value="50" step="10"
+                        onchange="updateVolume()">
+                    <label class="form-check-label" for="loudness-slider" id="loudness-slider-label">Volume: 50%</label>
                 </div>
             </section>
         </div>
@@ -115,7 +115,69 @@
                         <div class="tab-pane active flex" id="card-1-tab-0" role="tabpanel"
                             aria-labelledby="card-1-tab-0-btn">
                             <div class="card-body details-bottom-wrapper">
-                                <p>Karte 1 Tab 1</p>
+
+                                <table class="stats-table">
+                                    <tbody>
+                                        <tr class="stats-table__rows">
+                                            <td id="hp" class="hp-bar"><img src="./assets/img/attackbar.webp"
+                                                    alt="attack-bar"></td>
+                                            <td class="limiter"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <table class="stats-table">
+                                    <tbody>
+                                        <tr class="stats-table__rows">
+                                            <td id="attack" class="attack-bar"><img src="./assets/img/attackbar.webp"
+                                                    alt="attack-bar"></td>
+                                            <td class="limiter"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <table class="stats-table">
+                                    <tbody>
+                                        <tr class="stats-table__rows">
+                                            <td id="defense" class="defense-bar"><img src="./assets/img/attackbar.webp"
+                                                    alt="defense-bar"></td>
+                                            <td class="limiter"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <table class="stats-table">
+                                    <tbody>
+                                        <tr class="stats-table__rows">
+                                            <td id="special-attack" class="special-attack-bar"><img
+                                                    src="./assets/img/attackbar.webp" alt="special-attack-bar"></td>
+                                            <td class="limiter"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <table class="stats-table">
+                                    <tbody>
+                                        <tr class="stats-table__rows">
+                                            <td id="special-defense" class="special-defense-bar"><img
+                                                    src="./assets/img/attackbar.webp" alt="special-defense-bar"></td>
+                                            <td class="limiter"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <table class="stats-table">
+                                    <tbody>
+                                        <tr class="stats-table__rows">
+                                            <td id="speed" class="speed-bar"><img src="./assets/img/attackbar.webp"
+                                                    alt="speed-bar"></td>
+                                            <td class="limiter"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+
                             </div>
                         </div>
                         <!-- Content Tab 2 -->
