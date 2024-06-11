@@ -102,9 +102,9 @@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="card-1-tab-1-btn" data-bs-toggle="tab"
                                 data-bs-target="#card-1-tab-1" type="button" role="tab" aria-controls="profile"
-                                aria-selected="false" onclick="flexTab(1);stopBubbeling(event);">Profile</button>
+                                aria-selected="false" onclick="flexTab(1);stopBubbeling(event);">Skills</button>
                         </li>
-                        <li class="nav-item" role="presentation">
+                        <li class="nav-item" role="presentation" style="display: none;">
                             <button class="nav-link" id="card-1-tab-2-btn" data-bs-toggle="tab"
                                 data-bs-target="#card-1-tab-2" type="button" role="tab" aria-controls="contact"
                                 aria-selected="false" onclick="flexTab(2);stopBubbeling(event);">Contact</button>
@@ -115,7 +115,6 @@
                         <div class="tab-pane active flex" id="card-1-tab-0" role="tabpanel"
                             aria-labelledby="card-1-tab-0-btn">
                             <div class="card-body details-bottom-wrapper">
-
                                 <table class="stats-table">
                                     <tbody>
                                         <tr class="stats-table__rows">
@@ -125,7 +124,6 @@
                                         </tr>
                                     </tbody>
                                 </table>
-
                                 <table class="stats-table">
                                     <tbody>
                                         <tr class="stats-table__rows">
@@ -135,7 +133,6 @@
                                         </tr>
                                     </tbody>
                                 </table>
-
                                 <table class="stats-table">
                                     <tbody>
                                         <tr class="stats-table__rows">
@@ -145,7 +142,6 @@
                                         </tr>
                                     </tbody>
                                 </table>
-
                                 <table class="stats-table">
                                     <tbody>
                                         <tr class="stats-table__rows">
@@ -155,7 +151,6 @@
                                         </tr>
                                     </tbody>
                                 </table>
-
                                 <table class="stats-table">
                                     <tbody>
                                         <tr class="stats-table__rows">
@@ -165,7 +160,6 @@
                                         </tr>
                                     </tbody>
                                 </table>
-
                                 <table class="stats-table">
                                     <tbody>
                                         <tr class="stats-table__rows">
@@ -176,15 +170,11 @@
                                     </tbody>
                                 </table>
 
-
-
                             </div>
                         </div>
                         <!-- Content Tab 2 -->
                         <div class="tab-pane" id="card-1-tab-1" role="tabpanel" aria-labelledby="card-1-tab-1-btn">
-                            <div class="card-body details-bottom-wrapper">
-                                <p>Karte 1 Tab 2</p>
-                            </div>
+                            <div class="card-body details-bottom-wrapper" id="skills-tab"></div>
                         </div>
                         <!-- Content Tab 3 -->
                         <div class="tab-pane" id="card-1-tab-2" role="tabpanel" aria-labelledby="card-1-tab-2-btn">

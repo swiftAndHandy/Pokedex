@@ -374,6 +374,15 @@ footer {
     height: 100%;
 }
 
+.skill-name {
+    margin-block: 0;
+    margin-bottom: 2px;
+}
+
+.skill-description {
+    padding-bottom: 16px;
+}
+
 .hp-bar {
     background-image: url('../img/hp-bar.webp');
 }
@@ -607,6 +616,8 @@ footer {
     border-radius: 0 16px 0 0;
     padding: 16px;
     color: black;
+    height: 264px;
+    overflow-y: auto;
 }
 
 .details-tab-list {

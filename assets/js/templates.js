@@ -26,3 +26,20 @@ function generateTypeHtml(pokemon) {
     }
     return response;
 }
+
+function renderSkillHtml(skill) {
+    console.log(skill['names'][7]['name']);
+    const englishDescriptionIndex = findEnglishInformation(skill);
+    return `
+    <h5 class="skill-name">${skill['names'][7]['name']}</h5>
+    <p class="skill-description"><i>${skill['effect_entries'][englishDescriptionIndex]['short_effect']}</i></p>
+    `;
+}
+
+function findEnglishInformation(skill) {
+    for (let i = 0; i < skill['effect_entries'].length; i++) {
+        if (skill['effect_entries'][i]['language']['name'] == 'en') {
+            return i;
+        }
+    }
+}

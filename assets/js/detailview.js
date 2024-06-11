@@ -7,6 +7,7 @@ function playPokemonCry(set, index) {
     audioFile.play();
 }
 
+
 function closeDetailView() {
     const pageView = document.getElementById('body');
     pageView.classList.remove('scroll-behavior--blocked');
@@ -14,6 +15,7 @@ function closeDetailView() {
     viewContainer.classList.add('d-none');
     resetCardDesign(lastPokemon);
 }
+
 
 function openDetailCard(set, index, method = '') {
     const pageView = document.getElementById('body');
@@ -35,9 +37,13 @@ function renderDetailCard(pokemon, set, index) {
     renderDetailCardTabs(pokemon);
 }
 
-function renderDetailCardTabs(pokemon) {
+
+async function renderDetailCardTabs(pokemon) {
     renderStats(pokemon);
+    const skillList = await fetchSkills(pokemon);
+    await renderSkills(skillList);
 }
+
 
 function renderStats(pokemon) {
     const stats = ['hp', 'attack', 'defense', 'special-attack', 'special-defense', 'speed'];
@@ -50,6 +56,26 @@ function renderStats(pokemon) {
         target.innerHTML = `${statNames[i]}: ${pokemon['stats'][i]['base_stat']} points`;
     }
 }
+
+
+async function fetchSkills(pokemon) {
+    const skill = pokemon['abilities'];
+    let skillInfo = [];
+    for (let i = 0; i < skill.length; i++) {
+        skillInfo.push(await (await fetch(skill[i]['ability'].url)).json());
+    }
+    return skillInfo;
+}
+
+async function renderSkills(skillList) {
+    const target = document.getElementById('skills-tab');
+    let skillHtml = '<h3>Skills:</h3>';
+    for (let i = 0; i < skillList.length; i++) {
+        skillHtml += renderSkillHtml(skillList[i]);
+    }
+    target.innerHTML = skillHtml;
+}
+
 
 function findHighestStat(pokemon, stats) {
     let highestValue = null;
@@ -79,11 +105,13 @@ function skipIfNotSearched(set, index, method) {
     }
 }
 
+
 function calculateLastSetsMaxIndex() {
     let currentSets = pokemonDetails.length - 1;
     let currentSetLength = pokemonDetails[currentSets].length - 1;
     return currentSetLength;
 }
+
 
 function increaseTillNextMatch(set, index) {
     let keyword = document.getElementById('search').value.toLowerCase();
@@ -103,6 +131,7 @@ function increaseTillNextMatch(set, index) {
     openDetailCard(set, index, 'next');
 }
 
+
 function decreaseTillPreviousMatch(set, index) {
     let keyword = document.getElementById('search').value.toLowerCase();
     const indexMax = SET_LIMIT - 1;
@@ -120,6 +149,7 @@ function decreaseTillPreviousMatch(set, index) {
     }
     openDetailCard(set, index, 'prev');
 }
+
 
 
 function pokemonIsSearched(name, keyword) {
