@@ -156,7 +156,6 @@ function getColorScheme(pokemon) {
 
 function startSpinner(style = 'ball') {
     if (!AUTOLOAD || countPokemonLoaded >= pokemonLoadingLimit) {
-        // document.getElementById('pokemon-list').classList.add('dim-screen');
         document.getElementById('loading-spinner').classList.remove('d-none');
     } else if (AUTOLOAD && style == 'bar') {
         document.getElementById('progress-div').classList.remove('d-none');
@@ -166,7 +165,6 @@ function startSpinner(style = 'ball') {
 
 function stopSpinner(style = 'ball') {
     if (style == 'ball') {
-        document.getElementById('pokemon-list').classList.remove('dim-screen');
         document.getElementById('loading-spinner').classList.add('d-none');
     } else if (style == 'bar') {
         document.getElementById('progress-div').classList.add('d-none');

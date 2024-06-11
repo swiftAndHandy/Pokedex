@@ -220,10 +220,6 @@ footer {
     padding: 0 16px;
 }
 
-.dim-screen {
-    filter: opacity(0.2)
-}
-
 .hidden-by-settings {
     filter: opacity(0.2)
 }
@@ -296,6 +292,11 @@ footer {
 
 .loading-spinner img {
     animation: spinner 4s linear infinite;
+    user-select: none;
+}
+
+.loading-text {
+    user-select: none;
 }
 
 .settings-group {
