@@ -1,6 +1,8 @@
-function playPokemonCry(set, index) { // add where needed: onclick="playPokemonCry(${set}, ${index})";
+function playPokemonCry(set, index) {
     let pokemon = pokemonDetails[set][index];
     let audioFile = new Audio(pokemon['cries'][SOUND_STYLE]);
+    currentAudio?.pause();
+    currentAudio = audioFile;
     audioFile.volume = VOLUME;
     audioFile.play();
 }
@@ -58,7 +60,7 @@ function increaseTillNextMatch(set, index) {
     const indexMax = SET_LIMIT - 1;
     const currentIndexMax = calculateLastSetsMaxIndex();
     const lastSet = pokemonDetails.length - 1;
-    let currentName;
+    let currentName = null;
     while (!currentName || !pokemonIsSearched(currentName, keyword)) {
         ++index;
         if (index > indexMax || set == lastSet && index > currentIndexMax) {
@@ -75,7 +77,7 @@ function decreaseTillPreviousMatch(set, index) {
     const indexMax = SET_LIMIT - 1;
     const currentIndexMax = calculateLastSetsMaxIndex();
     const lastSet = pokemonDetails.length - 1;
-    let currentName;
+    let currentName = null;
 
     while (!currentName || !pokemonIsSearched(currentName, keyword)) {
         --index;
@@ -125,11 +127,7 @@ function resetCardDesign(pokemon, target = '1') {
 
 
 function findCorrectSet(set, method) {
-    if (method == 'decrease') {
-        set = decreaseSet(set);
-    } else if (method == 'increase') {
-        set = increaseSet(set);
-    }
+    set = (method == 'decrease') ? decreaseSet(set) : (method == 'increase') ? increaseSet(set) : set;
     return set;
 }
 
@@ -137,9 +135,7 @@ function findCorrectSet(set, method) {
 function increaseSet(set) {
     const maxSetIndex = pokemonDetails.length - 1;
     ++set;
-    if (set > maxSetIndex) {
-        set = 0;
-    }
+    set = set > maxSetIndex ? 0 : set;
     return set;
 }
 
@@ -147,9 +143,7 @@ function increaseSet(set) {
 function decreaseSet(set) {
     const maxSetIndex = pokemonDetails.length - 1;
     --set;
-    if (set < 0) {
-        set = maxSetIndex;
-    }
+    set = set < 0 ? maxSetIndex : set;
     return set;
 }
 

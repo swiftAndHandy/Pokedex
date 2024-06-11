@@ -1,11 +1,11 @@
 //Required for fetching process
-let pokemonList;
+let pokemonList = null;
 let pokemonDetails = [];
 let countPokemonLoaded = 0;
 const pokemonLoadingLimit = 649; // 649 is Gen 5 Cap. You can change it, but spritestyle will change also.
 
 //Required for Detail-View
-let lastPokemon;
+let lastPokemon = null;
 
 //API Settings
 const API_BASE_URL = 'https://pokeapi.co/api/v2/'
@@ -18,6 +18,7 @@ let AUTOLOAD = false;
 let SOUND_STYLE = 'latest';
 let settingsOpen = false;
 let VOLUME = 0.5;
+let currentAudio = null;
 
 
 async function init() {
