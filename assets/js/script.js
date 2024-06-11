@@ -154,8 +154,9 @@ function getColorScheme(pokemon) {
 }
 
 
-function startSpinner(style = 'ball') {
+function startSpinner(style = 'ball', text = 'pokemon') {
     if (!AUTOLOAD || countPokemonLoaded >= pokemonLoadingLimit) {
+        document.getElementById('loading-text').innerHTML = text == 'pokemon' ? 'Pokémon' : 'skill information';
         document.getElementById('loading-spinner').classList.remove('d-none');
     } else if (AUTOLOAD && style == 'bar') {
         document.getElementById('progress-div').classList.remove('d-none');

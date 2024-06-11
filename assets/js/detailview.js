@@ -17,8 +17,8 @@ function closeDetailView() {
 }
 
 
-async function openDetailCard(set, index, method = '') {
-    startSpinner();
+async function openDetailCard(set, index) {
+    startSpinner('ball', 'information');
     const pageView = document.getElementById('body');
     pageView.classList.add('scroll-behavior--blocked');
     const pokemon = pokemonDetails[set][index];
