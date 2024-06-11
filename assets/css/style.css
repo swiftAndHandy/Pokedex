@@ -458,8 +458,8 @@ footer {
     }
 
     .sound-box {
-        right: 0px;
-        top: 15%;
+        right: 12px;
+        top: 30%;
     }
 
     .pokedex__image {
@@ -537,16 +537,20 @@ footer {
 }
 
 .details-image {
-    object-fit: contain;
-    max-height: 180px;
-    max-width: 180px;
+    height: 120px;
+}
+
+.detail-spacing {
+    margin-top: 32px;
+    margin-bottom: 12px;
 }
 
 .details-top-wrapper {
     position: relative;
     display: flex;
     flex-direction: column;
-    padding: 16px;
+    justify-content: center;
+    height: 280px;
 }
 
 .details-bottom-wrapper {
