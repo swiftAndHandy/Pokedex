@@ -20,11 +20,230 @@
 </head>
 
 <body onload="init()" id="body">
-    <header w3-include-html="templates/header.html"></header>
+    <header>
+        <div class="header-wrapper">
+            <section id="logo-section" class="logo-section">
+                <img src="./assets/icons/loading-spinner.svg" class="logo" alt="">
+                <h2 class="logo-font">Pokédex</span>
+            </section>
+            <section class="search rounded-pill">
+                <input class="form-control rounded-pill pl-2 text-center wpx-175 searchbar" maxlength="12" type="text" id="search" placeholder="Search…" onkeyup="searchForPokemon();">
+            </section>
+            <section id="menu">
+                <img src="./assets/icons/settings.svg" alt="Settings" class="setting-icon" id="settings-toggle" onclick="toggleSettings(); stopBubbeling(event)">
+            </section>
+        </div>
+    </header>
 
-    <section w3-include-html="templates/settings.html" class="settings-view d-none" id="settings-view" onclick="toggleSettings()"></section>
+    <section class="settings-view d-none" id="settings-view" onclick="toggleSettings()">
+        <div class="settings" onclick="stopBubbeling(event)">
+            <h2>Settings</h2>
+            <hr>
+            <section id="setting-type__loading">
+                <h3>Loading-related settings</h3>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="autoload-toggle"
+                        onclick="toggleAutoload()">
+                    <label class="form-check-label" for="autoload-toggle" id="autoload-toggle-label">Autoload: off</label>
+                </div>
+            </section>
+            <hr>
+            <section id="setting-type__sound">
+                <h3>Sound-related settings</h3>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="sound-style-toggle"
+                        onclick="toggleSoundType()">
+                    <label class="form-check-label" for="autoload-toggle" id="sound-style-toggle-label">Sound Style:
+                        Legacy</label>
+                </div>
+            </section>
+        </div>
+    </section>
 
-    <section w3-include-html="templates/details.html" class="slider d-none" id="detail-view" onclick="closeDetailView()"></section>
+    <section id="detail-view" class="slider d-none" onclick="closeDetailView()">
+
+        <div id="poke-card" class="carousel carousel-dark slide carousel-fade" data-bs-touch="false">
+            <div class="carousel-inner" onclick="stopBubbeling(event);">
+          
+              <!-- Card 0 -->
+              <div class="carousel-item">
+                <div class="card d-block">
+                  <div class="card-body details-card" id="card-0-bg-target">
+                    <div class="details-top-wrapper">
+                      <div class="name-and-id">
+                        <h3 class="card-title" id="card-0-title">B</h3>
+                        <h4 id="card-0-poke-id"></h4>
+                      </div>
+                      <div class="flex-cc">
+                        <div class="types-and-image">
+                          <div id="card-0-types" class="pokemon__type-box"></div>
+                          <img src="" class="details-image" alt="" id="card-0-pokemon-image">
+                        </div>
+                      </div>
+                    </div>
+                    <ul class="nav nav-tabs details-tab-list" id="card-0-tabs" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="card-0-tab-0-btn" data-bs-toggle="tab" data-bs-target="#card-0-tab-0" type="button"
+                          role="tab" aria-controls="home" aria-selected="true" onclick="simulateClick(0)">Home</button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="card-0-tab-1-btn" data-bs-toggle="tab" data-bs-target="#card-0-tab-1" type="button"
+                          role="tab" aria-controls="profile" aria-selected="false" onclick="simulateClick(1)">Profile</button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="card-0-tab-2-btn" data-bs-toggle="tab" data-bs-target="#card-0-tab-2" type="button"
+                          role="tab" aria-controls="contact" aria-selected="false" onclick="simulateClick(2)">Contact</button>
+                      </li>
+                    </ul>
+                    <div class="tab-content" id="card-0-tab-content">
+                      <!-- Content Tab 1 -->
+                      <div class="tab-pane active" id="card-0-tab-0" role="tabpanel" aria-labelledby="card-0-tab-0-btn">
+                        <div class="card-body details-bottom-wrapper">
+                          <p>Karte 0 Tab 1</p>
+                        </div>
+                      </div>
+                      <!-- Content Tab 2 -->
+                      <div class="tab-pane" id="card-0-tab-1" role="tabpanel" aria-labelledby="card-0-tab-1-btn">
+                        <div class="card-body details-bottom-wrapper">
+                          <p>Karte 0 Tab 2</p>
+                        </div>
+                      </div>
+                      <!-- Content Tab 3 -->
+                      <div class="tab-pane" id="card-0-tab-2" role="tabpanel" aria-labelledby="card-0-tab-2-btn">
+                        <div class="card-body details-bottom-wrapper">
+                          <p> Karte 0 Tab 3</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Card 1 -->
+              <div class="carousel-item active">
+                <div class="card d-block">
+                  <div class="card-body details-card" id="card-1-bg-target">
+                    <div class="details-top-wrapper">
+                      <div class="name-and-id">
+                        <h3 class="card-title" id="card-1-title">B</h3>
+                        <h4 id="card-1-poke-id"></h4>
+                      </div>
+                      <div class="flex-cc">
+                        <div class="types-and-image">
+                          <div id="card-1-types" class="pokemon__type-box"></div>
+                          <img src="" class="details-image" alt="" id="card-1-pokemon-image">
+                        </div>
+                      </div>
+                    </div>
+                    <ul class="nav nav-tabs details-tab-list" id="card-1-tabs" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="card-1-tab-0-btn" data-bs-toggle="tab" data-bs-target="#card-1-tab-0" type="button"
+                          role="tab" aria-controls="home" aria-selected="true" onclick="simulateClick(0)">Home</button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="card-1-tab-1-btn" data-bs-toggle="tab" data-bs-target="#card-1-tab-1" type="button"
+                          role="tab" aria-controls="profile" aria-selected="false" onclick="simulateClick(1)">Profile</button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="card-1-tab-2-btn" data-bs-toggle="tab" data-bs-target="#card-1-tab-2" type="button"
+                          role="tab" aria-controls="contact" aria-selected="false" onclick="simulateClick(2)">Contact</button>
+                      </li>
+                    </ul>
+                    <div class="tab-content" id="card-1-tab-content">
+                      <!-- Content Tab 1 -->
+                      <div class="tab-pane active" id="card-1-tab-0" role="tabpanel" aria-labelledby="card-1-tab-0-btn">
+                        <div class="card-body details-bottom-wrapper">
+                          <p>Karte 1 Tab 1</p>
+                        </div>
+                      </div>
+                      <!-- Content Tab 2 -->
+                      <div class="tab-pane" id="card-1-tab-1" role="tabpanel" aria-labelledby="card-1-tab-1-btn">
+                        <div class="card-body details-bottom-wrapper">
+                          <p>Karte 1 Tab 2</p>
+                        </div>
+                      </div>
+                      <!-- Content Tab 3 -->
+                      <div class="tab-pane" id="card-1-tab-2" role="tabpanel" aria-labelledby="card-1-tab-2-btn">
+                        <div class="card-body details-bottom-wrapper">
+                          <p> Karte 1 Tab 3</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Card 2 -->
+              <div class="carousel-item">
+                <div class="card d-block">
+                  <div class="card-body details-card" id="card-2-bg-target">
+                    <div class="details-top-wrapper">
+                      <div class="name-and-id">
+                        <h3 class="card-title" id="card-2-title">B</h3>
+                        <h4 id="card-2-poke-id"></h4>
+                      </div>
+                      <div class="flex-cc">
+                        <div class="types-and-image">
+                          <div id="card-2-types" class="pokemon__type-box"></div>
+                          <img src="" class="details-image" alt="" id="card-2-pokemon-image">
+                        </div>
+                      </div>
+                    </div>
+                    <ul class="nav nav-tabs details-tab-list" id="card-2-tabs" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="card-2-tab-0-btn" data-bs-toggle="tab" data-bs-target="#card-2-tab-0" type="button"
+                          role="tab" aria-controls="home" aria-selected="true" onclick="simulateClick(0);stopBubbeling(event);">Home</button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="card-2-tab-1-btn" data-bs-toggle="tab" data-bs-target="#card-2-tab-1" type="button"
+                          role="tab" aria-controls="profile" aria-selected="false" onclick="simulateClick(1);stopBubbeling(event);">Profile</button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="card-2-tab-2-btn" data-bs-toggle="tab" data-bs-target="#card-2-tab-2" type="button"
+                          role="tab" aria-controls="contact" aria-selected="false" onclick="simulateClick(2);stopBubbeling(event);">Contact</button>
+                      </li>
+                    </ul>
+                    <div class="tab-content" id="card-2-tab-content">
+                      <!-- Content Tab 1 -->
+                      <div class="tab-pane active" id="card-2-tab-0" role="tabpanel" aria-labelledby="card-2-tab-0-btn">
+                        <div class="card-body details-bottom-wrapper">
+                          <p>Karte 2 Tab 1</p>
+                        </div>
+                      </div>
+                      <!-- Content Tab 2 -->
+                      <div class="tab-pane" id="card-2-tab-1" role="tabpanel" aria-labelledby="card-2-tab-1-btn">
+                        <div class="card-body details-bottom-wrapper">
+                          <p>Karte 2 Tab 2</p>
+                        </div>
+                      </div>
+                      <!-- Content Tab 3 -->
+                      <div class="tab-pane" id="card-2-tab-2" role="tabpanel" aria-labelledby="card-2-tab-2-btn">
+                        <div class="card-body details-bottom-wrapper">
+                          <p> Karte 2 Tab 3</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          
+          
+              <!-- End of Cards -->
+            </div>
+            <button class="carousel-control-prev carousel-button" id="prev-button" type="button" data-bs-target="#poke-card"
+              data-bs-slide="prev" onclick="previousPokemon();stopBubbeling(event);">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+          
+            <button class="carousel-control-next carousel-button" id="next-button" type="button" data-bs-target="#poke-card"
+              data-bs-slide="next" onclick="nextPokemon();stopBubbeling(event);">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+          </div>
+    </section>
 
     <section id="loading-spinner" class="loading-spinner d-none">
         <img src="./assets/icons/loading-spinner.svg" alt="Loading">
@@ -44,7 +263,7 @@
         <div id="loading-bar" class="progress-bar overflow-visible" style="width: 0%"></div>
     </div>
 
-    <footer w3-include-html="templates/footer.html"></footer>
+    <footer></footer>
 </body>
 
 </html>

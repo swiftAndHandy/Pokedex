@@ -300,6 +300,7 @@ footer {
     /* height: 80%; */
     background-color: wheat;
     border-radius: 16px;
+    color: black;
 }
 
 .loading-spinner {

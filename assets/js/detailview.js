@@ -7,7 +7,7 @@ function playPokemonCry(set, index) { // add where needed: onclick="playPokemonC
 
 function closeDetailView() {
     const pageView = document.getElementById('body');
-    pageView.classList.add('scroll-behavior--blocked');
+    pageView.classList.remove('scroll-behavior--blocked');
     const viewContainer = document.getElementById('detail-view');
     viewContainer.classList.add('d-none');
     resetCardDesign(LAST_SLIDER, lastPokemon, true);
@@ -15,7 +15,7 @@ function closeDetailView() {
 
 function openDetailCard(set, index) {
     const pageView = document.getElementById('body');
-    pageView.classList.remove('scroll-behavior--blocked');
+    pageView.classList.add('scroll-behavior--blocked');
     const pokemon = pokemonDetails[set][index];
     updateNavigationButtons(set, index);
     const viewContainer = document.getElementById('detail-view');

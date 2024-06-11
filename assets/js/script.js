@@ -23,7 +23,6 @@ let settingsOpen = false;
 async function init() {
     loadLocalSettings();
     hideLoadMore();
-    await includeHtml();
     await fetchPokemonInformation();
 }
 
