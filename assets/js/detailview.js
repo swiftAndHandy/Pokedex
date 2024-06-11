@@ -1,6 +1,7 @@
 function playPokemonCry(set, index) { // add where needed: onclick="playPokemonCry(${set}, ${index})";
     let pokemon = pokemonDetails[set][index];
     let audioFile = new Audio(pokemon['cries'][SOUND_STYLE]);
+    audioFile.volume = VOLUME;
     audioFile.play();
 }
 

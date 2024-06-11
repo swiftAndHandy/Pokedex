@@ -17,6 +17,7 @@ const dreamworldSprites = 649; // dreamworldSprites exist only for the first 649
 let AUTOLOAD = false;
 let SOUND_STYLE = 'latest';
 let settingsOpen = false;
+let VOLUME = 0.5;
 
 
 async function init() {

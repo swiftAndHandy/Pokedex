@@ -297,6 +297,17 @@ footer {
     animation: spinner 4s linear infinite;
 }
 
+.settings-group {
+    display: flex;
+    gap: 8px;
+}
+
+.sound-settings {
+    display: flex;
+    margin-bottom: 8px;
+    gap: 8px;
+}
+
 .pokemon-list__container {
     display: flex;
     flex-wrap: wrap;

@@ -10,6 +10,12 @@ async function toggleSettings() {
     settingsOpen ? showSettings() : hideSettings();
 }
 
+function updateVolume() {
+    let target = document.getElementById('loudness-slider-label')
+    let value = document.getElementById('loudness-slider').value;
+    VOLUME = value / 100;
+    target.innerHTML = `Volume: ${value}%`;
+}
 
 function toggleAutoload() {
     const toggleDescription = document.getElementById('autoload-toggle-label');
