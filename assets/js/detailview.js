@@ -10,7 +10,7 @@ function closeDetailView() {
     pageView.classList.remove('scroll-behavior--blocked');
     const viewContainer = document.getElementById('detail-view');
     viewContainer.classList.add('d-none');
-    resetCardDesign(LAST_SLIDER, lastPokemon, true);
+    // resetCardDesign(LAST_SLIDER, lastPokemon, true);
 }
 
 function openDetailCard(set, index) {
@@ -25,7 +25,7 @@ function openDetailCard(set, index) {
 
 function renderDetailCard(pokemon, set, index, target = CURRENT_SLIDER) {
     card = `card-${target}-`;
-    resetCardDesign(LAST_SLIDER, lastPokemon); // reset, before update the last pokemon
+    resetCardDesign(lastPokemon); // reset, before update the last pokemon
     lastPokemon = pokemon;
     renderDetailCardHeader(card, pokemon);
 }
@@ -41,28 +41,24 @@ function renderDetailCardHeader(card, pokemon) {
 }
 
 function updateNavigationButtons(set, index) {
-    const prevButton = document.getElementById('prev-button');
-    const nextButton = document.getElementById('next-button');
-    prevButton.setAttribute('onclick', `previousPokemon(${set}, ${index});animateNavigation('prev');stopBubbeling(event);`);
-    nextButton.setAttribute('onclick', `nextPokemon(${set}, ${index});animateNavigation('next');stopBubbeling(event);`);
-
+    for (i = 0; i < 2; i++) {
+        const prevButton = document.getElementById(`prev-button-${i}`);
+        const nextButton = document.getElementById(`next-button-${i}`);
+        prevButton.setAttribute('onclick', `previousPokemon(${set}, ${index});stopBubbeling(event);`);
+        nextButton.setAttribute('onclick', `nextPokemon(${set}, ${index});stopBubbeling(event);`);
+    }
 }
 
-function resetCardDesign(target, pokemon, forceReset = false) {
-    let delay = forceReset ? 0 : 600;
-    if (forceReset || pokemon && CURRENT_SLIDER != LAST_SLIDER) {
-        setTimeout(() => {
-            const pokemonName = capitalizeFirstLetter(pokemon['species']['name']);
-            document.getElementById(`card-${target}-bg-target`).classList.remove(`bg-design--${getColorScheme(pokemon)}`);    
-        }, delay);
-        
+function resetCardDesign(pokemon, target = '1') {
+    if (pokemon) {
+        document.getElementById(`card-${target}-bg-target`).classList.remove(`bg-design--${getColorScheme(pokemon)}`);
     }
 }
 
 function previousPokemon(set, index) {
     const indexMax = SET_LIMIT - 1;
     LAST_SLIDER = CURRENT_SLIDER;
-    --CURRENT_SLIDER;
+    // --CURRENT_SLIDER;
     --index;
     if (index < 0) {
         index = indexMax;
@@ -75,7 +71,7 @@ function previousPokemon(set, index) {
 function nextPokemon(set, index) {
     const indexMax = SET_LIMIT - 1;
     LAST_SLIDER = CURRENT_SLIDER;
-    ++CURRENT_SLIDER;
+    // ++CURRENT_SLIDER;
     ++index;
     if (index > indexMax) {
         index = 0;
@@ -120,9 +116,9 @@ function verifyCurrentSlider() {
     }
 }
 
-function simulateClick(tab) {
-    for (let i = 0; i <= 2; i++) {
-        let simulateClickOn = document.getElementById(`card-${i}-tab-${tab}-btn`);
-        simulateClickOn.click();
+function flexTab(id) {
+    for (let i = 0; i < 3; i++) {
+        let target = document.getElementById(`card-1-tab-${i}`);
+        i == id ? target.classList.add('flex') : target.classList.remove('flex');
     }
 }

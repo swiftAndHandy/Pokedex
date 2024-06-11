@@ -18,6 +18,7 @@ function generatePokedexHtml(pokemon, pokemonName, colorScheme, set, index) {
     `;
 }
 
+
 function generateTypeHtml(pokemon) {
     let response = "";
     for (i = 0; i < pokemon.types.length; i++) {

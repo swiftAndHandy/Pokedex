@@ -4,10 +4,12 @@ function changeSoundType() {
     soundDescription = legacySound ? "legacy cries active" : "latest cries active";
 }
 
+
 async function toggleSettings() {
     settingsOpen = !settingsOpen;
     settingsOpen ? showSettings() : hideSettings();
 }
+
 
 function toggleAutoload() {
     const toggleDescription = document.getElementById('autoload-toggle-label');
@@ -25,22 +27,26 @@ function toggleAutoload() {
     }
 }
 
+
 function toggleSoundType() {
     const toggleDescription = document.getElementById('sound-style-toggle-label');
     SOUND_STYLE = SOUND_STYLE === 'legacy' ?  'latest' : 'legacy';
     toggleDescription.innerHTML = SOUND_STYLE === 'legacy' ? 'Sound Style: Legacy' : 'Sound Style: Modern'; 
 }
 
+
 function getToggleState() {
     const toggle = document.getElementById('autoload-toggle');
     AUTOLOAD ? toggle.checked = true : toggle.checked = false;
 }
+
 
 function showSettings() {
     document.getElementById('settings-view').classList.remove('d-none');
     document.getElementById('body').classList.add('scroll-behavior--blocked');
     document.getElementById('pokemon-list').classList.add('hidden-by-settings');
 }
+
 
 function hideSettings() {
     document.getElementById('settings-view').classList.add('d-none');

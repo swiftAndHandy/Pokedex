@@ -20,21 +20,25 @@ let AUTOLOAD = false;
 let SOUND_STYLE = 'legacy';
 let settingsOpen = false;
 
+
 async function init() {
     loadLocalSettings();
     hideLoadMore();
     await fetchPokemonInformation();
 }
 
+
 function saveLocalSettings(value) {
     localStorage.setItem('fetchedPokemon', JSON.stringify(value));
 }
+
 
 function loadLocalSettings() {
     if (JSON.parse(localStorage.getItem('fetchedPokemon'))) {
         pokemonDetails = JSON.parse(localStorage.getItem('fetchedPokemon'));
     }
 }
+
 
 async function fetchPokemonInformation() {
     startSpinner();
@@ -46,6 +50,7 @@ async function fetchPokemonInformation() {
     evaluateAutoload();
 }
 
+
 function evaluateAutoload() {
     if (AUTOLOAD) {
         startSpinner('bar');
@@ -53,11 +58,13 @@ function evaluateAutoload() {
     }
 }
 
+
 async function fetchPokemonNames() {
     let pokemonCollection = await fetch(pokeAPI('pokemon'));
     let pokemonNamesJson = await pokemonCollection.json();
     return pokemonNamesJson;
 }
+
 
 async function fetchPokemonDetails() {
     startSpinner();
@@ -74,10 +81,12 @@ async function fetchPokemonDetails() {
     }
 }
 
+
 function morePokemonAllowed() {
     //original was pokemonList['count'] - but this causes bugs since the api is making id-jumps at ~1025
     return countPokemonLoaded < pokemonLoadingLimit;
 }
+
 
 async function addPokemonInformation(newDetails, pokemonListResults, i) {
     let details = await fetch(pokemonListResults[i].url);
@@ -87,6 +96,7 @@ async function addPokemonInformation(newDetails, pokemonListResults, i) {
     ++countPokemonLoaded;
     AUTOLOAD && morePokemonAllowed() ? updateProgressBar() : stopAutoload();
 }
+
 
 function stopAutoload() {
     if (AUTOLOAD) {
@@ -98,17 +108,21 @@ function stopAutoload() {
     stopSpinner('bar');
 }
 
+
 function pokeAPI(path) {
     return API_BASE_URL + path + '?limit=' + SET_LIMIT + '&offset=' + calculatedOffset();
 }
+
 
 function calculatedOffset() {
     return countPokemonLoaded + OFFSET;
 }
 
+
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
 
 async function renderAllPokemon() {
     const latestSet = pokemonDetails.length - 1;
@@ -120,9 +134,11 @@ async function renderAllPokemon() {
     }
 }
 
+
 function currentSetLength(index) {
     return pokemonDetails[index].length;
 }
+
 
 function generatePokedex(set, index) {
     const pokemon = pokemonDetails[set][index];
@@ -132,16 +148,11 @@ function generatePokedex(set, index) {
     return generatePokedexHtml(pokemon, pokemonName, colorScheme, set, index);
 }
 
+
 function getColorScheme(pokemon) {
     return pokemon.types[0].type.name;
 }
 
-//// function is currently disabled, since i realized how to fetch ID by API
-// function getPokemonId(set, index) {
-//     set = set * SET_LIMIT;
-//     ++index;
-//     return result = set + index;
-// }
 
 function startSpinner(style = 'ball') {
     if (!AUTOLOAD || countPokemonLoaded >= pokemonLoadingLimit) {
@@ -152,6 +163,7 @@ function startSpinner(style = 'ball') {
     }
 }
 
+
 function stopSpinner(style = 'ball') {
     if (style == 'ball') {
         document.getElementById('pokemon-list').classList.remove('dim-screen');
@@ -161,11 +173,13 @@ function stopSpinner(style = 'ball') {
     }
 }
 
+
 function hideLoadMore() {
     if (pokemonLoadingLimit === countPokemonLoaded || AUTOLOAD) {
         document.getElementById('load-more').classList.add('d-none');
     }
 }
+
 
 function updateProgressBar() {
     const loadingBar = document.getElementById('loading-bar')
@@ -180,6 +194,7 @@ function isASearchRequired() {
         searchForPokemon();
     }
 }
+
 
 //Base-Search Function without a limit of pokemon showed
 function searchForPokemon() {
@@ -196,14 +211,17 @@ function searchForPokemon() {
     });
 }
 
+
 function findPokemonImage(pokemon) {
     let imageOf = pokemon['id'];
     return imageOf <= dreamworldSprites ? pokemon['sprites']['other']['dream_world']['front_default'] : pokemon['sprites']['front_default'];
 }
 
+
 function stopBubbeling(event) {
     event.stopPropagation();
 }
+
 
 function animateNavigation(side) {
     let target = side == 'prev' ? document.getElementById('prev-button') : document.getElementById('next-button');
