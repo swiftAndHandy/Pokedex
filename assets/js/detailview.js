@@ -67,7 +67,7 @@ function increaseTillNextMatch(set, index) {
         }
         currentName = pokemonDetails[set][index].name;
     }
-    openDetailCard(set, index);
+    openDetailCard(set, index, 'next');
 }
 
 function decreaseTillPreviousMatch(set, index) {
@@ -85,20 +85,9 @@ function decreaseTillPreviousMatch(set, index) {
         }
         currentName = pokemonDetails[set][index].name;
     }
-    openDetailCard(set, index);
+    openDetailCard(set, index, 'prev');
 }
 
-function previousPokemon(set, index) {
-    const method = 'prev';
-    const indexMax = SET_LIMIT - 1;
-    const currentIndexMax = calculateLastSetsMaxIndex();
-    const lastSet = pokemonDetails.length - 1;
-    --index;
-    if (index < 0) {
-        set = findCorrectSet(set, 'decrease');
-    }
-    openDetailCard(set, index, method);
-}
 
 function pokemonIsSearched(name, keyword) {
     state = name.toLocaleLowerCase().includes(keyword);
@@ -122,8 +111,8 @@ function updateNavigationButtons(set, index) {
     for (i = 0; i < 2; i++) {
         const prevButton = document.getElementById(`prev-button-${i}`);
         const nextButton = document.getElementById(`next-button-${i}`);
-        prevButton.setAttribute('onclick', `previousPokemon(${set}, ${index});stopBubbeling(event);`);
-        nextButton.setAttribute('onclick', `nextPokemon(${set}, ${index});stopBubbeling(event);`);
+        prevButton.setAttribute('onclick', `decreaseTillPreviousMatch(${set}, ${index});stopBubbeling(event);`);
+        nextButton.setAttribute('onclick', `increaseTillNextMatch(${set}, ${index});stopBubbeling(event);`);
     }
 }
 
@@ -132,33 +121,6 @@ function resetCardDesign(pokemon, target = '1') {
     if (pokemon) {
         document.getElementById(`card-${target}-bg-target`).classList.remove(`bg-design--${getColorScheme(pokemon)}`);
     }
-}
-
-function previousPokemon(set, index) {
-    const method = 'prev';
-    const indexMax = SET_LIMIT - 1;
-    const currentIndexMax = calculateLastSetsMaxIndex();
-    const lastSet = pokemonDetails.length - 1;
-    --index;
-    if (index < 0) {
-        set = findCorrectSet(set, 'decrease');
-        index = set < lastSet ? indexMax : currentIndexMax;
-    }
-    openDetailCard(set, index, method);
-}
-
-
-function nextPokemon(set, index) {
-    const method = 'next';
-    const indexMax = SET_LIMIT - 1;
-    const currentIndexMax = calculateLastSetsMaxIndex();
-    const lastSet = pokemonDetails.length - 1;
-    ++index;
-    if (index > indexMax || set == lastSet && index > currentIndexMax) {
-        index = 0;
-        set = findCorrectSet(set, 'increase');
-    }
-    openDetailCard(set, index, method);
 }
 
 
