@@ -17,31 +17,32 @@ function closeDetailView() {
 }
 
 
-function openDetailCard(set, index, method = '') {
+async function openDetailCard(set, index, method = '') {
+    startSpinner();
     const pageView = document.getElementById('body');
     pageView.classList.add('scroll-behavior--blocked');
     const pokemon = pokemonDetails[set][index];
     updateNavigationButtons(set, index);
     const viewContainer = document.getElementById('detail-view');
     viewContainer.classList.remove('d-none');
-    renderDetailCard(pokemon, set, index);
-    skipIfNotSearched(set, index, method);
+    await renderDetailCard(pokemon, set, index);
+    stopSpinner();
 }
 
 
-function renderDetailCard(pokemon, set, index) {
+async function renderDetailCard(pokemon, set, index) {
     const card = `card-1-`;
     resetCardDesign(lastPokemon); // reset, before update the last pokemon
     lastPokemon = pokemon;
     renderDetailCardHeader(card, pokemon, set, index);
-    renderDetailCardTabs(pokemon);
+    await renderDetailCardTabs(pokemon);
 }
 
 
 async function renderDetailCardTabs(pokemon) {
     renderStats(pokemon);
     const skillList = await fetchSkills(pokemon);
-    await renderSkills(skillList);
+    renderSkills(skillList);
 }
 
 
@@ -67,7 +68,7 @@ async function fetchSkills(pokemon) {
     return skillInfo;
 }
 
-async function renderSkills(skillList) {
+function renderSkills(skillList) {
     const target = document.getElementById('skills-tab');
     let skillHtml = '<h3>Skills:</h3>';
     for (let i = 0; i < skillList.length; i++) {
@@ -89,20 +90,6 @@ function findHighestStat(pokemon, stats) {
 function statvaluePercentage(pokemon, index, highestValue) {
     const stat = pokemon['stats'][index]['base_stat'];
     return Number((stat * 100) / highestValue).toFixed();
-}
-
-function skipIfNotSearched(set, index, method) {
-    if (method) {
-        let keyword = document.getElementById('search').value.toLowerCase();
-        const pokemonName = pokemonDetails[set][index]['species']['name'];
-        if (!pokemonIsSearched(pokemonName, keyword)) {
-            if (method == 'next') {
-                increaseTillNextMatch(set, index);
-            } else if (method == 'prev') {
-                decreaseTillPreviousMatch(set, index);
-            }
-        }
-    }
 }
 
 
@@ -150,7 +137,13 @@ function decreaseTillPreviousMatch(set, index) {
     openDetailCard(set, index, 'prev');
 }
 
-
+function findEnglishInformation(skill) {
+    for (let i = 0; i < skill['effect_entries'].length; i++) {
+        if (skill['effect_entries'][i]['language']['name'] == 'en') {
+            return i;
+        }
+    }
+}
 
 function pokemonIsSearched(name, keyword) {
     state = name.toLocaleLowerCase().includes(keyword);

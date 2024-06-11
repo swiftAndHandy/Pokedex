@@ -281,7 +281,7 @@ footer {
 
 .loading-spinner {
     position: fixed;
-    z-index: 2;
+    z-index: 20;
     top: 0;
     bottom: 0;
     left: 0;
@@ -291,6 +291,7 @@ footer {
     justify-content: center;
     align-items: center;
     text-align: center;
+    background-color: rgba(200, 200, 200, 0.8);
 }
 
 .loading-spinner img {
