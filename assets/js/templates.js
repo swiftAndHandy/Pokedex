@@ -28,9 +28,14 @@ function generateTypeHtml(pokemon) {
 }
 
 function renderSkillHtml(skill) {
-    const englishDescriptionIndex = findEnglishInformation(skill);
+    const englishSkillIndex = findEnglishInformation(skill, 'name');
+    const englishDescriptionIndex = findEnglishInformation(skill, 'desc');
     return `
-    <h5 class="skill-name">${skill['names'][7]['name']}</h5>
-    <p class="skill-description"><i>${skill['effect_entries'][englishDescriptionIndex]['short_effect']}</i></p>
-    `;
+    <h5 class="skill-name">
+        ${(skill['names'][englishSkillIndex] && skill['names'][englishSkillIndex]['name']) || 'Database is lagging Information'}
+    </h5>
+    <p class="skill-description">
+        <i>${(skill['effect_entries'][englishDescriptionIndex] && skill['effect_entries'][englishDescriptionIndex]['short_effect']) || '<b>Database provides no information</b>'}
+    </i></p>
+`;
 }

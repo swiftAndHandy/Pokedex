@@ -137,10 +137,18 @@ function decreaseTillPreviousMatch(set, index) {
     openDetailCard(set, index, 'prev');
 }
 
-function findEnglishInformation(skill) {
-    for (let i = 0; i < skill['effect_entries'].length; i++) {
-        if (skill['effect_entries'][i]['language']['name'] == 'en') {
-            return i;
+function findEnglishInformation(skill, type) {
+    if (type == 'name') {
+        for (let i = 0; i < skill['names'].length; i++) {
+            if (skill['names'][i]['language']['name'] == 'en') {
+                return i;
+            }
+        }
+    } else if (type == 'desc') {
+        for (let i = 0; i < skill['effect_entries'].length; i++) {
+            if (skill['effect_entries'][i]['language']['name'] == 'en') {
+                return i;
+            }
         }
     }
 }
