@@ -18,7 +18,7 @@ function closeDetailView() {
 
 
 async function openDetailCard(set, index) {
-    startSpinner('ball', 'information');
+    skillInformationRequired && startSpinner('ball', 'information');
     const pageView = document.getElementById('body');
     pageView.classList.add('scroll-behavior--blocked');
     const pokemon = pokemonDetails[set][index];
@@ -26,7 +26,7 @@ async function openDetailCard(set, index) {
     const viewContainer = document.getElementById('detail-view');
     viewContainer.classList.remove('d-none');
     await renderDetailCard(pokemon, set, index);
-    stopSpinner();
+    skillInformationRequired && stopSpinner();
 }
 
 
@@ -169,7 +169,9 @@ function updateNavigationButtons(set, index) {
         const nextButton = document.getElementById(`next-button-${i}`);
         prevButton.setAttribute('onclick', `decreaseTillPreviousMatch(${set}, ${index});stopBubbeling(event);`);
         nextButton.setAttribute('onclick', `increaseTillNextMatch(${set}, ${index});stopBubbeling(event);`);
+        nextButton.setAttribute('onclick', `increaseTillNextMatch(${set}, ${index});stopBubbeling(event);`);
     }
+    document.getElementById('card-1-tab-1-btn').setAttribute('onclick', `flexTab(1, ${set}, ${index});stopBubbeling(event);`)
 }
 
 
@@ -203,6 +205,7 @@ function decreaseSet(set) {
 
 
 function flexTab(id) {
+    skillInformationRequired = id == 1 ? true : false;
     for (let i = 0; i < 3; i++) {
         let target = document.getElementById(`card-1-tab-${i}`);
         i == id ? target.classList.add('flex') : target.classList.remove('flex');

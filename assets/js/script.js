@@ -6,6 +6,7 @@ const pokemonLoadingLimit = 649; // 649 is Gen 5 Cap. You can change it, but spr
 
 //Required for Detail-View
 let lastPokemon = null;
+let skillInformationRequired = false;
 
 //API Settings
 const API_BASE_URL = 'https://pokeapi.co/api/v2/'
