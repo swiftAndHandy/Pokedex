@@ -122,7 +122,6 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 16px;
 }
 
 .flex {
@@ -222,6 +221,10 @@ footer {
 
 .hidden-by-settings {
     filter: opacity(0.2)
+}
+
+.detail-types {
+    width: 130px !important;
 }
 
 .settings-view {
@@ -365,6 +368,7 @@ footer {
     padding-left: 8px;
     font-weight: 400;
     white-space: nowrap;
+    border-radius: 12px;
 }
 
 .stats-table__rows img {
@@ -529,7 +533,7 @@ footer {
 
 @media (max-width: 435px) {
     .card-body {
-        width: 300px;
+        width: 288px;
     }
 
     .pokedex__image {
