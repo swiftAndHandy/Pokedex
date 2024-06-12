@@ -237,14 +237,13 @@ footer {
 }
 
 .settings {
-    /* width: 80%; */
     position: relative;
     top: 32px;
     padding: 16px;
-    /* height: 80%; */
     background-color: wheat;
     border-radius: 16px;
     color: black;
+    border: 4px solid black;
 }
 
 .nav-hover {
