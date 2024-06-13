@@ -309,6 +309,7 @@ footer {
     justify-content: center;
     align-items: center;
     text-align: center;
+    border-radius: 0 16px 0 0;
     background-color: rgba(200, 200, 200, 0.8);
 }
 

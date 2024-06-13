@@ -165,19 +165,6 @@ function startSpinner(style = 'ball', text = 'pokemon') {
     }
 }
 
-// function startSpinner(style = 'ball', text = 'pokemon') {
-//     if (!AUTOLOAD || countPokemonLoaded >= pokemonLoadingLimit) {
-//         if (text == 'pokemon') {
-//             document.getElementById('loading-spinner').classList.remove('d-none');
-//         } else if () {
-//             document.getElementById('skill-loading-spinner').classList.remove('d-none');
-//         }
-//     } else if (AUTOLOAD && style == 'bar') {
-//         document.getElementById('progress-div').classList.remove('d-none');
-//     }
-// }
-
-
 function stopSpinner(style = 'ball') {
     if (style == 'ball') {
         document.getElementById('loading-spinner').classList.add('d-none');
