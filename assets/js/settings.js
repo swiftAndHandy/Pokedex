@@ -41,12 +41,6 @@ function toggleSoundType() {
 }
 
 
-function getToggleState() {
-    const toggle = document.getElementById('autoload-toggle');
-    AUTOLOAD ? toggle.checked = true : toggle.checked = false;
-}
-
-
 function showSettings() {
     document.getElementById('settings-view').classList.remove('d-none');
     document.getElementById('body').classList.add('scroll-behavior--blocked');

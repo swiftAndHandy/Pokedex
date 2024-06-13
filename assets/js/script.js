@@ -156,18 +156,32 @@ function getColorScheme(pokemon) {
 
 
 function startSpinner(style = 'ball', text = 'pokemon') {
-    if (!AUTOLOAD || countPokemonLoaded >= pokemonLoadingLimit) {
-        document.getElementById('loading-text').innerHTML = text == 'pokemon' ? 'Pokémon' : 'skill information';
-        document.getElementById('loading-spinner').classList.remove('d-none');
-    } else if (AUTOLOAD && style == 'bar') {
+    if (AUTOLOAD && style == 'bar') {
         document.getElementById('progress-div').classList.remove('d-none');
+    } else if (text == 'information') {
+        document.getElementById('skill-loading-spinner').classList.remove('d-none');
+    } else if (!AUTOLOAD || countPokemonLoaded >= pokemonLoadingLimit) {
+        document.getElementById('loading-spinner').classList.remove('d-none');
     }
 }
+
+// function startSpinner(style = 'ball', text = 'pokemon') {
+//     if (!AUTOLOAD || countPokemonLoaded >= pokemonLoadingLimit) {
+//         if (text == 'pokemon') {
+//             document.getElementById('loading-spinner').classList.remove('d-none');
+//         } else if () {
+//             document.getElementById('skill-loading-spinner').classList.remove('d-none');
+//         }
+//     } else if (AUTOLOAD && style == 'bar') {
+//         document.getElementById('progress-div').classList.remove('d-none');
+//     }
+// }
 
 
 function stopSpinner(style = 'ball') {
     if (style == 'ball') {
         document.getElementById('loading-spinner').classList.add('d-none');
+        document.getElementById('skill-loading-spinner').classList.add('d-none');
     } else if (style == 'bar') {
         document.getElementById('progress-div').classList.add('d-none');
     }

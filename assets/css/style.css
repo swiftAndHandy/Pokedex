@@ -185,6 +185,10 @@ main {
     margin-bottom: 16px;
 }
 
+.skills-tab {
+    position: relative;
+}
+
 .more-pokemon button:hover {
     color: white;
     transform: scale(1.1);
@@ -193,6 +197,7 @@ main {
 
 footer {
     background-image: url(../img/header-footer.webp);
+    background-size: cover;
     height: 56px;
     z-index: 10;
     border-radius: 16px 16px 0 0;
@@ -292,6 +297,28 @@ footer {
     background-color: rgba(200, 200, 200, 0.8);
 }
 
+.skill-loading-spinner {
+    position: absolute;
+    z-index: 20;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(200, 200, 200, 0.8);
+}
+
+.skill-loading-spinner img {
+    height: 80px;
+    width: 80px;
+    animation: spinner 0.5s linear infinite;
+    user-select: none;
+}
+
 .loading-spinner img {
     animation: spinner 4s linear infinite;
     user-select: none;
@@ -369,6 +396,7 @@ footer {
     font-weight: 400;
     white-space: nowrap;
     border-radius: 12px;
+    transition: all 0.5s ease-in-out;
 }
 
 .stats-table__rows img {

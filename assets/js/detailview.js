@@ -58,7 +58,6 @@ function renderStats(pokemon) {
     }
 }
 
-
 async function fetchSkills(pokemon) {
     const skill = pokemon['abilities'];
     let skillInfo = [];
