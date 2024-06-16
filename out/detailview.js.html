@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: detailview.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: detailview.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * Creates an Audio-Element and plays it. To prevent a sound overflow a current audio will be paused when set. 
  * @param {Int} set 
  * @param {Int} index 
@@ -34,7 +62,7 @@ function closeDetailView() {
  * @param {Int} index 
  */
 async function openDetailCard(set, index) {
-    skillInformationRequired && startSpinner('ball', 'information');
+    skillInformationRequired &amp;&amp; startSpinner('ball', 'information');
     const pageView = document.getElementById('body');
     pageView.classList.add('scroll-behavior--blocked');
     const pokemon = pokemonDetails[set][index];
@@ -42,7 +70,7 @@ async function openDetailCard(set, index) {
     const viewContainer = document.getElementById('detail-view');
     viewContainer.classList.remove('d-none');
     await renderDetailCard(pokemon, set, index);
-    skillInformationRequired && stopSpinner();
+    skillInformationRequired &amp;&amp; stopSpinner();
 }
 
 
@@ -75,7 +103,7 @@ function renderStats(pokemon) {
     const stats = ['hp', 'attack', 'defense', 'special-attack', 'special-defense', 'speed'];
     const statNames = ['HP', 'Atack', 'Defense', 'Special Attack', 'Special Defense', 'Speed'];
     const highestStatValue = findHighestStat(pokemon, stats);
-    for (let i = 0; i < stats.length; i++) {
+    for (let i = 0; i &lt; stats.length; i++) {
         const target = document.getElementById(stats[i]);
         let targetPercentage = statvaluePercentage(pokemon, i, highestStatValue);
         target.style.width = `${targetPercentage}%`;
@@ -92,7 +120,7 @@ function renderStats(pokemon) {
 async function fetchSkills(pokemon) {
     const skill = pokemon['abilities'];
     let skillInfo = [];
-    for (let i = 0; i < skill.length; i++) {
+    for (let i = 0; i &lt; skill.length; i++) {
         skillInfo.push(await (await fetch(skill[i]['ability'].url)).json());
     }
     return skillInfo;
@@ -104,8 +132,8 @@ async function fetchSkills(pokemon) {
  */
 function renderSkills(skillList) {
     const target = document.getElementById('skills-tab');
-    let skillHtml = '<h3>Skills:</h3>';
-    for (let i = 0; i < skillList.length; i++) {
+    let skillHtml = '&lt;h3>Skills:&lt;/h3>';
+    for (let i = 0; i &lt; skillList.length; i++) {
         skillHtml += renderSkillHtml(skillList[i]);
     }
     target.innerHTML = skillHtml;
@@ -120,7 +148,7 @@ function renderSkills(skillList) {
  */
 function findHighestStat(pokemon, stats) {
     let highestValue = null;
-    for (let i = 0; i < stats.length; i++) {
+    for (let i = 0; i &lt; stats.length; i++) {
         currentStatsvalue = pokemon['stats'][i]['base_stat'];
         highestValue = currentStatsvalue > highestValue ? currentStatsvalue : highestValue;
     }
@@ -172,7 +200,7 @@ function increaseTillNextMatch(set, index) {
 
     while (!currentName || !pokemonIsSearched(currentName, keyword)) {
         ++index;
-        if (index > indexMax || set == lastSet && index > currentIndexMax) {
+        if (index > indexMax || set == lastSet &amp;&amp; index > currentIndexMax) {
             index = 0;
             set = increaseSet(set);
         }
@@ -197,9 +225,9 @@ function decreaseTillPreviousMatch(set, index) {
 
     while (!currentName || !pokemonIsSearched(currentName, keyword)) {
         --index;
-        if (index < 0) {
+        if (index &lt; 0) {
             set = decreaseSet(set);
-            index = set < lastSet ? indexMax : currentIndexMax;
+            index = set &lt; lastSet ? indexMax : currentIndexMax;
         }
         currentName = pokemonDetails[set][index].name;
     }
@@ -217,13 +245,13 @@ function decreaseTillPreviousMatch(set, index) {
  */
 function findEnglishInformation(skill, type) {
     if (type == 'name') {
-        for (let i = 0; i < skill['names'].length; i++) {
+        for (let i = 0; i &lt; skill['names'].length; i++) {
             if (skill['names'][i]['language']['name'] == 'en') {
                 return i;
             }
         }
     } else if (type == 'desc') {
-        for (let i = 0; i < skill['effect_entries'].length; i++) {
+        for (let i = 0; i &lt; skill['effect_entries'].length; i++) {
             if (skill['effect_entries'][i]['language']['name'] == 'en') {
                 return i;
             }
@@ -260,7 +288,7 @@ function renderDetailCardHeader(card, pokemon, set, index) {
  * @param {Int} index - pokemon position in json
  */
 function updateNavigationButtons(set, index) {
-    for (i = 0; i < 2; i++) {
+    for (i = 0; i &lt; 2; i++) {
         const prevButton = document.getElementById(`prev-button-${i}`);
         const nextButton = document.getElementById(`next-button-${i}`);
         prevButton.setAttribute('onclick', `decreaseTillPreviousMatch(${set}, ${index});stopBubbeling(event);`);
@@ -294,14 +322,14 @@ function increaseSet(set) {
 
 
 /**
- * If current set is >= 0, reduce the set-number. Or, if the set is < 0, go to the latest set.
+ * If current set is >= 0, reduce the set-number. Or, if the set is &lt; 0, go to the latest set.
  * @param {Int} set 
  * @returns new set value
  */
 function decreaseSet(set) {
     const maxSetIndex = pokemonDetails.length - 1;
     --set;
-    set = set < 0 ? maxSetIndex : set;
+    set = set &lt; 0 ? maxSetIndex : set;
     return set;
 }
 
@@ -312,8 +340,30 @@ function decreaseSet(set) {
  */
 function flexTab(id) {
     skillInformationRequired = id == 1 ? true : false;
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i &lt; 3; i++) {
         let target = document.getElementById(`card-1-tab-${i}`);
         i == id ? target.classList.add('flex') : target.classList.remove('flex');
     }
-}
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#calculateLastSetsMaxIndex">calculateLastSetsMaxIndex</a></li><li><a href="global.html#closeDetailView">closeDetailView</a></li><li><a href="global.html#decreaseSet">decreaseSet</a></li><li><a href="global.html#decreaseTillPreviousMatch">decreaseTillPreviousMatch</a></li><li><a href="global.html#fetchSkills">fetchSkills</a></li><li><a href="global.html#findEnglishInformation">findEnglishInformation</a></li><li><a href="global.html#findHighestStat">findHighestStat</a></li><li><a href="global.html#flexTab">flexTab</a></li><li><a href="global.html#increaseSet">increaseSet</a></li><li><a href="global.html#increaseTillNextMatch">increaseTillNextMatch</a></li><li><a href="global.html#openDetailCard">openDetailCard</a></li><li><a href="global.html#playPokemonCry">playPokemonCry</a></li><li><a href="global.html#pokemonIsSearched">pokemonIsSearched</a></li><li><a href="global.html#renderDetailCardTabs">renderDetailCardTabs</a></li><li><a href="global.html#renderSkills">renderSkills</a></li><li><a href="global.html#renderStats">renderStats</a></li><li><a href="global.html#resetCardDesign">resetCardDesign</a></li><li><a href="global.html#statvaluePercentage">statvaluePercentage</a></li><li><a href="global.html#updateNavigationButtons">updateNavigationButtons</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sun Jun 16 2024 18:30:38 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
