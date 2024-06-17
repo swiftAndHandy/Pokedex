@@ -418,27 +418,27 @@ footer {
 }
 
 .hp-bar {
-    background-image: url('../img/hp-bar.webp');
+    background: rgb(41,130,11);
 }
 
 .attack-bar {
-    background-image: url('../img/attack-bar.webp');
+    background: rgb(187,40,62);
 }
 
 .defense-bar {
-    background-image: url('../img/defense-bar.webp');
+    background: rgb(38,97,248);
 }
 
 .special-attack-bar {
-    background-image: url('../img/special-attack-bar.webp');
+    background: rgb(245,47,58);
 }
 
 .special-defense-bar {
-    background-image: url('../img/special-defense-bar.webp');
+    background: rgb(114,68,170);
 }
 
 .speed-bar {
-    background-image: url('../img/speed-bar.webp');
+    background: rgb(192,181,70);
 }
 
 

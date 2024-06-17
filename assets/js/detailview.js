@@ -147,7 +147,7 @@ function statvaluePercentage(pokemon, index, highestValue) {
  * But when every pokemon is loaded it could be, that the last set contains less than SET_LIMITs items.
  * To prevent bugs when go to next/prev-Pokemon in Detail-View it's important to analyse the correct length of the set.
  * @returns the length of the current last set
- * 
+ * <br><br>
  * 
  */
 function calculateLastSetsMaxIndex() {
