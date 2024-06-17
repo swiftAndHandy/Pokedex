@@ -1,20 +1,33 @@
-//Required for fetching process
+/**
+ * This variables are necessairy for the fetching process. 
+ * It's possible to increase the pokemonLoadingLimit, but in this case the Sprite-Style will change after 649 Pokemon.
+ * This is the limit for dreamworldsprites, since they only exist till Pokémon-Generation 5.
+ */
 let pokemonList = null;
 let pokemonDetails = [];
 let countPokemonLoaded = 0;
-const pokemonLoadingLimit = 649; // 649 is Gen 5 Cap. You can change it, but spritestyle will change also.
+const pokemonLoadingLimit = 649;
 
-//Required for Detail-View
+/**
+ * This variables are required for Detail-View
+ */
 let lastPokemon = null;
 let skillInformationRequired = false;
 
-//API Settings
+/**
+ * This Settings are related to the pokeapi.co.
+ * SET_LIMIT = 0 -> API Base Value of 20
+ * OFFSET is used for calculatedOffset() and increases with countPokemonLoaded (global). It's not necessary to set this, only if you wan't to skip some pokemon.
+ * dreamworldSprites exist only for the first 649 Pokemon; i use this as a const only for readability of code.
+ */
 const API_BASE_URL = 'https://pokeapi.co/api/v2/'
-const SET_LIMIT = 10;  // LIMIT 0 -> API overwrites with a standard of 20
+const SET_LIMIT = 0;
 const OFFSET = 0;
-const dreamworldSprites = 649; // dreamworldSprites exist only for the first 649 Pokemon
+const dreamworldSprites = 649; // 
 
-//Usersettings
+/**
+ * Some values the user can change in settings-menu
+ */
 let AUTOLOAD = false;
 let SOUND_STYLE = 'latest';
 let settingsOpen = false;
@@ -54,7 +67,6 @@ async function fetchPokemonInformation() {
 
 function evaluateAutoload() {
     if (AUTOLOAD) {
-        startSpinner('bar');
         fetchPokemonInformation();
     }
 }
@@ -68,7 +80,6 @@ async function fetchPokemonNames() {
 
 
 async function fetchPokemonDetails() {
-    startSpinner();
     const pokemonListResults = pokemonList['results'];
     let newDetails = [];
 
@@ -84,7 +95,6 @@ async function fetchPokemonDetails() {
 
 
 function morePokemonAllowed() {
-    //original was pokemonList['count'] - but this causes bugs since the api is making id-jumps at ~1025
     return countPokemonLoaded < pokemonLoadingLimit;
 }
 
@@ -154,8 +164,12 @@ function getColorScheme(pokemon) {
     return pokemon.types[0].type.name;
 }
 
-
-function startSpinner(style = 'ball', text = 'pokemon') {
+/**
+ * 
+ * @param {string} style 
+ * @param {string} text 
+ */
+function startSpinner(style = 'ball', text = '') {
     if (AUTOLOAD && style == 'bar') {
         document.getElementById('progress-div').classList.remove('d-none');
     } else if (text == 'information') {

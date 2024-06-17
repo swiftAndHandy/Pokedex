@@ -418,27 +418,40 @@ footer {
 }
 
 .hp-bar {
-    background: rgb(41,130,11);
+    background: linear-gradient(to right,
+    rgba(41, 130, 11, 1) 0%,
+    rgba(41, 130, 11, 0.5) 100%)
 }
 
 .attack-bar {
-    background: rgb(187,40,62);
+    background: linear-gradient(to right,
+    rgba(187, 40, 62, 1) 0%,
+    rgba(187, 40, 62, 0.5) 100%)
 }
 
 .defense-bar {
-    background: rgb(38,97,248);
+    background: rgb(38, 97, 248);
+    background: linear-gradient(to right,
+    rgba(38, 97, 248, 1) 0%,
+    rgba(38, 97, 248, 0.5) 100%)
 }
 
 .special-attack-bar {
-    background: rgb(245,47,58);
+    background: linear-gradient(to right,
+            rgba(245, 47, 58, 1) 0%,
+            rgba(245, 47, 58, 0.5) 100%)
 }
 
 .special-defense-bar {
-    background: rgb(114,68,170);
+    background: linear-gradient(to right,
+            rgba(114, 68, 170, 1) 0%,
+            rgba(114, 68, 170, 0.5) 100%)
 }
 
 .speed-bar {
-    background: rgb(192,181,70);
+    background: linear-gradient(to right,
+            rgba(192, 181, 70, 1) 0%,
+            rgba(192, 181, 70, 0.5) 100%)
 }
 
 

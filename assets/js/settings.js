@@ -24,6 +24,7 @@ function toggleAutoload() {
     if (AUTOLOAD) {
         toggleDescription.innerHTML = 'Autoload: active';
         loadingButton.classList.add('d-none');
+        startSpinner('bar');
         fetchPokemonInformation();
     } else {
         toggleDescription.innerHTML = 'Autoload: off';
