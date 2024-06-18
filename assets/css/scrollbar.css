@@ -1,0 +1,104 @@
+.sb-grass {
+    --sb-thumb-color: #6BAF8D;
+}
+
+.sb-base {
+    --sb-track-color: rgba(0, 0, 0, 0);
+    --sb-size: 14px;
+}
+
+.sb-fire {
+    --sb-thumb-color: #6BAF8D;
+}
+
+.sb-water {
+    --sb-thumb-color: #5676ff;
+}
+
+
+.sb-bug {
+    --sb-thumb-color: #cb3738;
+}
+
+
+.sb-normal {
+    --sb-thumb-color: #e2d0ab;
+}
+
+
+.sb-poison {
+    --sb-thumb-color: #d91cdd;
+}
+
+.sb-electric {
+    --sb-thumb-color: #f2ff0d;
+}
+
+
+
+.sb-ground {
+    --sb-thumb-color: #d49b63;
+}
+
+.sb-fairy {
+    --sb-thumb-color: #6BAF8D;
+}
+
+
+.sb-fighting {
+    --sb-thumb-color: #ff7b64;
+}
+
+
+.sb-psychic {
+    --sb-thumb-color: #ff16f4;
+}
+
+.sb-rock {
+    --sb-thumb-color: #808080;
+}
+
+.sb-ghost {
+    --sb-thumb-color: #6BAF8D;
+}
+
+.sb-ice {
+    --sb-thumb-color: #cffcfe;
+}
+
+.sb-dragon {
+    --sb-thumb-color: #6BAF8D;
+}
+
+.sb-dark {
+    --sb-thumb-color: #6BAF8D;
+}
+
+.sb-steel {
+    --sb-thumb-color: #6BAF8D;
+}
+
+.sb-flying {
+    --sb-thumb-color: #6BAF8D;
+}
+
+.sb-base::-webkit-scrollbar {
+    width: var(--sb-size)
+}
+
+.sb-base::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 3px;
+}
+
+.sb-base::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 5px;
+
+}
+
+@supports not selector(::-webkit-scrollbar) {
+    sb-base {
+        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+    }
+}

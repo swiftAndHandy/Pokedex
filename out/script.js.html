@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: script.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: script.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * This variables are necessairy for the fetching process. 
  * It's possible to increase the pokemonLoadingLimit, but in this case the Sprite-Style will change after 649 Pokemon.
  * This is the limit for dreamworldsprites, since they only exist till Pokémon-Generation 5.
@@ -8,23 +36,27 @@ let pokemonDetails = [];
 let countPokemonLoaded = 0;
 const pokemonLoadingLimit = 649;
 
-/* This variables are required for Detail-View */
+/**
+ * This variables are required for Detail-View
+ */
 let lastPokemon = null;
 let skillInformationRequired = false;
 
-/*
-This Settings are related to the pokeapi.co.
-API_BASE_URL: Base URL for the pokeapi.
-SET_LIMIT = 20
-OFFSET is used for calculatedOffset() and increases with countPokemonLoaded (global). It's not necessary to set this, only if you want to skip some pokemon.
-dreamworldSprites exist only for the first 649 Pokemon; i use this as a const only for readability of code.
+/**
+ * This Settings are related to the pokeapi.co.
+ * - API_BASE_URL: Base URL for the pokeapi.
+ * - SET_LIMIT = 0 -> API Base Value of 20
+ * - OFFSET is used for calculatedOffset() and increases with countPokemonLoaded (global). It's not necessary to set this, only if you want to skip some pokemon.
+ * - dreamworldSprites exist only for the first 649 Pokemon; i use this as a const only for readability of code.
  */
 const API_BASE_URL = 'https://pokeapi.co/api/v2/';
-const SET_LIMIT = 20;
+const SET_LIMIT = 0;
 const OFFSET = 0;
 const dreamworldSprites = 649;
 
-/* Some values the user can change in settings-menu */
+/**
+ * Some values the user can change in settings-menu
+ */
 let AUTOLOAD = false;
 let SOUND_STYLE = 'latest';
 let settingsOpen = false;
@@ -81,7 +113,7 @@ async function fetchPokemonDetails() {
     let newDetails = [];
 
     if (morePokemonAllowed()) {
-        for (let i = 0; i < pokemonListResults.length; i++) {
+        for (let i = 0; i &lt; pokemonListResults.length; i++) {
             if (morePokemonAllowed()) {
                 await addPokemonInformation(newDetails, pokemonListResults, i);
             } else { break; }
@@ -92,7 +124,7 @@ async function fetchPokemonDetails() {
 
 
 function morePokemonAllowed() {
-    return countPokemonLoaded < pokemonLoadingLimit;
+    return countPokemonLoaded &lt; pokemonLoadingLimit;
 }
 
 
@@ -102,7 +134,7 @@ async function addPokemonInformation(newDetails, pokemonListResults, i) {
 
     newDetails.push(detailsData);
     ++countPokemonLoaded;
-    AUTOLOAD && morePokemonAllowed() ? updateProgressBar() : stopAutoload();
+    AUTOLOAD &amp;&amp; morePokemonAllowed() ? updateProgressBar() : stopAutoload();
 }
 
 
@@ -118,7 +150,7 @@ function stopAutoload() {
 
 
 function pokeAPI(path) {
-    return API_BASE_URL + path + '?limit=' + SET_LIMIT + '&offset=' + calculatedOffset();
+    return API_BASE_URL + path + '?limit=' + SET_LIMIT + '&amp;offset=' + calculatedOffset();
 }
 
 
@@ -136,7 +168,7 @@ async function renderAllPokemon() {
     const latestSet = pokemonDetails.length - 1;
     const pokemonContainer = document.getElementById('pokemon-list');
 
-    for (let i = 0; i < currentSetLength(latestSet); i++) {
+    for (let i = 0; i &lt; currentSetLength(latestSet); i++) {
         pokemonContainer.insertAdjacentHTML('beforeend', generatePokedex(latestSet, i));
         isASearchRequired();
     }
@@ -167,7 +199,7 @@ function getColorScheme(pokemon) {
  * @param {string} text 
  */
 function startSpinner(style = 'ball', text = '') {
-    if (AUTOLOAD && style == 'bar') {
+    if (AUTOLOAD &amp;&amp; style == 'bar') {
         document.getElementById('progress-div').classList.remove('d-none');
     } else if (text == 'information') {
         document.getElementById('skill-loading-spinner').classList.remove('d-none');
@@ -226,7 +258,7 @@ function searchForPokemon() {
 
 function findPokemonImage(pokemon) {
     let imageOf = pokemon['id'];
-    return imageOf <= dreamworldSprites ? pokemon['sprites']['other']['dream_world']['front_default'] : pokemon['sprites']['front_default'];
+    return imageOf &lt;= dreamworldSprites ? pokemon['sprites']['other']['dream_world']['front_default'] : pokemon['sprites']['front_default'];
 }
 
 
@@ -244,3 +276,26 @@ function animateNavigation(side) {
         target.disabled = false;
     }, 600);
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#API_BASE_URL">API_BASE_URL</a></li><li><a href="global.html#AUTOLOAD">AUTOLOAD</a></li><li><a href="global.html#calculateLastSetsMaxIndex">calculateLastSetsMaxIndex</a></li><li><a href="global.html#closeDetailView">closeDetailView</a></li><li><a href="global.html#decreaseSet">decreaseSet</a></li><li><a href="global.html#decreaseTillPreviousMatch">decreaseTillPreviousMatch</a></li><li><a href="global.html#fetchSkills">fetchSkills</a></li><li><a href="global.html#findEnglishInformation">findEnglishInformation</a></li><li><a href="global.html#findHighestStat">findHighestStat</a></li><li><a href="global.html#flexTab">flexTab</a></li><li><a href="global.html#increaseSet">increaseSet</a></li><li><a href="global.html#increaseTillNextMatch">increaseTillNextMatch</a></li><li><a href="global.html#lastPokemon">lastPokemon</a></li><li><a href="global.html#openDetailCard">openDetailCard</a></li><li><a href="global.html#playPokemonCry">playPokemonCry</a></li><li><a href="global.html#pokemonIsSearched">pokemonIsSearched</a></li><li><a href="global.html#pokemonList">pokemonList</a></li><li><a href="global.html#renderDetailCardTabs">renderDetailCardTabs</a></li><li><a href="global.html#renderSkills">renderSkills</a></li><li><a href="global.html#renderStats">renderStats</a></li><li><a href="global.html#resetCardDesign">resetCardDesign</a></li><li><a href="global.html#startSpinner">startSpinner</a></li><li><a href="global.html#statvaluePercentage">statvaluePercentage</a></li><li><a href="global.html#updateNavigationButtons">updateNavigationButtons</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Mon Jun 17 2024 23:42:59 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

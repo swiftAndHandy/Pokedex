@@ -103,7 +103,7 @@ async function fetchSkills(pokemon) {
  * @param {JSON} skillList 
  */
 function renderSkills(skillList) {
-    const target = document.getElementById('skills-tab');
+    const target = document.getElementById('card-1-skills-tab');
     let skillHtml = '<h3>Skills:</h3>';
     for (let i = 0; i < skillList.length; i++) {
         skillHtml += renderSkillHtml(skillList[i]);
@@ -246,6 +246,7 @@ function renderDetailCardHeader(card, pokemon, set, index) {
     const typesHtml = generateTypeHtml(pokemon);
     const pokemonName = capitalizeFirstLetter(pokemon['species']['name']);
     document.getElementById(`${card}bg-target`).classList.add(`bg-design--${getColorScheme(pokemon)}`);
+    document.getElementById(`${card}skills-tab`).classList.add(`sb-${getColorScheme(pokemon)}`);
     document.getElementById(`${card}title`).innerHTML = pokemonName;
     document.getElementById(`${card}poke-id`).innerHTML = `# ${pokemon['id']}`;
     document.getElementById(`${card}types`).innerHTML = typesHtml;
@@ -277,6 +278,7 @@ function updateNavigationButtons(set, index) {
 function resetCardDesign(pokemon, target = '1') {
     if (pokemon) {
         document.getElementById(`card-${target}-bg-target`).classList.remove(`bg-design--${getColorScheme(pokemon)}`);
+        document.getElementById(`card-${target}-skills-tab`).classList.remove(`sb-${getColorScheme(pokemon)}`);
     }
 }
 

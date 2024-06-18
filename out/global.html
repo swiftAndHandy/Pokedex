@@ -94,6 +94,264 @@
     
 
     
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="API_BASE_URL"><span class="type-signature">(constant) </span>API_BASE_URL<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    This Settings are related to the pokeapi.co.
+- API_BASE_URL: Base URL for the pokeapi.
+- SET_LIMIT = 0 -> API Base Value of 20
+- OFFSET is used for calculatedOffset() and increases with countPokemonLoaded (global). It's not necessary to set this, only if you want to skip some pokemon.
+- dreamworldSprites exist only for the first 649 Pokemon; i use this as a const only for readability of code.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line24">line 24</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="AUTOLOAD"><span class="type-signature"></span>AUTOLOAD<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Some values the user can change in settings-menu
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line32">line 32</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="lastPokemon"><span class="type-signature"></span>lastPokemon<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    This variables are required for Detail-View
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="pokemonList"><span class="type-signature"></span>pokemonList<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    This variables are necessairy for the fetching process. 
+It's possible to increase the pokemonLoadingLimit, but in this case the Sprite-Style will change after 649 Pokemon.
+This is the limit for dreamworldsprites, since they only exist till Pokémon-Generation 5.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
 
     
         <h3 class="subsection-title">Methods</h3>
@@ -2607,6 +2865,174 @@ const statNames - This Indices will be uses as display output
     
 
     
+    <h4 class="name" id="startSpinner"><span class="type-signature"></span>startSpinner<span class="signature">(style, text)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>style</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    ball
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>text</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line173">line 173</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="statvaluePercentage"><span class="type-signature"></span>statvaluePercentage<span class="signature">(pokemon, index, highestValue)</span><span class="type-signature"></span></h4>
     
 
@@ -2971,13 +3397,13 @@ To keep them up to date is important, because the current set/index is the start
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#calculateLastSetsMaxIndex">calculateLastSetsMaxIndex</a></li><li><a href="global.html#closeDetailView">closeDetailView</a></li><li><a href="global.html#decreaseSet">decreaseSet</a></li><li><a href="global.html#decreaseTillPreviousMatch">decreaseTillPreviousMatch</a></li><li><a href="global.html#fetchSkills">fetchSkills</a></li><li><a href="global.html#findEnglishInformation">findEnglishInformation</a></li><li><a href="global.html#findHighestStat">findHighestStat</a></li><li><a href="global.html#flexTab">flexTab</a></li><li><a href="global.html#increaseSet">increaseSet</a></li><li><a href="global.html#increaseTillNextMatch">increaseTillNextMatch</a></li><li><a href="global.html#openDetailCard">openDetailCard</a></li><li><a href="global.html#playPokemonCry">playPokemonCry</a></li><li><a href="global.html#pokemonIsSearched">pokemonIsSearched</a></li><li><a href="global.html#renderDetailCardTabs">renderDetailCardTabs</a></li><li><a href="global.html#renderSkills">renderSkills</a></li><li><a href="global.html#renderStats">renderStats</a></li><li><a href="global.html#resetCardDesign">resetCardDesign</a></li><li><a href="global.html#statvaluePercentage">statvaluePercentage</a></li><li><a href="global.html#updateNavigationButtons">updateNavigationButtons</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#API_BASE_URL">API_BASE_URL</a></li><li><a href="global.html#AUTOLOAD">AUTOLOAD</a></li><li><a href="global.html#calculateLastSetsMaxIndex">calculateLastSetsMaxIndex</a></li><li><a href="global.html#closeDetailView">closeDetailView</a></li><li><a href="global.html#decreaseSet">decreaseSet</a></li><li><a href="global.html#decreaseTillPreviousMatch">decreaseTillPreviousMatch</a></li><li><a href="global.html#fetchSkills">fetchSkills</a></li><li><a href="global.html#findEnglishInformation">findEnglishInformation</a></li><li><a href="global.html#findHighestStat">findHighestStat</a></li><li><a href="global.html#flexTab">flexTab</a></li><li><a href="global.html#increaseSet">increaseSet</a></li><li><a href="global.html#increaseTillNextMatch">increaseTillNextMatch</a></li><li><a href="global.html#lastPokemon">lastPokemon</a></li><li><a href="global.html#openDetailCard">openDetailCard</a></li><li><a href="global.html#playPokemonCry">playPokemonCry</a></li><li><a href="global.html#pokemonIsSearched">pokemonIsSearched</a></li><li><a href="global.html#pokemonList">pokemonList</a></li><li><a href="global.html#renderDetailCardTabs">renderDetailCardTabs</a></li><li><a href="global.html#renderSkills">renderSkills</a></li><li><a href="global.html#renderStats">renderStats</a></li><li><a href="global.html#resetCardDesign">resetCardDesign</a></li><li><a href="global.html#startSpinner">startSpinner</a></li><li><a href="global.html#statvaluePercentage">statvaluePercentage</a></li><li><a href="global.html#updateNavigationButtons">updateNavigationButtons</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Mon Jun 17 2024 11:58:18 GMT+0200 (Mitteleuropäische Sommerzeit)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Mon Jun 17 2024 23:42:59 GMT+0200 (Mitteleuropäische Sommerzeit)
 </footer>
 
 <script> prettyPrint(); </script>
