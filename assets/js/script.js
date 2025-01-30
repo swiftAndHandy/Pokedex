@@ -1,7 +1,7 @@
 /**
  * This variables are necessairy for the fetching process. 
  * It's possible to increase the pokemonLoadingLimit, but in this case the Sprite-Style will change after 649 Pokemon.
- * This is the limit for dreamworldsprites, since they only exist till Pok√©mon-Generation 5.
+ * This is the limit for dreamworldsprites, since they only exist till Pokémon-Generation 5.
  */
 let pokemonList = null;
 let pokemonDetails = [];
@@ -80,14 +80,16 @@ async function fetchPokemonDetails() {
     const pokemonListResults = pokemonList['results'];
     let newDetails = [];
 
-    if (morePokemonAllowed()) {
-        for (let i = 0; i < pokemonListResults.length; i++) {
-            if (morePokemonAllowed()) {
-                await addPokemonInformation(newDetails, pokemonListResults, i);
-            } else { break; }
-        }
-        pokemonDetails.push(newDetails);
-    }
+    const allowedPokemon = pokemonListResults.slice(0, pokemonLoadingLimit - countPokemonLoaded);
+
+    const promises = allowedPokemon.map(pokemon => fetch(pokemon.url).then(response => response.json()));
+
+    newDetails = await Promise.all(promises);
+
+    pokemonDetails.push(newDetails);
+    countPokemonLoaded += newDetails.length;
+
+    AUTOLOAD && morePokemonAllowed() ? updateProgressBar() : stopAutoload();
 }
 
 
